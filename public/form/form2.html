@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Bahan Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Informasi Bahan Section -->
+    <h2>Informasi Bahan</h2>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="quantity">Jumlah</label>
+            <div class="quantity-input">
+                <button type="button" id="decrement">-</button>
+                <input type="number" id="quantity" name="quantity" value="0" min="0">
+                <button type="button" id="increment">+</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="style">Gaya</label>
+            <input type="text" id="style" name="style" placeholder="Masukkan Gaya">
+        </div>
+
+        <!-- Warna Section -->
+        <h3>Warna</h3>
+        <div class="form-group colors">
+            <label><input type="checkbox" name="colors" value="hitam"> hitam</label>
+            <label><input type="checkbox" name="colors" value="putih"> putih</label>
+            <label><input type="checkbox" name="colors" value="ungu"> ungu</label>
+            <label><input type="checkbox" name="colors" value="lime"> lime</label>
+            <label><input type="checkbox" name="colors" value="biru-laut"> biru laut</label>
+            <label><input type="checkbox" name="colors" value="aqua"> aqua</label>
+            <label><input type="checkbox" name="colors" value="abu-abu"> abu-abu</label>
+            <label><input type="checkbox" name="colors" value="merah-tua"> merah tua</label>
+            <label><input type="checkbox" name="colors" value="fuchsia"> fuchsia</label>
+            <label><input type="checkbox" name="colors" value="olive"> olive</label>
+            <label><input type="checkbox" name="colors" value="biru"> biru</label>
+            <label><input type="checkbox" name="colors" value="perak"> perak</label>
+            <label><input type="checkbox" name="colors" value="merah"> merah</label>
+            <label><input type="checkbox" name="colors" value="hijau"> hijau</label>
+            <label><input type="checkbox" name="colors" value="kuning"> kuning</label>
+            <label><input type="checkbox" name="colors" value="teal"> teal</label>
+        </div>
+
+        <button type="submit" class="submit-btn">Kirim</button>
+    </form>
+
+    <script>
+        const decrementBtn = document.getElementById('decrement');
+        const incrementBtn = document.getElementById('increment');
+        const quantityInput = document.getElementById('quantity');
+
+        decrementBtn.addEventListener('click', () => {
+            if (quantityInput.value > 0) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        });
+
+        incrementBtn.addEventListener('click', () => {
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+        });
+    </script>
+</body>
+</html>
