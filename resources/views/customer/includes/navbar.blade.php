@@ -2,17 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-xs-2">
-                <div id="fh5co-logo"><a href="index.html">Al-Zahra</a></a></div>
+                <div id="fh5co-logo"><a href="{{ route('customer.home') }}">Al-Zahra</a></div>
             </div>
             <div class="col-md-6 col-xs-6 text-center menu-1">
                 <ul>
-                    <li class="has-dropdown">
-                        <a href="product.html">Shop</a>
-                        <ul class="dropdown">
-                            <li><a href="single.html">Single Shop</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="{{ route('customer.home') }}">Products</a></li>
+                    <li><a href="{{ route('customer.about') }}">About</a></li>
                     <li class="has-dropdown">
                         <a href="services.html">Services</a>
                         <ul class="dropdown">

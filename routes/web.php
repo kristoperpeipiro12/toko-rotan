@@ -40,7 +40,11 @@ Route::get('/pesanan/selesai', [PesananController::class, 'selesai'])->name('pes
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     // Tambahkan route admin lain di sini
 });
-Route::get('/customer', [CustomerHomeController::class, 'index'])->name('customer.home');
+
+// Route Catalog
+Route::get('/our-products', [CustomerHomeController::class, 'index'])->name('customer.home');
+Route::get('/about', [CustomerHomeController::class, 'about'])->name('customer.about');
+Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer.detail');
 
 // Group untuk customer
 Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function () {
