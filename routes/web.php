@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DataWilayahController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\PesananController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\Customer\HomeController as CustomerHomeController;
 use App\Http\Controllers\Login\LoginController as LoginLoginController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 Route::get('/our-products', [CustomerHomeController::class, 'index'])->name('customer.home');
 Route::get('/about', [CustomerHomeController::class, 'about'])->name('customer.about');
 Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer.detail');
+
+//Route setelah login
+Route::get('/store', [ShopController::class, 'index'])->name('shop.home');
+
+
 
 // Group untuk customer
 Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function () {

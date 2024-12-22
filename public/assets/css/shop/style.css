@@ -1,0 +1,10 @@
+.carousel-item {
+    max-height: 400px;
+    min-width: 100%;
+    object-fit: fill;
+}
+
+.underline-custom {
+    text-decoration: underline;
+    
+}

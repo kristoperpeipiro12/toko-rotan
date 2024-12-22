@@ -1,0 +1,5 @@
+HAPUS FILE INI JIKA SUDAH DALAM TAHAP PRODUCTION!
+
+Perbedaan folder SHOP dan folder CUSTOMER adalah
+tampilan pelanggan CUSTOMER untuk yang belum login
+tampilan pelanggan SHOP untuk yang sudah login

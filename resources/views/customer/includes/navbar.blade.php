@@ -8,15 +8,6 @@
                 <ul>
                     <li><a href="{{ route('customer.home') }}">Products</a></li>
                     <li><a href="{{ route('customer.about') }}">About</a></li>
-                    <li class="has-dropdown">
-                        <a href="services.html">Services</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Web Design</a></li>
-                            <li><a href="#">eCommerce</a></li>
-                            <li><a href="#">Branding</a></li>
-                            <li><a href="#">API</a></li>
-                        </ul>
-                    </li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>

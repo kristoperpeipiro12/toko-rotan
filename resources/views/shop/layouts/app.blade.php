@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+
+@include('shop.includes.header')
+
+<body>
+    @yield('content')
+
+    {{-- letakkan JS di bawah baris ini! --}}
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+</body>
+
+</html>
