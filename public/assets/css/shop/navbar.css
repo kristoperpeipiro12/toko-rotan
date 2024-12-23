@@ -1,0 +1,238 @@
+/* Copy dibawah ini! */
+.wrap-nav-cus-1 {
+    /* background-color: rebeccapurple; */
+    display: flex;
+    justify-content: center;
+}
+
+.nav-cus-1 {
+    position: fixed;
+    display: flex;
+    top: 10px;
+    z-index: 10;
+
+    border-radius: 24px;
+    width: 90%;
+    max-width: 1120px;
+    justify-content: space-between;
+    padding: 12px 20px;
+
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 228, 196, 0.7);
+
+    transition: transform 0.3s ease;
+}
+
+.nav-cus-1.hidden {
+    transform: translateY(-150%);
+}
+
+.nav-cus-1 .brand-cus {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.nav-cus-1 .brand-cus:hover {
+    cursor: pointer;
+}
+
+.nav-cus-1 .nav-item-wrap-cus {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    /* background-color: burlywood; */
+}
+
+.nav-cus-1 .nav-item-wrap-cus .nav-item-cus {
+    list-style: none;
+}
+
+.nav-item-cus a {
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    /* padding: 5px 2px; */
+}
+
+.hover-eff-cus:hover {
+    color: #333 !important;
+    text-decoration: underline;
+    text-decoration-color: #333;
+    /* background-color: #333; */
+}
+
+.dropdown-cus-1 {
+    position: absolute;
+    border-radius: 8px;
+    margin-top: 8px;
+    background-color: violet;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    padding: 10px 0;
+    width: 150px;
+    list-style: none;
+}
+
+.dropdown-cus-1 li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    /* background-color: antiquewhite; */
+}
+
+.hidden-li-cus {
+    border-radius: 12px !important;
+    display: none;
+}
+
+.user-section-cus {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    gap: 18px;
+}
+
+.user-section-cus a {
+    color: white;
+}
+
+.btn-dropdown-cus-1 {
+    color: black;
+    text-decoration: none;
+}
+
+/* Awalnya dropdown disembunyikan */
+#dd-cus {
+    display: none;
+    position: absolute;
+    /* top: 100%; Agar dropdown muncul di bawah tombol
+    left: 0; */
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+/* Saat dropdown aktif */
+#dd-cus.active {
+    background-color: rgb(255, 255, 255, 0.7);
+    border: none;
+    display: block;
+}
+
+/* Gaya untuk item dropdown */
+#dd-cus li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#dd-cus li:hover {
+    background-color: #f1f1f1;
+}
+
+#hum-menu-cus {
+    display: none;
+    font-size: 22px;
+    align-self: center;
+}
+
+.fa-bars:hover {
+    cursor: pointer;
+}
+
+/* Media Query */
+@media screen and (max-width: 768px) {
+    /* Atur gaya untuk navigasi dropdown */
+    #nav-hide-cus,
+    #user-section-cus {
+        display: none; /* Disembunyikan secara default */
+    }
+
+    #nav-hide-cus {
+        flex-direction: column; /* Tampilkan menu secara vertikal */
+        background-color: rgba(255, 228, 196, 0.7); /* Warna latar untuk menu */
+        position: absolute;
+        top: 66px; /* Geser di bawah navbar */
+        right: 0;
+        left: 0;
+        z-index: 1000;
+        padding: 10px;
+        width: 94%;
+        justify-self: center;
+        border-radius: 0 0 18px 18px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #nav-hide-cus.show {
+        display: flex; /* Tampilkan menu saat hamburger diklik */
+    }
+
+    .nav-item-wrap-cus {
+        gap: 10px !important;
+    }
+
+    .nav-item-cus {
+        display: flex !important;
+        width: 100%;
+        font-size: 220px !important;
+    }
+
+    .nav-item-cus a {
+        border-radius: 12px !important;
+        padding-left: 5px !important;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .hidden-li-cus {
+        display: flex;
+    }
+
+    #hum-menu-cus {
+        font-size: 24px;
+        cursor: pointer;
+        color: #333;
+        display: block;
+    }
+
+    .hidden-tablet {
+        display: none !important;
+    }
+
+    .user-section-cus {
+        margin-top: 10px; /* Beri jarak untuk ikon user, like, dan cart */
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .hover-eff-cus:hover {
+        text-decoration: none;
+    }
+
+    .hover-eff-mq-cus:hover {
+        background-color: #f1f1f1;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    #nav-hide-cus {
+        width: 90%;
+    }
+
+    .hover-eff-cus:hover {
+        text-decoration: none;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #nav-hide-cus {
+        width: 88%;
+    }
+
+    .hover-eff-cus:hover {
+        text-decoration: none;
+    }
+}

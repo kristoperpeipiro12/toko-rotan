@@ -17,12 +17,15 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
     background-color: #f9f7f8;
 }
 
 .content-border {
+    overflow-x: hidden !important;
     justify-self: center;
     max-width: 1220px; /* sesuaikan lagi untuk layar laptop! Need Attention! */
     width: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
 }

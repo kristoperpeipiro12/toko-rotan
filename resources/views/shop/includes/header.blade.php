@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shop/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/navbar.css') }}">
     {{-- posisi main.css harus dibawah bootstrap agar jadi prioritas pertama --}}
     <title>AL-ZAHRA - @yield('title')</title>
 </head>

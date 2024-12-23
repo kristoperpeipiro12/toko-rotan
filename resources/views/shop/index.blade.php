@@ -13,7 +13,7 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner">
+            <div class="rounded-bottom-4 object-fit-contain carousel-inner">
                 <div class="carousel-item img-fluid active">
                     <img src="{{ asset('assets/images/dummy-images/corousel-1.jpg') }}" class="d-block w-100"
                         alt="karpet-">
@@ -39,9 +39,14 @@
                     <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" class="d-block w-100"
                         alt="karpet-">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 class="fw-bold" style="color: #633c04;">Tappéto</h2>
-                        <p style="color: #633c04; font-wight: 700">Merupakan karpet dengan harga yang paling terjangkau --
-                            <strong class="underline-custom" style="text-decoration-color: #633c04;">Economical!</strong>
+                        <h2 class="fw-bold " style="color: #ece4ec;">Tappéto</h2>
+                        <p
+                            style="background-color: rgba(42, 37, 34, 0.5); border-radius: 18px; color: #ece4ec; font-wight: 700">
+                            Merupakan karpet
+                            dengan harga yang
+                            paling terjangkau
+                            --
+                            <strong class="underline-custom" style="text-decoration-color: #ece4ec;">Economical!</strong>
                         </p>
                     </div>
                 </div>
@@ -59,53 +64,76 @@
         </div>
 
         {{-- ... --}}
-        <div class="row">
-            <div class="col-4 bg-body">
-                <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy text-center">
-                    <a class="p-1 rounded" href="#simple-list-item-1">Item 1</a>
-                    <a class="p-1 rounded" href="#simple-list-item-2">Item 2</a>
-                    <a class="p-1 rounded" href="#simple-list-item-3">Item 3</a>
-                    <a class="p-1 rounded" href="#simple-list-item-4">Item 4</a>
-                    <a class="p-1 rounded" href="#simple-list-item-5">Item 5</a>
-                </div>
+
+        <div class="space-section my-4 d-flex flex-column justify-content-end">
+            <span class="text-end fs-1 fw-bold line-height-normal">AL-ZAHRA</span>
+            <span class="text-end p-0 m-0 line-height-normal">Menyediakan banyak pilihan ukuran pada setiap produk.
+                <br> <a class="btn btn-outline-dark mt-2 mb-1" href="#">Lihat
+                    Katalog</a></span>
+            <hr class="align-self-end mt-0" style="border: 1px solid #ccc; width: 40%;">
+        </div>
+        <div class="product-section">
+            <div class="promo-wrap">
+                <span class="promo-text">Wood Carpet</span>
+                <p class="expalination">Terbuat dari bahan panel plywood yang dilapis
+                    <br>dengan kayu oak tipis yang kemudian dibacking dengan canvas cotton pada bagian alas karpet
+                </p>
             </div>
-            <div class="col-8">
-                <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0"
-                    data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+
+            {{-- card section --}}
+            <div class="card-wrap">
+                <div class="card-wrap-section">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('assets/images/wood-carpet.png') }}" class="card-img-top" alt="...">
+                        <img class="img-card" src="{{ asset('assets/images/product-img/wood-carpet.png') }}"
+                            class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Wood Carpet</h5>
-                            <p class="card-text">Terbuat dari bahan panel
-                                plywood yang dilapis dengan kayu oak
-                                tipis yang kemudian dibacking dengan
-                                canvas cotton pada bagian alas karpet.</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
+                            <h4 class="card-title fw-bold">Warnal Netral</h4>
+                            <p class="card-text"><strong>Tenang dan Alami.</strong> <br>Ideal untuk ruang keluarga, kantor,
+                                atau ruang kerja.</p>
+                            {{-- <h4 class="card-price fw-bold text-end">Rp. 150.000</h4> --}}
+                            <div class="d-flex w-100 justify-content-end">
+                                <a href="#" class="btn btn-outline-secondary btn-pesan">Detail</a>
+                            </div>
                         </div>
                     </div>
-                    {{-- ... --}}
+                    {{--  --}}
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('assets/images/wood-carpet.png') }}" class="card-img-top" alt="...">
+                        <img class="img-card" src="{{ asset('assets/images/product-img/wood-carpet-coklat-muda.png') }}"
+                            class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Wood Carpet</h5>
-                            <p class="card-text">Terbuat dari bahan panel
-                                plywood yang dilapis dengan kayu oak
-                                tipis yang kemudian dibacking dengan
-                                canvas cotton pada bagian alas karpet.</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
+                            <h4 class="card-title fw-bold">Warnal Coklat Muda</h4>
+                            <p class="card-text"><strong>Hangat dan Nyaman.</strong> <br>Cocok digunakan untuk kamar tidur
+                                atau ruang tamu.</p>
+                            {{-- <h4 class="card-price fw-bold text-end">Rp. 150.000</h4> --}}
+                            <div class="d-flex w-100 justify-content-end">
+                                <a href="#" class="btn btn-outline-secondary btn-pesan">Detail</a>
+                            </div>
                         </div>
                     </div>
-                    <h4 id="simple-list-item-2">Item 2</h4>
-                    <p>...</p>
-                    <h4 id="simple-list-item-3">Item 3</h4>
-                    <p>...</p>
-                    <h4 id="simple-list-item-4">Item 4</h4>
-                    <p>...</p>
-                    <h4 id="simple-list-item-5">Item 5</h4>
-                    <p>...</p>
+                    {{--  --}}
+                    <div class="card" style="width: 18rem;">
+                        <img class="img-card" src="{{ asset('assets/images/product-img/wood-carpet-coklat-tua.png') }}"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title fw-bold">Warnal Coklat Tua</h4>
+                            <p class="card-text"><strong>Elegan dan Klasik.</strong> <br>Cocok untuk ruang makan, ruang
+                                tamu
+                                formal, atau area dengan desain interior klasik.</p>
+                            {{-- <h4 class="card-price fw-bold text-end">Rp. 150.000</h4> --}}
+                            <div class="d-flex w-100 justify-content-end">
+                                <a href="#" class="btn btn-outline-secondary btn-pesan">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{--  --}}
                 </div>
+
             </div>
         </div>
+
+        <div class="product-section"></div>
+
+
         {{-- ... --}}
 
     </div>

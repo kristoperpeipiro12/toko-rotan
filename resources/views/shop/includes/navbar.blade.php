@@ -1,39 +1,23 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand fs-2 fw-bold" href="{{ route('shop.home') }}">AL-ZAHRA</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: end; width: 100%;">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('shop.home') }}">Product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('customer.home') }}">Catalog</a>
-                </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-            {{-- <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> --}}
+<div class="wrap-nav-cus-1">
+    <nav class="nav-cus-1">
+        <span class="brand-cus">AL-ZAHRA</span>
+        <ul class="nav-item-wrap-cus" id="nav-hide-cus">
+            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="#">Product</a></li>
+            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="#">Catalog</a></li>
+            <li class="nav-item-cus hidden-tablet">
+                <a class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus" href="#">iTech</a>
+                <ul class="dropdown-cus-1" id="dd-cus">
+                    <li><a href="#">Account</a></li>
+                    <li><a href="#">Log-out</a></li>
+                </ul>
+            </li>
+            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Account</a></li>
+            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Log-out</a></li>
+        </ul>
+        <div class="user-section-cus" id="user-section-cus">
+            <a href="#"><i class="fa-regular fa-heart" style="font-size: 22px"></i></a>
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
         </div>
-    </div>
-</nav>
+        <i class="fa-solid fa-bars" id="hum-menu-cus"></i>
+    </nav>
+</div>

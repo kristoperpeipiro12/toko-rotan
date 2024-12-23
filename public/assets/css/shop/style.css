@@ -6,5 +6,75 @@
 
 .underline-custom {
     text-decoration: underline;
-    
 }
+
+/* Product Section */
+
+.product-section {
+    /* margin-top: 50px; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    /* background-color: antiquewhite; */
+}
+
+.promo-wrap {
+    text-align: center;
+}
+
+.promo-text {
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.card-wrap {
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.card-wrap-section {
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.card {
+    border: none;
+    background-color: transparent;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* border-radius: 8px; */
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.img-card {
+    max-height: 250px;
+    background-color: transparent;
+    border-radius: 25px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: gray;
+    line-height: normal;
+}
+
+.line-height-normal {
+    line-height: normal;
+}
+
+.btn-pesan {
+    justify-self: end !important;
+}
+
+/* ... */
