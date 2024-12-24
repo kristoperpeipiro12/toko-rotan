@@ -77,4 +77,77 @@
     justify-self: end !important;
 }
 
+.space-wrap-section {
+    margin-top: 35px;
+    padding: 0 10px;
+}
+
+.wrap-space-section {
+    position: relative;
+}
+
+.space-section-text {
+    position: absolute;
+}
+
+.title-text-ss {
+    /* font-family: Arial, sans-serif; */
+    font-size: 40px;
+}
+
+.title-wood,
+.title-webbing {
+    font-weight: bold;
+    line-height: normal;
+
+    padding: 10px 20px;
+    border-radius: 18px;
+}
+
+.title-wood {
+    top: 8%;
+    left: 4%;
+    background-color: rgba(240, 236, 236, 0.5);
+}
+
+.title-webbing {
+    top: 8%;
+    left: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(77, 76, 76, 0.7);
+}
+
+.btn-wood,
+.btn-webbing {
+    position: absolute;
+    font-size: 20px;
+}
+
+.btn-wood {
+    top: 80%;
+    left: 86%;
+}
+
+.btn-webbing {
+    top: 85%;
+    left: 3%;
+    color: white;
+}
+
+.wood-sungkai-section {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    background-color: aqua;
+}
+
+.wood-sungkai-section .wrap-sungkai {
+    flex: 1;
+    /* height: 250px; */
+}
+
+.sungkai-text {
+    position: absolute;
+}
 /* ... */
