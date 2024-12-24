@@ -76,7 +76,7 @@
         <div class="product-section">
             <div class="promo-wrap">
                 <span class="promo-text">Wood Carpet</span>
-                <p class="expalination">Terbuat dari bahan panel plywood yang dilapis
+                <p class="">Terbuat dari bahan panel plywood yang dilapis
                     <br>dengan kayu oak tipis yang kemudian dibacking dengan canvas cotton pada bagian alas karpet
                 </p>
             </div>
@@ -134,7 +134,7 @@
 
         <div class="space-wrap-section">
             <div class="wrap-space-section card rounded-4">
-                <div class="space-section-img">
+                <div class="space-section-img ">
                     <img class="rounded-4 w-100" style="height: 450px"
                         src="{{ asset('assets/images/product-img/wood-carpet.jpg') }}" alt="">
                 </div>
@@ -178,7 +178,7 @@
         <div class="product-section">
             <div class="promo-wrap">
                 <span class="promo-text">Webbing Carpet</span>
-                <p class="expalination">Terbuat dari bahan inti
+                <p class="">Terbuat dari bahan inti
                     rotan yang dianyam secara<br>selang seling dengan
                     warna rotan yang natural dan rotan yang berwarna gelap
                 </p>
@@ -240,14 +240,15 @@
 
 
         <div class="product-section">
-            <div class="d-flex justify-content-between w-100">
-                <div class="promo-wrap align-self-start">
+            <div class="d-flex justify-content-between w-100 mb-4">
+                <div class="align-self-start">
                     <span class="promo-text w-100 d-flex justify-content-start">Wood Carpet
                         Sungkai</span>
-                    <p class="expalination text-start">Terbuat Kayu Sungkai yang merupakan pengganti Kayu
+                    <p class="mb-0 text-start">Terbuat Kayu Sungkai yang merupakan pengganti Kayu
                         Jati<br>Menghasilkan produk yang <strong>Kuat</strong> dan <strong>Awet</strong> dengan mutu kelas
                         tinggi
                     </p>
+                    <a class="btn btn-outline-dark" href="#">Selengkapnya</a>
                 </div>
 
                 <div class="space-section d-flex flex-column justify-content-end">
@@ -261,19 +262,35 @@
 
 
             <div class="wood-sungkai-section">
-                <div class="position-relative wrap-sungkai wrap-sungkai-polos card rounded-4">
+                <div class="position-relative wrap-sungkai wrap-sungkai-polos card hover10 rounded-4">
                     <img class="rounded-3 object-fit-fill"
                         src="{{ asset('assets/images/product-img/wood-carpet-sungkai-polos.png') }}" alt="">
-                    <span class="sungkai-text">Polos</span>
+                    <div class="wrap-sungkai-text">
+                        <span class="title-sungkai">Tipe Polos</span>
+                        <span class="sungkai-text">mulai dari <strong>Rp.<span
+                                    style="text-decoration: underline">1.200.000</span></strong></span>
+                        <a class="btn btn-outline-dark more-polos" href="#">Selengkapnya</a>
+                    </div>
                 </div>
-                <div class="position-relative wrap-sungkai wrap-sungkai-motif card rounded-4">
-                    <img class="rounded-3" src="{{ asset('assets/images/product-img/wood-carpet-sungkai-motif.jpg') }}"
-                        alt="">
-                    <span class="sungkai-text">Motif</span>
+
+                <div class="position-relative wrap-sungkai wrap-sungkai-polos card hover10 rounded-4">
+                    <img class="rounded-3 object-fit-fill"
+                        src="{{ asset('assets/images/product-img/wood-carpet-sungkai-motif.jpg') }}" alt="">
+                    <div class="wrap-sungkai-text">
+                        <span class="title-sungkai">Tipe Motif</span>
+                        <span class="sungkai-text">mulai dari <strong>Rp.<span
+                                    style="text-decoration: underline">1.200.000</span></strong></span>
+                        <a class="btn btn-outline-dark more-polos" href="#">Selengkapnya</a>
+                    </div>
                 </div>
+
             </div>
 
         </div>
+
+        <hr
+            style="margin: 0 10px; width: 100%; background-color: black; margin-top: 40px;margin-bottom: 125px; height: 2px">
+
 
 
         {{-- ... --}}
