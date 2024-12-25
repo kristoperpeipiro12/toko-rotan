@@ -248,14 +248,14 @@
                         Jati<br>Menghasilkan produk yang <strong>Kuat</strong> dan <strong>Awet</strong> dengan mutu kelas
                         tinggi
                     </p>
-                    <a class="btn btn-outline-dark" href="#">Selengkapnya</a>
+                    {{-- <a class="btn btn-outline-dark" href="#">Selengkapnya</a> --}}
                 </div>
 
                 <div class="space-section d-flex flex-column justify-content-end">
-                    <span class="text-end fs-1 fw-bold line-height-normal">AL-ZAHRA</span>
-                    <span class="text-end p-0 m-0 line-height-normal">Menyediakan banyak pilihan ukuran pada setiap produk.
-                        <br> <a class="btn btn-outline-dark mt-2 mb-1" href="#">Lihat
-                            Katalog</a></span>
+                    <span class="text-end text-warning fs-1 fw-bold line-height-normal"><i
+                            class="fa-solid fa-medal fs-2"></i> BEST SELLER</span>
+                    <span class="text-end p-0 m-0 line-height-normal fw-bold">WOOD CARPET SUNGKAI <br>
+                        <a class="btn btn-outline-dark mt-2 mb-1" href="#">Selengkapnya</a></span>
                     <hr class="align-self-end mt-0" style="border: 1px solid #ccc; width: 100%;">
                 </div>
             </div>
@@ -291,8 +291,96 @@
         <hr
             style="margin: 0 10px; width: 100%; background-color: black; margin-top: 40px;margin-bottom: 125px; height: 2px">
 
+        <div class="product-section">
+            <div class="promo-wrap mb-3">
+                <span class="promo-text" style="line-height: normal">Tikar Ajiro Rotan</span>
+                <span class="d-block fw-medium fs-5"><i class="fa-solid fa-star text-warning"></i> <span
+                        class="text-warning" style="line-height: normal">PREMIUM
+                        PRODUCT</span> <i class="fa-solid fa-star text-warning"></i></span>
+            </div>
 
+            <div class="card" style="width: 100%;">
+                <img class="img-card" style="max-height: 450px"
+                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h4 class="card-title fw-bold fs-4">Tikar Ajiro Rotan</h4>
+                    <p class="card-text fs-5 ps-1"><strong>Premium Quality</strong> <br>Terbuat dari kulit rotan yang
+                        dianyam,<br>keempat sisi panjang tikar dianyam dengan kulit
+                        rotan (menulang walut)</p>
+                    {{-- <h4 class="card-price fw-bold text-end">Rp. 150.000</h4> --}}
+                    <div class="d-flex w-100 justify-content-end">
+                        <a href="#" class="btn btn-outline-secondary btn-pesan fs-5">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <hr
+            style="margin: 0 10px; width: 100%; background-color: black; margin-top: 40px;margin-bottom: 125px; height: 2px">
+
+        <div class="product-section">
+            <div class="promo-wrap" style="margin-bottom: 20px;">
+                <span class="promo-text" style="line-height: normal">Tikar Rotan</span>
+                <hr class="p-0 m-0 mt-1" style="width: 300px; background-color: black">
+            </div>
+
+            <div class="card rounded-4 d-flex flex-row w-100 mb-4" style="padding: 20px 15px">
+                <img class="rounded-4" style="width: 35%; max-height: 250px;"
+                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" alt="">
+                <div class="ps-3 w-100">
+                    <h4 class="card-title fw-bold fs-4">Lampit</h4>
+                    <p class="card-text fs-5 ps-1"><strong>Asli Kalimantan</strong> <br>Mengolah kili-kili rotan menjadi
+                        bentuk ayaman,<br>sehingga membuat Lampit Rotan menjadi awet dan tahan lama.</p>
+                    {{-- <h4 class="card-price fw-bold text-end">Rp. 150.000</h4> --}}
+                    <div class="d-flex w-100">
+                        <a href="#" class="btn btn-outline-secondary btn-pesan fs-5">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card rounded-4 d-flex flex-row w-100 mb-4" style="padding: 20px 15px">
+                <img class="rounded-4" style="width: 35%; max-height: 250px;"
+                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" alt="">
+                <div class="ps-3 w-100">
+                    <h4 class="card-title fw-bold fs-4">Saniter</h4>
+                    <p class="card-text fs-5 ps-1"><strong>Tambahan Kain Katun.</strong> <br>merupakan lampit rotan yang di
+                        press menggunakan mesin press<br> dengan bahan kain katun pada bagian bawah tikar.</p>
+                    {{-- <h4 class="card-price fw-bold text-end">Rp. 150.000</h4> --}}
+                    <div class="d-flex w-100">
+                        <a href="#" class="btn btn-outline-secondary btn-pesan fs-5">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card rounded-4 d-flex flex-row w-100 mb-4" style="padding: 20px 15px">
+                <img class="rounded-4" style="width: 35%; max-height: 250px;"
+                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" alt="">
+                <div class="ps-3 w-100">
+                    <h4 class="card-title fw-bold fs-4">Saniter Lipat</h4>
+                    <p class="card-text fs-5 ps-1"><strong>Tambahan Modifikasi Lipatan.</strong> <br>Lebih praktis untuk
+                        dibawa kemana-mana <br>dan bisa masuk ke dalam
+                        tas.</p>
+                    {{-- <h4 class="card-price fw-bold text-end">Rp. 150.000</h4> --}}
+                    <div class="d-flex w-100">
+                        <a href="#" class="btn btn-outline-secondary btn-pesan fs-5">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card rounded-4 d-flex flex-row w-100" style="padding: 20px 15px">
+                <img class="rounded-4" style="width: 35%; max-height: 250px;"
+                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" alt="">
+                <div class="ps-3 w-100">
+                    <h4 class="card-title fw-bold fs-4">Saburina</h4>
+                    <p class="card-text fs-5 ps-1"><strong>Asli Kalimantan</strong> <br>Mengolah kili-kili rotan menjadi
+                        bentuk ayaman,<br>sehingga membuat Lampit Rotan menjadi awet dan tahan lama.</p>
+                    {{-- <h4 class="card-price fw-bold text-end">Rp. 150.000</h4> --}}
+                    <div class="d-flex w-100">
+                        <a href="#" class="btn btn-outline-secondary btn-pesan fs-5">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr
+            style="margin: 0 10px; width: 100%; background-color: black; margin-top: 40px;margin-bottom: 125px; height: 2px">
         {{-- ... --}}
 
     </div>
