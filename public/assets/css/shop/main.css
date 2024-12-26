@@ -1,0 +1,84 @@
+/* welcome section */
+div,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: normal;
+}
+.welcome-sention {
+    width: 100%;
+}
+
+.wrap-wel-img {
+    position: relative;
+}
+
+.wrap-wel-img img {
+    width: 100%;
+    height: 100vh;
+    max-height: 800px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.wrap-text-img {
+    position: absolute;
+    top: 65%;
+    left: 2%;
+
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    height: 30%;
+    /* background-color: aqua; */
+    /* top: 45%; */
+}
+
+.wel-title {
+    font-size: 3.4rem;
+    font-weight: 800;
+    /* margin-bottom: 12px; */
+}
+
+.wel-text {
+    font-size: 2.2rem;
+}
+
+.wrap-btn-wel-shop {
+    /* background-color: aliceblue; */
+    margin-top: 14px;
+    /* max-width: 70%; */
+
+    display: flex;
+    height: 100%;
+    /* justify-content: end; */
+    align-items: start;
+}
+
+/* portal section */
+.wrap-portal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* background-color: aqua; */
+    padding: 10px 15px;
+    /* border: 0.18rem solid; */
+    border-color: #af002d;
+    border-radius: 14px;
+}
+
+.portal-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.portal-title {
+    font-size: 2.1rem;
+}

@@ -326,7 +326,7 @@
 
             <div class="card rounded-4 d-flex flex-row w-100 mb-4" style="padding: 20px 15px">
                 <img class="rounded-4" style="width: 35%; max-height: 250px;"
-                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" alt="">
+                    src="{{ asset('assets/images/product-img/rotan-lampit.png') }}" alt="">
                 <div class="ps-3 w-100">
                     <h4 class="card-title fw-bold fs-4">Lampit</h4>
                     <p class="card-text fs-5 ps-1"><strong>Asli Kalimantan</strong> <br>Mengolah kili-kili rotan menjadi
@@ -339,7 +339,7 @@
             </div>
             <div class="card rounded-4 d-flex flex-row w-100 mb-4" style="padding: 20px 15px">
                 <img class="rounded-4" style="width: 35%; max-height: 250px;"
-                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" alt="">
+                    src="{{ asset('assets/images/product-img/rotan-saniter.png') }}" alt="">
                 <div class="ps-3 w-100">
                     <h4 class="card-title fw-bold fs-4">Saniter</h4>
                     <p class="card-text fs-5 ps-1"><strong>Tambahan Kain Katun.</strong> <br>merupakan lampit rotan yang di
@@ -352,7 +352,7 @@
             </div>
             <div class="card rounded-4 d-flex flex-row w-100 mb-4" style="padding: 20px 15px">
                 <img class="rounded-4" style="width: 35%; max-height: 250px;"
-                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" alt="">
+                    src="{{ asset('assets/images/product-img/rotan-saniter-lipat.png') }}" alt="">
                 <div class="ps-3 w-100">
                     <h4 class="card-title fw-bold fs-4">Saniter Lipat</h4>
                     <p class="card-text fs-5 ps-1"><strong>Tambahan Modifikasi Lipatan.</strong> <br>Lebih praktis untuk
@@ -366,7 +366,7 @@
             </div>
             <div class="card rounded-4 d-flex flex-row w-100" style="padding: 20px 15px">
                 <img class="rounded-4" style="width: 35%; max-height: 250px;"
-                    src="{{ asset('assets/images/product-img/tikar-ajiro.png') }}" alt="">
+                    src="{{ asset('assets/images/product-img/rotan-saburina.png') }}" alt="">
                 <div class="ps-3 w-100">
                     <h4 class="card-title fw-bold fs-4">Saburina</h4>
                     <p class="card-text fs-5 ps-1"><strong>Asli Kalimantan</strong> <br>Mengolah kili-kili rotan menjadi
