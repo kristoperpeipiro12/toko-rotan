@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/shop/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shop/btn-effect-1.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shop/card-1.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/footer.css') }}">
     {{-- posisi main.css harus dibawah bootstrap agar jadi prioritas pertama --}}
     <title>AL-ZAHRA - @yield('title')</title>
 </head>
