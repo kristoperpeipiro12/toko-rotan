@@ -185,7 +185,7 @@
                     <p class="info-detail-contact-us1">
                         <strong>WhatsApp:</strong> +62 123 4567 890
                     </p>
-                    <button class="btn-wow-btn-1" style="width: 18rem;">Send Us a Message</button>
+                    <button class="btn-wow-btn-1" style="width: 18rem;">Hubungi Kami</button>
                 </div>
                 <div class="image-container-contact-us1">
                     <img style="object-fit: fill" src="{{ asset('assets/images/toko.png') }}"
@@ -208,22 +208,25 @@
 
     {{-- Footer Section --}}
     <section class="footer-section">
-        <div class="newsletter-container">
-            <h3 class="newsletter-title">Sign up for newsletters</h3>
-            <p class="newsletter-description">Get E-mail updates about our latest shop and <span>special offers</span>.
-            </p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Your email address" required>
-                <button type="submit" class="newsletter-button">Sign Up</button>
-            </form>
+        <div class="newsletter-section">
+            <div class="newsletter-container">
+                <h3 class="newsletter-title">Daftar untuk menerima update</h3>
+                <p class="newsletter-description">Dapatkan pembaruan Email tentang toko terbaru dan <span>penawaran khusus
+                        kami</span>.
+                </p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Alamat email Anda" required>
+                    <button type="submit" class="newsletter-button">Daftar</button>
+                </form>
+            </div>
         </div>
         <div class="footer-container">
             <div class="footer-brand">
                 <h2 class="brand-name">AL-ZAHRA</h2>
-                <p class="brand-contact">Contact</p>
-                <p class="brand-details">Address: 562 Wellington Road, Street 32, San Francisco</p>
-                <p class="brand-details">Phone: +01 2222 3665 / (+91) 01 2345 6763</p>
-                <p class="brand-details">Hours: 10:00 - 18:00, Mon - Sat</p>
+                <p class="brand-contact">Kontak</p>
+                <p class="brand-details">Alamat: 562 Wellington Road, Street 32, San Francisco</p>
+                <p class="brand-details">No. Handphone / WhatsApp: +01 2222 3665 / (+91) 01 2345 6763</p>
+                <p class="brand-details">Jam Buka: 10:00 - 18:00, Mon - Sat</p>
                 <p class="brand-follow">Follow us</p>
                 <div class="social-icons">
                     <a href="#" class="social-icon">&#x1F426;</a>
