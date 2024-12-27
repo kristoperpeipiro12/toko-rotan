@@ -123,3 +123,29 @@ h6 {
 .wrap-img-promo-section .segera-tiba {
     font-size: 1.9rem;
 }
+
+/* Best Product Section */
+.best-product-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.best-product-section .wrap-best-product {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.wrap-best-product .product-card-2 {
+    flex-grow: 1;
+}
+
+.gradient-text {
+    font-weight: bold; /* Tetap mempertahankan font-weight bold */
+    font-size: 2rem; /* Sesuaikan ukuran teks */
+    background: linear-gradient(45deg, #ff7e5f, #feb47b); /* Warna gradasi */
+    -webkit-background-clip: text; /* Membuat latar belakang hanya berlaku untuk teks */
+    -webkit-text-fill-color: transparent; /* Membuat isi teks transparan untuk menampilkan gradasi */
+}

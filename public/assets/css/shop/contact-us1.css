@@ -1,0 +1,91 @@
+.main-content-contact-us1 {
+    /* padding: 2rem 5%; */
+}
+
+.info-section-contact-us1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Agar tinggi elemen seimbang */
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.info-card-contact-us1 {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 2.5rem; /* Tinggi lebih besar dengan padding tambahan */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Untuk memastikan isi tetap fleksibel */
+    justify-content: space-between;
+}
+
+.info-title-contact-us1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #007bff;
+}
+
+.info-detail-contact-us1 {
+    margin-bottom: 0.3rem;
+}
+
+.btn-contact-us1 {
+    padding: 0.7rem 1.5rem;
+    width: 18rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.btn-contact-us1:hover {
+    background: #0056b3;
+}
+
+.image-container-contact-us1 {
+    flex: 1;
+    display: flex;
+    align-items: center; /* Tengah vertikal gambar */
+    justify-content: center;
+}
+
+.info-image-contact-us1 {
+    width: 100%;
+    height: 100%; /* Mengisi penuh container */
+    object-fit: cover; /* Menjaga proporsi gambar */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Map Section */
+.map-section-contact-us1 {
+    text-align: center;
+}
+
+.map-title-contact-us1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.map-container-contact-us1 iframe {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer-contact-us1 {
+    text-align: center;
+    background: #333;
+    color: white;
+    padding: 1rem 0;
+}
+
+.footer-text-contact-us1 {
+    font-size: 1rem;
+}

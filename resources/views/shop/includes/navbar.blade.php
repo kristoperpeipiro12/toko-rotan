@@ -2,8 +2,9 @@
     <nav class="nav-cus-1">
         <span class="brand-cus">AL-ZAHRA</span>
         <ul class="nav-item-wrap-cus" id="nav-hide-cus">
-            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="#">Product</a></li>
-            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="#">Catalog</a></li>
+            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="#">Home</a></li>
+            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="#">Shop</a></li>
+            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="#">Contact</a></li>
             <li class="nav-item-cus hidden-tablet">
                 <a class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus" href="#">iTech</a>
                 <ul class="dropdown-cus-1" id="dd-cus">
