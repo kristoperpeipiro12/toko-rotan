@@ -48,7 +48,8 @@ Route::get('/about', [CustomerHomeController::class, 'about'])->name('customer.a
 Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer.detail');
 
 //Route setelah login
-Route::get('/store', [ShopController::class, 'index'])->name('shop.home');
+Route::get('/home', [ShopController::class, 'index'])->name('shop.home');
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
 
 
 

@@ -43,6 +43,9 @@ h6 {
 .wel-title {
     font-size: 3.4rem;
     font-weight: 800;
+    background: -webkit-linear-gradient(0deg, #ff7a18, #af002d, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     /* margin-bottom: 12px; */
 }
 

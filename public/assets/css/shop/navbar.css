@@ -28,12 +28,19 @@
 }
 
 .nav-cus-1 .brand-cus {
-    font-size: 28px;
+    font-size: 2.2rem;
     font-weight: bold;
+    background: -webkit-linear-gradient(45deg, #ff7a18, #af002d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .nav-cus-1 .brand-cus:hover {
     cursor: pointer;
+}
+
+.fa-color-cus {
+    color: #ff7a18;
 }
 
 .nav-cus-1 .nav-item-wrap-cus {
