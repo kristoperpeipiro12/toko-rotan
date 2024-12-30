@@ -1,9 +1,9 @@
 @extends('shop.layouts.app')
-@section('title', 'Store')
+@section('title', 'Shop')
 @section('content')
     @include('shop.includes.navbar')
 
-    <div class="shop-alzahra-img bg-dark position-relative overflow-hidden" style="margin-bottom: 15vh;">
+    <div class="shop-alzahra-img bg-dark position-relative overflow-hidden" style="margin-bottom: 5vh;">
         <img style="height: 18rem; width: 100vw;" src="{{ asset('assets/images/dummy-images/corousel-1.jpg') }}"
             alt="">
         <div class="position-absolute w-100 d-flex flex-column align-items-center" style="top: 50%">
@@ -13,178 +13,41 @@
     </div>
 
 
-    <div class="content-border">
-        <div class="d-flex w-100 justify-content-between flex-wrap" style="row-gap: 16px; margin-bottom: 16px">
-            {{-- satu container di atas comment ini hanya dapat menampung max 4 card dalam 1 baris
-            (sudah relaif terhadap perubahan ukuran layar!) --}}
-            <div class="card5-cus">
-                <div class="wrap-main-c5">
-                    <div class="wrap-img-c5">
-                        <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
-                            class="card-img-c5" />
-                        <span class="promo-c5">-50%</span>
+    <div class="px-5 py-2">
+        <div class="d-flex w-100 justify-content-center flex-wrap"
+            style="column-gap: 4rem ;row-gap: 3rem; margin-bottom: 3.8rem">
+            @for ($i = 0; $i < 8; $i++)
+                <div class="card5-cus">
+                    <div class="wrap-main-c5">
+                        <div class="wrap-img-c5">
+                            <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
+                                class="card-img-c5" />
+                            <span class="promo-c5">-50%</span>
+                        </div>
+                        <span class="product-name-c5">Tikar Rotan Ajiro</span>
+                        <span class="category-c5">Coklat Muda</span>
                     </div>
-                    <span class="product-name-c5">Tikar Rotan Ajiro</span>
-                    <span class="category-c5">Coklat Muda</span>
-                </div>
 
-                <div class="foot-content-c5">
-                    <span class="price-c5">Rp. 1.000.000</span>
-                    <div class="wrap-foot-c5">
-                        <i class="fa-regular fa-heart foot-icon-c5"></i>
-                        <button class="add-c5 btn btn-outline-dark">Keranjang</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card5-cus">
-                <div class="wrap-main-c5">
-                    <div class="wrap-img-c5">
-                        <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
-                            class="card-img-c5" />
-                        <span class="promo-c5">-50%</span>
-                    </div>
-                    <span class="product-name-c5">Tikar Rotan Ajiro</span>
-                    <span class="category-c5">Coklat Muda</span>
-                </div>
-
-                <div class="foot-content-c5">
-                    <span class="price-c5">Rp. 1.000.000</span>
-                    <div class="wrap-foot-c5">
-                        <i class="fa-regular fa-heart foot-icon-c5"></i>
-                        <button class="add-c5 btn btn-outline-dark">Keranjang</button>
+                    <div class="foot-content-c5">
+                        <div class="wrap-foot-c5">
+                            <span class="price-c5">Rp. 1.000.000</span>
+                            <i class="fa-solid fa-cart-plus foot-icon-c5"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="card5-cus">
-                <div class="wrap-main-c5">
-                    <div class="wrap-img-c5">
-                        <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
-                            class="card-img-c5" />
-                        <span class="promo-c5">-50%</span>
-                    </div>
-                    <span class="product-name-c5">Tikar Rotan Ajiro</span>
-                    <span class="category-c5">Coklat Muda</span>
-                </div>
-
-                <div class="foot-content-c5">
-                    <span class="price-c5">Rp. 1.000.000</span>
-                    <div class="wrap-foot-c5">
-                        <i class="fa-regular fa-heart foot-icon-c5"></i>
-                        <button class="add-c5 btn btn-outline-dark">Keranjang</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card5-cus">
-                <div class="wrap-main-c5">
-                    <div class="wrap-img-c5">
-                        <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
-                            class="card-img-c5" />
-                        <span class="promo-c5">-50%</span>
-                    </div>
-                    <span class="product-name-c5">Tikar Rotan Ajiro</span>
-                    <span class="category-c5">Coklat Muda</span>
-                </div>
-
-                <div class="foot-content-c5">
-                    <span class="price-c5">Rp. 1.000.000</span>
-                    <div class="wrap-foot-c5">
-                        <i class="fa-regular fa-heart foot-icon-c5"></i>
-                        <button class="add-c5 btn btn-outline-dark">Keranjang</button>
-                    </div>
-                </div>
-            </div>
-
+            @endfor
         </div>
 
-        <div class="d-flex w-100 justify-content-between flex-wrap" style="row-gap: 16px; margin-bottom: 16px">
-            {{-- satu container di atas comment ini hanya dapat menampung max 4 card dalam 1 baris
-            (sudah relaif terhadap perubahan ukuran layar!) --}}
-            <div class="card5-cus">
-                <div class="wrap-main-c5">
-                    <div class="wrap-img-c5">
-                        <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
-                            class="card-img-c5" />
-                        <span class="promo-c5">-50%</span>
-                    </div>
-                    <span class="product-name-c5">Tikar Rotan Ajiro</span>
-                    <span class="category-c5">Coklat Muda</span>
-                </div>
-
-                <div class="foot-content-c5">
-                    <span class="price-c5">Rp. 1.000.000</span>
-                    <div class="wrap-foot-c5">
-                        <i class="fa-regular fa-heart foot-icon-c5"></i>
-                        <button class="add-c5 btn btn-outline-dark">Keranjang</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card5-cus">
-                <div class="wrap-main-c5">
-                    <div class="wrap-img-c5">
-                        <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
-                            class="card-img-c5" />
-                        <span class="promo-c5">-50%</span>
-                    </div>
-                    <span class="product-name-c5">Tikar Rotan Ajiro</span>
-                    <span class="category-c5">Coklat Muda</span>
-                </div>
-
-                <div class="foot-content-c5">
-                    <span class="price-c5">Rp. 1.000.000</span>
-                    <div class="wrap-foot-c5">
-                        <i class="fa-regular fa-heart foot-icon-c5"></i>
-                        <button class="add-c5 btn btn-outline-dark">Keranjang</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card5-cus">
-                <div class="wrap-main-c5">
-                    <div class="wrap-img-c5">
-                        <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
-                            class="card-img-c5" />
-                        <span class="promo-c5">-50%</span>
-                    </div>
-                    <span class="product-name-c5">Tikar Rotan Ajiro</span>
-                    <span class="category-c5">Coklat Muda</span>
-                </div>
-
-                <div class="foot-content-c5">
-                    <span class="price-c5">Rp. 1.000.000</span>
-                    <div class="wrap-foot-c5">
-                        <i class="fa-regular fa-heart foot-icon-c5"></i>
-                        <button class="add-c5 btn btn-outline-dark">Keranjang</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card5-cus">
-                <div class="wrap-main-c5">
-                    <div class="wrap-img-c5">
-                        <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
-                            class="card-img-c5" />
-                        <span class="promo-c5">-50%</span>
-                    </div>
-                    <span class="product-name-c5">Tikar Rotan Ajiro</span>
-                    <span class="category-c5">Coklat Muda</span>
-                </div>
-
-                <div class="foot-content-c5">
-                    <span class="price-c5">Rp. 1.000.000</span>
-                    <div class="wrap-foot-c5">
-                        <i class="fa-regular fa-heart foot-icon-c5"></i>
-                        <button class="add-c5 btn btn-outline-dark">Keranjang</button>
-                    </div>
-                </div>
-            </div>
-
+        <div class="d-flex justify-content-center" style="gap: 2rem; margin-bottom: 5rem">
+            <a href="#" class="one-shop">1</a>
+            <a href="#" class="two-shop">2</a>
+            <a href="#" class="next-shop"><i class="fa-solid fa-arrow-right"></i></a>
         </div>
-
     </div>
+
+    {{-- Footer Section --}}
+    @include('shop.includes.footer')
+    {{-- .... --}}
 
 
 @endsection

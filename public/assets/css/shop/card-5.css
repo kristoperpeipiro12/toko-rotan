@@ -4,10 +4,17 @@
     width: 17rem;
     height: 25.7rem;
     justify-content: space-between;
-
     padding: 0.5rem;
     border: solid 1px;
     border-radius: 12px;
+    border-color: #e3c8a8;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card5-cus:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .wrap-main-c5 {
@@ -17,16 +24,21 @@
 
 .wrap-img-c5 {
     position: relative;
-
     margin-bottom: 4px;
+    overflow: hidden; /* Ensures image stays within bounds */
+    border-radius: 12px;
 }
 
 .card-img-c5 {
     width: 100%;
     height: 100%;
     max-height: 16.5rem;
-
+    transition: transform 0.3s ease;
     border-radius: 12px;
+}
+
+.wrap-img-c5:hover .card-img-c5 {
+    transform: scale(1.1);
 }
 
 .promo-c5 {
@@ -53,11 +65,16 @@
 }
 
 .category-c5 {
+    font-style: italic;
     font-size: 0.9rem;
     color: gray;
 }
 
 .price-c5 {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: #d8af7d;
     font-weight: 900;
     align-self: end;
 }
@@ -71,18 +88,24 @@
 
 .wrap-foot-c5 {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 5%;
 }
 
 .foot-icon-c5 {
     align-self: center;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
+    border-radius: 100%;
+    padding: 12px;
+    color: #866d4e;
+    background-color: #d8af7d;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-    border-radius: 4px;
-    padding: 3px 4px;
+.card5-cus:hover .foot-icon-c5 {
+    background-color: #866d4e;
     color: #ffffff;
-    background-color: #212529;
-    /* background: linear-gradient(90deg, #ff7a18, #af002d, #e3c8a8); */
 }
 
 .add-c5 {

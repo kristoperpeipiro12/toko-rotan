@@ -12,7 +12,13 @@ class ShopController extends Controller
         return view('shop.home');
     }
 
-    public function shop(){
+    public function shop()
+    {
         return view('shop.shop');
+    }
+
+    public function about()
+    {
+        return view('shop.about');
     }
 }

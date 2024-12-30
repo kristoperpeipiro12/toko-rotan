@@ -6,19 +6,22 @@
             </li>
             <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="{{ route('shop.shop') }}">Shop</a>
             </li>
-            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus" href="#">Contact</a></li>
-            <li class="nav-item-cus hidden-tablet">
+            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus"
+                    href="{{ route('shop.about') }}">About</a></li>
+            <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus"
+                    href="{{ route('shop.home') . '#contact' }}">Contact</a></li>
+            {{-- <li class="nav-item-cus hidden-tablet">
                 <a class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus" href="#">iTech</a>
                 <ul class="dropdown-cus-1" id="dd-cus">
                     <li><a href="#">Account</a></li>
                     <li><a href="#">Log-out</a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Account</a></li>
             <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Log-out</a></li>
         </ul>
         <div class="user-section-cus" id="user-section-cus">
-            <a href="#"><i class="fa-color-cus fa-regular fa-heart" style="font-size: 22px"></i></a>
+            <a href="#" class=""><i class="fa-color-cus fa-solid fa-user"></i></a>
             <a href="#"><i class="fa-color-cus fa-solid fa-cart-shopping"></i></a>
         </div>
         <i class="fa-solid fa-bars" id="hum-menu-cus"></i>

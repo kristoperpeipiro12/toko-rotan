@@ -1,0 +1,46 @@
+.one-shop,
+.two-shop,
+.next-shop {
+    color: #866d4e;
+    background-color: #d8af7d;
+
+    width: 4rem;
+    height: auto;
+
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.9rem;
+
+    text-decoration: none;
+    text-align: center;
+    font-style: italic;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.one-shop:hover,
+.two-shop:hover,
+.next-shop:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    color: white;
+}
+
+.next-shop:hover {
+    color: #866d4e;
+}
+
+.one-shop:active,
+.two-shop:active,
+.next-shop:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.next-shop {
+    color: white;
+    font-size: 1.7rem;
+}

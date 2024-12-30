@@ -8,7 +8,7 @@
 
 /* Newsletter Section */
 .newsletter-section {
-    background-color: #002147;
+    background-color: #866d4e;
     color: #ffffff;
     padding: 30px 20px;
     text-align: center;
@@ -26,7 +26,8 @@
 }
 
 .newsletter-description span {
-    color: #f9c74f;
+    color: #d8af7d;
+    font-weight: bold;
 }
 
 .newsletter-form {
