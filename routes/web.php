@@ -51,6 +51,7 @@ Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer
 Route::get('/home', [ShopController::class, 'index'])->name('shop.home');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
 Route::get('/about', [ShopController::class, 'about'])->name('shop.about');
+Route::get('/detail', [ShopController::class, 'detail'])->name('shop.detail');
 
 
 

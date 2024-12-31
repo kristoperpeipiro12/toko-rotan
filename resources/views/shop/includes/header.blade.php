@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/shop/card-5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shop/contact-us1.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shop/shop-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/detail.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/shop/product-card1.css') }}"> --}}
     {{-- posisi main.css harus dibawah bootstrap agar jadi prioritas pertama --}}
 </head>

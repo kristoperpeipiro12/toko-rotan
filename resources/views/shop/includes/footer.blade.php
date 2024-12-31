@@ -31,7 +31,7 @@
         <div class="footer-links">
             <h3 class="footer-title">About</h3>
             <ul class="link-list">
-                <li><a href="#" class="footer-link">About Us</a></li>
+                <li><a href="{{ route('shop.about') }}" class="footer-link">About Us</a></li>
             </ul>
         </div>
         <footer> </footer>

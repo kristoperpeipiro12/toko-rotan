@@ -21,4 +21,9 @@ class ShopController extends Controller
     {
         return view('shop.about');
     }
+
+    public function detail()
+    {
+        return view('shop.detail');
+    }
 }
