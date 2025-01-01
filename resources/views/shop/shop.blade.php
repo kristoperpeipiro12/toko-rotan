@@ -4,11 +4,13 @@
     @include('shop.includes.navbar')
 
     <div class="shop-alzahra-img bg-dark position-relative overflow-hidden" style="margin-bottom: 5vh;">
-        <img style="height: 18rem; width: 100vw;" src="{{ asset('assets/images/dummy-images/corousel-1.jpg') }}"
-            alt="">
+        <img style="height: 18rem; width: 100vw;" src="{{ asset('assets/images/dummy-images/shop-bg.jpg') }}" alt="">
         <div class="position-absolute w-100 d-flex flex-column align-items-center" style="top: 50%">
             <span class="wel-title ms-2">AL-ZAHRA</span>
-            <span class="promo-text ms-2" style="font-style: italic">dapatkan promo menarik setiap tahun!</span>
+            <span class="promo-text ms-2" style="font-style: italic; color:white; font-weight: 700">menggabungkan sentuhan
+                tradisional dengan
+                gaya modern
+                yang fungsional</span>
         </div>
     </div>
 
@@ -17,7 +19,7 @@
         <div class="d-flex w-100 justify-content-center flex-wrap"
             style="column-gap: 4rem ;row-gap: 3rem; margin-bottom: 3.8rem">
             @for ($i = 0; $i < 8; $i++)
-                <div class="card5-cus">
+                <a href="{{ route('shop.detail') }}" class="card5-cus">
                     <div class="wrap-main-c5">
                         <div class="wrap-img-c5">
                             <img src="{{ asset('assets/images/dummy-images/corousel-3.jpg') }}" alt=""
@@ -34,7 +36,7 @@
                             <i class="fa-solid fa-cart-plus foot-icon-c5"></i>
                         </div>
                     </div>
-                </div>
+                </a>
             @endfor
         </div>
 
