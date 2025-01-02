@@ -14,7 +14,6 @@
         </div>
     </div>
 
-
     <div class="px-5 py-2">
         <div class="d-flex w-100 justify-content-center flex-wrap"
             style="column-gap: 4rem ;row-gap: 3rem; margin-bottom: 3.8rem">

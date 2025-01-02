@@ -22,7 +22,7 @@
         </ul>
         <div class="user-section-cus" id="user-section-cus">
             <a href="#" class=""><i class="fa-color-cus fa-solid fa-user"></i></a>
-            <a href="#"><i class="fa-color-cus fa-solid fa-cart-shopping"></i></a>
+            <a href="{{ route('shop.cart') }}"><i class="fa-color-cus fa-solid fa-cart-shopping"></i></a>
         </div>
         <i class="fa-solid fa-bars" id="hum-menu-cus"></i>
     </nav>
