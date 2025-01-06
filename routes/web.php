@@ -65,28 +65,3 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
 Route::get('/our-products', [CustomerHomeController::class, 'index'])->name('customer.home');
 Route::get('/about', [CustomerHomeController::class, 'about'])->name('customer.about');
 Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer.detail');
-
-
-
-
-//titip
-
-// Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
-
-
-// Route::get('/produk', [ProdukController::class, 'index'])->name('admin.produk');
-
-
-
-// Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
-
-
-
-// Route::get('/datawilayah', [DataWilayahController::class, 'index'])->name('admin.datawilayah');
-// Route::get('/tambah/datawilayah', [DataWilayahController::class, 'create'])->name('admin.datawilayah.create');
-
-
-// Route::get('/pesanan/dikemas', [PesananController::class, 'kemas'])->name('pesanan.dikemas');
-// Route::get('/pesanan/dikirim', [PesananController::class, 'kirim'])->name('pesanan.dikirim');
-// Route::get('/pesanan/konfirmasi', [PesananController::class, 'konfirmasi'])->name('pesanan.konfirmasi');
-// Route::get('/pesanan/selesai', [PesananController::class, 'selesai'])->name('pesanan.selesai');
