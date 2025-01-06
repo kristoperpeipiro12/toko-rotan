@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    {{-- <title>{{ $pageTitle }} </title> --}}
-    <title>dashboard</title>
+    <title>{{ $pageTitle }} </title>
+    {{-- <title>dashboard</title> --}}
 
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('focus/./images/favicon.png')}}">
@@ -106,10 +106,10 @@
                            <i class="fa fa-shopping-cart"></i><span class="nav-text">Pesanan</span>
                        </a>
                        <ul aria-expanded="false">
-                           <li><a href="{{ route('pesanan.dikemas') }}"><i class="fa fa-box-open"></i>Dikemas</a></li>
-                           <li><a href="{{ route('pesanan.dikirim') }}"><i class="fa fa-truck"></i>Dikirim</a></li>
-                           <li><a href="{{ route('pesanan.konfirmasi') }}"><i class="fa fa-clipboard-check"></i> Konfirmasi</a></li>
-                           <li><a href="{{ route('pesanan.selesai') }}"><i class="fa fa-check"></i>Selesai</a></li>
+                           <li><a href="{{ route('admin.pesanan.dikemas') }}"><i class="fa fa-box-open"></i>Dikemas</a></li>
+                           <li><a href="{{ route('admin.pesanan.dikirim') }}"><i class="fa fa-truck"></i>Dikirim</a></li>
+                           <li><a href="{{ route('admin.pesanan.konfirmasi') }}"><i class="fa fa-clipboard-check"></i> Konfirmasi</a></li>
+                           <li><a href="{{ route('admin.pesanan.selesai') }}"><i class="fa fa-check"></i>Selesai</a></li>
                        </ul>
                    </li>
 
@@ -128,6 +128,7 @@
         <div class="content-body">
             <!-- row -->
             @yield('content')
+            @include('sweetalert::alert')
         </div>
         <!--**********************************
             Content body end

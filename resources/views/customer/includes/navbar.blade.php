@@ -8,7 +8,7 @@
                 <ul>
                     <li><a href="{{ route('customer.home') }}">Products</a></li>
                     <li><a href="{{ route('customer.about') }}">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-xs-4 text-right hidden-xs menu-2">

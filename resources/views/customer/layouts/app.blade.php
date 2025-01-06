@@ -21,6 +21,7 @@
     <script src="{{ asset('clone/js/jquery.flexslider-min.js') }}"></script>
     <!-- Main -->
     <script src="{{ asset('clone/js/main.js') }}"></script>
+    
 </body>
 
 </html>

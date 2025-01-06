@@ -8,5 +8,7 @@
 </head>
 <body>
     <h1>Silahkan cek Email anda, untuk konfirmasi akun anda</h1>
+    @include('sweetalert::alert')
+
 </body>
 </html>

@@ -16,78 +16,21 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::get('/', [LoginController::class, 'index'])->name('login');
 
-
-// Route::get('/', [LoginController::class, 'index'])->name('login');
-
-// Route::get('/', [LoginLoginController::class, 'index'])->name('login');
-// // Group untuk login
-// Route::group(['prefix' => 'login'], function () {
-// });
-
-route::get('/',[LoginController::class,'index'])->name('login');
-// Route::get('/login/proses', [LoginController::class, 'login'])->name('login.proses');
 
 Route::post('/login/proses', [LoginController::class, 'login'])->name('login.proses');
-route::get('/dashboard', [LoginController::class,'dashboard'])->name('dashboard');
-
-route::get('/register',[LoginController::class,'register'])->name('register');
-route::post('/register/proses',[LoginController::class,'registerproses'])->name('register.proses');
-
-
-Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
-
-
-Route::get('/produk', [ProdukController::class, 'index'])->name('admin.produk');
-
-
-
-Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
-
-
-
-Route::get('/datawilayah', [DataWilayahController::class, 'index'])->name('admin.datawilayah');
-Route::get('/tambah/datawilayah', [DataWilayahController::class, 'create'])->name('admin.datawilayah.create');
-
-
-Route::get('/pesanan/dikemas', [PesananController::class, 'kemas'])->name('pesanan.dikemas');
-Route::get('/pesanan/dikirim', [PesananController::class, 'kirim'])->name('pesanan.dikirim');
-Route::get('/pesanan/konfirmasi', [PesananController::class, 'konfirmasi'])->name('pesanan.konfirmasi');
-Route::get('/pesanan/selesai', [PesananController::class, 'selesai'])->name('pesanan.selesai');
-
-// Group untuk admin
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
-    // Tambahkan route admin lain di sini
-});
-
-// Route Catalog
-Route::get('/our-products', [CustomerHomeController::class, 'index'])->name('customer.home');
-Route::get('/about', [CustomerHomeController::class, 'about'])->name('customer.about');
-Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer.detail');
-
-
-Route::get('/home', [ShopController::class, 'index'])->name('shop.home');
-Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
-Route::get('/about', [ShopController::class, 'about'])->name('shop.about');
-Route::get('/detail', [ShopController::class, 'detail'])->name('shop.detail');
-Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
-
-
-
-// // Group untuk customer
-// Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function () {
-//     // Tambahkan route customer lain di sini
-// });
+Route::get('/register', [LoginController::class, 'register'])->name('register');
+Route::post('/register/proses', [LoginController::class, 'registerproses'])->name('register.proses');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::get('/email/verify', function () {
     return view('auth.verifyemail');
 })->middleware('auth')->name('verification.notice');
 
-
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
     return redirect('/profile');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
@@ -96,16 +39,54 @@ Route::get('/profile', function () {
     return redirect('/')->with('success', 'Email Anda telah diverifikasi. Silakan login untuk melanjutkan.');
 })->middleware(['auth', 'verified']);
 
+// Admin Routes
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/produk', [ProdukController::class, 'index'])->name('admin.produk');
+    Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
+    Route::get('/datawilayah', [DataWilayahController::class, 'index'])->name('admin.datawilayah');
+    Route::get('/tambah/datawilayah', [DataWilayahController::class, 'create'])->name('admin.datawilayah.create');
+    Route::get('/pesanan/dikemas', [PesananController::class, 'kemas'])->name('admin.pesanan.dikemas');
+    Route::get('/pesanan/dikirim', [PesananController::class, 'kirim'])->name('admin.pesanan.dikirim');
+    Route::get('/pesanan/konfirmasi', [PesananController::class, 'konfirmasi'])->name('admin.pesanan.konfirmasi');
+    Route::get('/pesanan/selesai', [PesananController::class, 'selesai'])->name('admin.pesanan.selesai');
+});
 
-Route::post('/logout', function (Request $request) {
-    Auth::logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-    return redirect('/login');
-})->name('logout');
-Route::get('/logout', function (Request $request) {
-    Auth::logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-    return redirect('/login');
-})->name('logout');
+// Customer Routes
+Route::group(['middleware' => ['auth', 'role:customer']], function () {
+    Route::get('/home', [ShopController::class, 'index'])->name('shop.home');
+    Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
+    Route::get('/about', [ShopController::class, 'about'])->name('shop.about');
+    Route::get('/detail', [ShopController::class, 'detail'])->name('shop.detail');
+    Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
+});
+
+// Route Catalog
+Route::get('/our-products', [CustomerHomeController::class, 'index'])->name('customer.home');
+Route::get('/about', [CustomerHomeController::class, 'about'])->name('customer.about');
+Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer.detail');
+
+
+
+
+//titip
+
+// Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+
+// Route::get('/produk', [ProdukController::class, 'index'])->name('admin.produk');
+
+
+
+// Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
+
+
+
+// Route::get('/datawilayah', [DataWilayahController::class, 'index'])->name('admin.datawilayah');
+// Route::get('/tambah/datawilayah', [DataWilayahController::class, 'create'])->name('admin.datawilayah.create');
+
+
+// Route::get('/pesanan/dikemas', [PesananController::class, 'kemas'])->name('pesanan.dikemas');
+// Route::get('/pesanan/dikirim', [PesananController::class, 'kirim'])->name('pesanan.dikirim');
+// Route::get('/pesanan/konfirmasi', [PesananController::class, 'konfirmasi'])->name('pesanan.konfirmasi');
+// Route::get('/pesanan/selesai', [PesananController::class, 'selesai'])->name('pesanan.selesai');

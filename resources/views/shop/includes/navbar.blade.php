@@ -18,7 +18,14 @@
                 </ul>
             </li> --}}
             <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Account</a></li>
-            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Log-out</a></li>
+            <li class="nav-item-cus hover-eff-mq-cus">
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-link" style="text-decoration: none; color: inherit; padding: 0; border: none; background: none;">
+                        Log-out
+                    </button>
+                </form>
+            </li>
         </ul>
         <div class="user-section-cus" id="user-section-cus">
             <a href="#" class=""><i class="fa-color-cus fa-solid fa-user"></i></a>
@@ -26,4 +33,6 @@
         </div>
         <i class="fa-solid fa-bars" id="hum-menu-cus"></i>
     </nav>
+
+
 </div>

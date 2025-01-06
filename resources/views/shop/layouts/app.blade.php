@@ -5,6 +5,7 @@
 
 <body>
     @yield('content')
+    @include('sweetalert::alert')
 
     {{-- letakkan JS di bawah baris ini! --}}
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>

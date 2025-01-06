@@ -6,6 +6,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('slogin/dist/style.css') }}">
 
+
 </head>
 
 <body>
@@ -17,6 +18,8 @@
         <title>Slide Navbar</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('slogin/slide navbar style.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+
+        @include('sweetalert::alert')
     </head>
 
     <body>
@@ -42,7 +45,7 @@
                     @csrf
                     <label for="chk" aria-hidden="true">Masuk</label>
                     {{-- <input type="email" name="email" placeholder="Email" required=""> --}}
-                    <input type="email" name="email" placeholder="Email">
+                    <input type="text" name="email_or_name" placeholder="Email_or_name">
 
                     <input type="password" name="password" placeholder="Password">
                     {{-- <input type="password" name="pswd" placeholder="Password" required=""> --}}
@@ -51,6 +54,8 @@
                 </form>
             </div>
         </div>
+
+
         {{-- </div> --}}
     </body>
 
