@@ -1,171 +1,233 @@
 @extends('admin.layout.main')
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Basic Datatable</h4>
+
+<script>
+    $(document).ready(function() {
+        var datetime = new Date();
+        var tanggalHariIni = datetime.getDate() + '-' + datetime.getMonth() + '-' + datetime
+            .getFullYear();
+        var waktuHariIni = datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime
+            .getSeconds();
+
+        var table = $('#dataTable').DataTable({
+            "paging": true
+            , "responsive": false
+            , "searching": true
+            , "deferRender": true
+            , "lengthMenu": [
+                    [10, 25, 50, 100, 500, -1]
+                    , ['10', '25', '50', '100', '500', 'Semua']
+                ]
+                , "dom": '<"d-block d-lg-flex justify-content-between"lf<"btn btn-sm"B>r>t<"d-block d-lg-flex justify-content-between"ip>'
+                , "buttons": [{
+                            extend: 'excelHtml5'
+                            , filename: 'Data Siswa - SD Kristen Pelita Hati - update ' +
+                                tanggalHariIni
+                            , text: 'XLSX'
+                            , exportOptions: {
+                                columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                                , stripHtml: true
+                                , modifier: {
+                                    page: 'current'
+                                }
+                            }
+                        }
+                        , {
+                            extend: 'pdfHtml5'
+                            , filename: 'Data Siswa - SD Kristen Pelita Hati - update ' +
+                                tanggalHariIni
+                            , text: 'PDF'
+                            , message: 'Data Siswa - SD Kristen Pelita Hati'
+                            , messageBottom: 'Data dibuat otomatis oleh sistem : ' +
+                                tanggalHariIni + ' ' + waktuHariIni + ' WIB'
+                            , exportOptions: {
+                                columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                                , stripHtml: true
+                                , modifier: {
+                                    page: 'current'
+                                }
+                            }
+                            , orientation: 'landscape'
+                            , pageSize: 'LEGAL'
+                            , customize: function(doc) {
+                                doc.pageMargins = [20, 20, 20, 20];
+                                doc.defaultStyle.fontSize = 10;
+                                doc.styles.tableHeader.fontSize = 10;
+                                doc.styles.title.fontSize = 14;
+                                doc.content[0].text = doc.content[0].text.trim();
+                                doc['footer'] = (function(page, pages) {
+                                    return {
+                                        columns: [
+                                            'Data Siswa - SD Kristen Pelita Hati'
+                                            , {
+                                                alignment: 'right'
+                                                , text: ['Page ', {
+                                                    text: page
+                                                        .toString()
+                                                }, ' of ', {
+                                                    text: pages
+                                                        .toString()
+                                                }]
+                                            }
+                                        ]
+                                        , margin: [10, 0]
+                                    }
+                                });
+                                var objLayout = {};
+                                objLayout['hLineWidth'] = function(i) {
+                                    return .5;
+                                };
+                                objLayout['vLineWidth'] = function(i) {
+                                    return .5;
+                                };
+                                objLayout['hLineColor'] = function(i) {
+                                    return '#aaa';
+                                };
+                                objLayout['vLineColor'] = function(i) {
+                                    return '#aaa';
+                                };
+                                objLayout['paddingLeft'] = function(i) {
+                                    return 4;
+                                };
+                                objLayout['paddingRight'] = function(i) {
+                                    return 4;
+                                };
+                                doc.content[1].layout = objLayout;
+                            }
+                        },
+
+                    ]
+                , "language": {
+                    url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json'
+                }
+            , "columnDefs": [{
+                "searchable": false
+                , "orderable": false
+                , "targets": 0
+            }]
+            , "order": [
+                [1, 'asc']
+            ]
+
+        });
+
+        table.on('order.dt search.dt', function() {
+            table.column(0, {
+                order: 'applied'
+                , search: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+    });
+
+</script>
+
+<!-- DataTable with Hover -->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-2">
+        <h1 class="h3 mb-0 text-gray-800">Produk</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Produk</li>
+        </ol>
+    </div>
+
+    <div class="col-lg-15">
+        <div class="card mb-2">
+            <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Daftar Produk</h6>
+                <a href="#" class="btn btn-info mb-1" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                    <i class="fas fa-plus" style="margin-right: 5px;"></i>Tambah
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example" class="display" style="min-width: 845px">
-                        <thead>
+                    <table class="table align-items-center table-flush table-hover" id="dataTable">
+                        <thead class="thead-light">
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th class="mini-th">No</th>
+                                <th>Kategori</th>
+                                <th>Nama Produk</th>
+                                <th>Warna</th>
+                                <th>Ukuran</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($produk as $p)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $p->id_kategori }}</td>
+                                <td>{{ $p->nama_produk }}</td>
+                                <td>{{ $p->warna }}</td>
+                                <td>{{ $p->ukuran }}</td>
+                                <td>{{ $p->harga }}</td>
+                                <td>{{ $p->stok }}</td>
 
-
-                            <tr>
-                                <td>Olivia Liang</td>
-                                <td>Support Engineer</td>
-                                <td>Singapore</td>
-                                <td>64</td>
-                                <td>2011/02/03</td>
-                                <td>$234,500</td>
                             </tr>
-                            <tr>
-                                <td>Bruno Nash</td>
-                                <td>Software Engineer</td>
-                                <td>London</td>
-                                <td>38</td>
-                                <td>2011/05/03</td>
-                                <td>$163,500</td>
-                            </tr>
-                            <tr>
-                                <td>Sakura Yamamoto</td>
-                                <td>Support Engineer</td>
-                                <td>Tokyo</td>
-                                <td>37</td>
-                                <td>2009/08/19</td>
-                                <td>$139,575</td>
-                            </tr>
-                            <tr>
-                                <td>Thor Walton</td>
-                                <td>Developer</td>
-                                <td>New York</td>
-                                <td>61</td>
-                                <td>2013/08/11</td>
-                                <td>$98,540</td>
-                            </tr>
-                            <tr>
-                                <td>Finn Camacho</td>
-                                <td>Support Engineer</td>
-                                <td>San Francisco</td>
-                                <td>47</td>
-                                <td>2009/07/07</td>
-                                <td>$87,500</td>
-                            </tr>
-                            <tr>
-                                <td>Serge Baldwin</td>
-                                <td>Data Coordinator</td>
-                                <td>Singapore</td>
-                                <td>64</td>
-                                <td>2012/04/09</td>
-                                <td>$138,575</td>
-                            </tr>
-                            <tr>
-                                <td>Zenaida Frank</td>
-                                <td>Software Engineer</td>
-                                <td>New York</td>
-                                <td>63</td>
-                                <td>2010/01/04</td>
-                                <td>$125,250</td>
-                            </tr>
-                            <tr>
-                                <td>Zorita Serrano</td>
-                                <td>Software Engineer</td>
-                                <td>San Francisco</td>
-                                <td>56</td>
-                                <td>2012/06/01</td>
-                                <td>$115,000</td>
-                            </tr>
-                            <tr>
-                                <td>Jennifer Acosta</td>
-                                <td>Junior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>43</td>
-                                <td>2013/02/01</td>
-                                <td>$75,650</td>
-                            </tr>
-                            <tr>
-                                <td>Cara Stevens</td>
-                                <td>Sales Assistant</td>
-                                <td>New York</td>
-                                <td>46</td>
-                                <td>2011/12/06</td>
-                                <td>$145,600</td>
-                            </tr>
-                            <tr>
-                                <td>Hermione Butler</td>
-                                <td>Regional Director</td>
-                                <td>London</td>
-                                <td>47</td>
-                                <td>2011/03/21</td>
-                                <td>$356,250</td>
-                            </tr>
-                            <tr>
-                                <td>Lael Greer</td>
-                                <td>Systems Administrator</td>
-                                <td>London</td>
-                                <td>21</td>
-                                <td>2009/02/27</td>
-                                <td>$103,500</td>
-                            </tr>
-                            <tr>
-                                <td>Jonas Alexander</td>
-                                <td>Developer</td>
-                                <td>San Francisco</td>
-                                <td>30</td>
-                                <td>2010/07/14</td>
-                                <td>$86,500</td>
-                            </tr>
-                            <tr>
-                                <td>Shad Decker</td>
-                                <td>Regional Director</td>
-                                <td>Edinburgh</td>
-                                <td>51</td>
-                                <td>2008/11/13</td>
-                                <td>$183,000</td>
-                            </tr>
-                            <tr>
-                                <td>Michael Bruce</td>
-                                <td>Javascript Developer</td>
-                                <td>Singapore</td>
-                                <td>29</td>
-                                <td>2011/06/27</td>
-                                <td>$183,000</td>
-                            </tr>
-                            <tr>
-                                <td>Donna Snider</td>
-                                <td>Customer Support</td>
-                                <td>New York</td>
-                                <td>27</td>
-                                <td>2011/01/25</td>
-                                <td>$112,000</td>
-                            </tr>
+                            @endforeach
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
 
+<!-- Modal Form -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModalLabel">Tambah Data Produk</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body modal-content">
+                <form id="addProductForm" action="{{ route('admin.produk.store') }}" method="POST" style="width: 100%">
+                    @csrf
+                    {{-- @method('PUT') --}}
+                    <div class="mb-3">
+                        <label for="id_kategori" class="form-label">Kategori</label>
+                        <input type="text" class="form-control" id="id_kategori" name="id_kategori" required>
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="nama_produk" class="form-label">Nama Produk</label>
+                        <input type="text" class="form-control" id="nama_produk" name="nama_produk" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="warna" class="form-label">Warna</label>
+                        <input type="text" class="form-control" id="warna" name="warna" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ukuran" class="form-label">Ukuran</label>
+                        <input type="text" class="form-control" id="ukuran" name="ukuran" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="number" class="form-control" id="harga" name="harga" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="stok" class="form-label">Stok</label>
+                        <input type="number" class="form-control" id="stok" name="stok" required>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
     @endsection

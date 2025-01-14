@@ -25,7 +25,7 @@
                                 class="card-img-c5" />
                             <span class="promo-c5">-50%</span>
                         </div>
-                        <span class="product-name-c5">Tikar Rotan Ajiro</span>
+                        <span class="product-name-c5">Tikar Rotan Ajiro</span>  
                         <span class="category-c5">Coklat Muda</span>
                     </div>
 

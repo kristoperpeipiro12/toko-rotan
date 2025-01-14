@@ -18,14 +18,14 @@
                 </ul>
             </li> --}}
             <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Account</a></li>
+
             <li class="nav-item-cus hover-eff-mq-cus">
-                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                    @csrf
-                    <button type="submit" class="btn btn-link" style="text-decoration: none; color: inherit; padding: 0; border: none; background: none;">
-                        Log-out
-                    </button>
-                </form>
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#logoutModal"
+                    style="text-decoration: none; color: inherit; padding: 0; border: none; background: none;">
+                    Log-out
+                </button>
             </li>
+
         </ul>
         <div class="user-section-cus" id="user-section-cus">
             <a href="#" class=""><i class="fa-color-cus fa-solid fa-user"></i></a>
@@ -34,5 +34,27 @@
         <i class="fa-solid fa-bars" id="hum-menu-cus"></i>
     </nav>
 
+    <!-- Log Out Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin keluar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Keluar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

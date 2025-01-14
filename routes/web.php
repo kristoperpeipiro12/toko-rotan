@@ -22,7 +22,8 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login/proses', [LoginController::class, 'login'])->name('login.proses');
 Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register/proses', [LoginController::class, 'registerproses'])->name('register.proses');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout.post');
 
 
 Route::get('/email/verify', function () {
@@ -43,6 +44,7 @@ Route::get('/profile', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/produk', [ProdukController::class, 'index'])->name('admin.produk');
+    Route::post('/store', [ProdukController::class,'store'])->name('admin.produk.store');
     Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
     Route::get('/datawilayah', [DataWilayahController::class, 'index'])->name('admin.datawilayah');
     Route::get('/tambah/datawilayah', [DataWilayahController::class, 'create'])->name('admin.datawilayah.create');
@@ -56,8 +58,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/home', [ShopController::class, 'index'])->name('shop.home');
     Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
-    Route::get('/about', [ShopController::class, 'about'])->name('shop.about');
-    Route::get('/detail', [ShopController::class, 'detail'])->name('shop.detail');
+    Route::get('/shop/about', [ShopController::class, 'about'])->name('shop.about');
+    Route::get('/shop/detail', [ShopController::class, 'detail'])->name('shop.detail');
     Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
 });
 
@@ -65,3 +67,4 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
 Route::get('/our-products', [CustomerHomeController::class, 'index'])->name('customer.home');
 Route::get('/about', [CustomerHomeController::class, 'about'])->name('customer.about');
 Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer.detail');
+    

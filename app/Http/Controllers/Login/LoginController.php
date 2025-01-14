@@ -54,7 +54,7 @@ class LoginController extends Controller
             "name" => $request->name,
             "email" => $request->email,
             "password" => Hash::make($request->password),
-            "role" => 'customer',
+            "role" => 'customer',   
         ]);
 
         event(new Registered($user));
