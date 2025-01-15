@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->string('id_order')->primary();
-            $table->string('id_produk');
-            $table->string('id_customer');
+            $table->uuid('id_produk');
+            $table->uuid('id_customer');
             $table->integer('jumlah');
             $table->timestamps();
 

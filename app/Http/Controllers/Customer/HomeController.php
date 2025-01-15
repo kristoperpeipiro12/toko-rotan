@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('customer.index');
+        return view('customer.home');
     }
 
     public function about()
@@ -16,11 +16,11 @@ class HomeController extends Controller
         return view('customer.about');
     }
 
-    public function detail()
+    public function shop()
     {
-        // saat rancang backend, tambahkan parameter untuk 
+        // saat rancang backend, tambahkan parameter untuk
         // menampilkan detail yang di request!
 
-        return view('customer.detail');
+        return view('customer.shop');
     }
 }

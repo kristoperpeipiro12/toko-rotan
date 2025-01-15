@@ -4,55 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Kategori extends Model
 {
     use HasFactory;
 
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
+    protected $table = 'kategori';
     protected $primaryKey = 'id_kategori';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
     public $incrementing = false;
-
-    /**
-     * The data type of the primary key.
-     *
-     * @var string
-     */
     protected $keyType = 'string';
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'kategori';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'id_kategori',
         'nama_kategori',
     ];
 
-    /**
-     * Relationship with Produk.
-     * A Kategori can have many Produk.
-     */
-    public function produk()
+    protected static function boot()
     {
-        return $this->hasMany(Produk::class, 'id_kategori', 'id_kategori');
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->id_kategori)) {
+                $model->id_kategori = 'KAT-' . Str::uuid();
+            }
+        });
     }
 }

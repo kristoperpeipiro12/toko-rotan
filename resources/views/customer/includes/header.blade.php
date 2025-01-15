@@ -1,65 +1,26 @@
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Website Template by gettemplates.co" />
-    <meta name="keywords"
-        content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-    <meta name="author" content="gettemplates.co" />
-
-    <!--
- //////////////////////////////////////////////////////
-
- FREE HTML5 TEMPLATE
- DESIGNED & DEVELOPED by FreeHTML5.co
-
- Website: 		http://freehtml5.co/
- Email: 			info@freehtml5.co
- Twitter: 		http://twitter.com/fh5co
- Facebook: 		https://www.facebook.com/fh5co
-
- //////////////////////////////////////////////////////
- -->
-
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet"> -->
-
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="{{ asset('clone/css/animate.css') }}">
-
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="{{ asset('clone/css/icomoon.css') }}">
-
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="{{ asset('clone/css/bootstrap.css') }}">
-
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="{{ asset('clone/css/flexslider.css') }}">
-
-    <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="{{ asset('clone/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('clone/css/owl.theme.default.min.css') }}">
-
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="{{ asset('clone/css/style.css') }}">
-
-    <!-- Modernizr JS -->
-    <script src="{{ asset('clone/js/modernizr-2.6.2.min.js') }}"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
- <script src="js/respond.min.js"></script>
- <![endif]-->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AL-ZAHRA - @yield('title')</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/hover-effect.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/btn-effect-1.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/card-1.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/card-2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/card-5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/contact-us1.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/shop-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/cart-page.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/shop/product-card1.css') }}"> --}}
+    {{-- posisi main.css harus dibawah bootstrap agar jadi prioritas pertama --}}
+    @include('sweetalert::alert')
 </head>

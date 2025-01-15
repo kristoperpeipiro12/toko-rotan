@@ -105,10 +105,10 @@
                     <li class="nav-label first" style="color:white">Main Menu</li>
                     <li><a href="{{ route('admin.dashboard') }}" aria-expanded="false"><i
                                 class="icon-speedometer"></i><span class="nav-text">Dashboard</span></a></li>
-                    <li><a href="{{ route('admin.produk') }}" aria-expanded="false"><i
-                                class="icon fas fa-gem"></i><span class="nav-text">Produk</span></a></li>
                     <li><a href="{{ route('admin.kategori') }}" aria-expanded="false"><i
                                 class="icon icon-globe-2"></i><span class="nav-text">Kategori</span></a></li>
+                    <li><a href="{{ route('admin.produk') }}" aria-expanded="false"><i
+                                class="icon fas fa-gem"></i><span class="nav-text">Produk</span></a></li>
                     <li><a href="{{ route('admin.datawilayah') }}" aria-expanded="false"><i
                                 class="icon icon-world-2"></i><span class="nav-text">Data Wilayah</span></a></li>
 
@@ -127,7 +127,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" aria-expanded="false">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"
+                            aria-expanded="false">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-text">Logout</span>
                         </a>
@@ -137,46 +138,45 @@
         </div>
         <!--**********************************
             Sidebar end
-        ***********************************-->
+            ***********************************-->
 
-        <!--**********************************
+            <!--**********************************
             Content body start
-        ***********************************-->
-        <div class="content-body">
-            <!-- row -->
-            @yield('content')
-            @include('sweetalert::alert')
-        </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-
-
-        <!-- Log Out Modal -->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Apakah Anda yakin ingin keluar?
-                    </div>
-                    <div class="modal-footer d-flex justify-content-between align-items-center">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <form id="logoutForm" action="{{ route('logout.post') }}" method="POST" class="mb-0">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">Keluar</button>
-                        </form>
-                    </div>
-                </div>
+            ***********************************-->
+            <div class="content-body">
+                <!-- row -->
+                @yield('content')
+                @include('sweetalert::alert')
             </div>
-        </div>
+            <!--**********************************
+            Content body end
+            ***********************************-->
 
+
+
+                    <!-- Log Out Modal -->
+                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Apakah Anda yakin ingin keluar?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Keluar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
         <!--**********************************
@@ -195,25 +195,25 @@
         </div>
         <!--**********************************
             Footer end
-        ***********************************-->
+            ***********************************-->
 
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
+            <!--**********************************
+                Support ticket button start
+                ***********************************-->
 
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
+                <!--**********************************
+                    Support ticket button end
+                    ***********************************-->
 
 
-    </div>
-    <!--**********************************
+                </div>
+                <!--**********************************
         Main wrapper end
-    ***********************************-->
+        ***********************************-->
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
+        <!--**********************************
+            Scripts
+            ***********************************-->
     <!-- Required vendors -->
     <script src="{{ asset('focus/./vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('focus/./js/quixnav-init.js') }}"></script>

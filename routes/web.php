@@ -15,10 +15,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
+// Route Catalog
+Route::get('/', [CustomerHomeController::class, 'index'])->name('customer.home');
+Route::get('/shop/cus', [CustomerHomeController::class, 'shop'])->name('customer.shop');
+Route::get('/about/cus', [CustomerHomeController::class, 'about'])->name('customer.about');
+// Route::get('/shop/detail', [CustomerHomeController::class, 'detail'])->name('shop.detail');
+// Route::get('/cart', [CustomerHomeController::class, 'cart'])->name('shop.cart');
 
-Route::get('/', [LoginController::class, 'index'])->name('login');
 
 
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login/proses', [LoginController::class, 'login'])->name('login.proses');
 Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register/proses', [LoginController::class, 'registerproses'])->name('register.proses');
@@ -43,9 +49,18 @@ Route::get('/profile', function () {
 // Admin Routes
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    //produk
     Route::get('/produk', [ProdukController::class, 'index'])->name('admin.produk');
     Route::post('/store', [ProdukController::class,'store'])->name('admin.produk.store');
+    Route::put('/produk/update/{id}', [ProdukController::class, 'update'])->name('admin.produk.update');
+Route::delete('/produk/delete/{id}', [ProdukController::class, 'delete'])->name('admin.produk.delete');
+
+    //kategori
     Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
+    Route::post('/kateegori/add', [KategoriController::class,'store'])->name('admin.kategori.store');
+    Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name('admin.kategori.update');
+    Route::delete('/kategori/{id}', [KategoriController::class, 'delete'])->name('admin.kategori.delete');
+
     Route::get('/datawilayah', [DataWilayahController::class, 'index'])->name('admin.datawilayah');
     Route::get('/tambah/datawilayah', [DataWilayahController::class, 'create'])->name('admin.datawilayah.create');
     Route::get('/pesanan/dikemas', [PesananController::class, 'kemas'])->name('admin.pesanan.dikemas');
@@ -62,9 +77,3 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/shop/detail', [ShopController::class, 'detail'])->name('shop.detail');
     Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
 });
-
-// Route Catalog
-Route::get('/our-products', [CustomerHomeController::class, 'index'])->name('customer.home');
-Route::get('/about', [CustomerHomeController::class, 'about'])->name('customer.about');
-Route::get('/detail', [CustomerHomeController::class, 'detail'])->name('customer.detail');
-    

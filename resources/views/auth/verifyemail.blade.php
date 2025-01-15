@@ -7,8 +7,7 @@
     <title>veriikasi email</title>
 </head>
 <body>
-    <h1>Silahkan cek Email anda, untuk konfirmasi akun anda</h1>
-    @include('sweetalert::alert')
+    <h1>Silahkan cek Email, untuk konfirmasi akun anda</h1>
 
 </body>
 </html>
