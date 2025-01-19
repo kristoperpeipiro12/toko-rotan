@@ -20,11 +20,11 @@
             <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Account</a></li>
 
             <li class="nav-item-cus hover-eff-mq-cus">
-                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                <button type="button" class="btn btn-transparent fw-bold" data-bs-toggle="modal"
+                    data-bs-target="#logoutModal">
                     Log-out
                 </button>
             </li>
-
         </ul>
         <div class="user-section-cus" id="user-section-cus">
             <a href="#" class=""><i class="fa-color-cus fa-solid fa-user"></i></a>

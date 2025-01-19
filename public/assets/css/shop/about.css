@@ -2,7 +2,6 @@
     display: flex;
     gap: 2rem;
     /* background-color: aqua; */
-    padding: 0 8rem !important;
     margin-bottom: 3rem;
 }
 
@@ -31,4 +30,15 @@
     margin-bottom: 1.2rem;
 
     line-height: 1.4rem;
+}
+
+@media only screen and (max-width: 749px) {
+    .img-ab {
+        width: 100%;
+        align-self: center;
+    }
+
+    .wrap-content-ab {
+        flex-direction: column;
+    }
 }

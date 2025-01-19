@@ -77,3 +77,10 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/shop/detail', [ShopController::class, 'detail'])->name('shop.detail');
     Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
 });
+
+// Download Catalog
+Route::get('/download-katalog', function () {
+    $filePath = public_path('katalog/katalog.pdf'); // Lokasi file katalog
+    return Response::download($filePath, 'katalog.pdf');
+})->name('download.katalog');
+
