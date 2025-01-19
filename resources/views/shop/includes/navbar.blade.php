@@ -20,8 +20,7 @@
             <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Account</a></li>
 
             <li class="nav-item-cus hover-eff-mq-cus">
-                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#logoutModal"
-                    style="text-decoration: none; color: inherit; padding: 0; border: none; background: none;">
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#logoutModal">
                     Log-out
                 </button>
             </li>

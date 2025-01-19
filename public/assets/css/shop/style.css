@@ -24,11 +24,6 @@
     text-align: center;
 }
 
-.promo-text {
-    font-weight: bold;
-    font-size: 35px;
-}
-
 .card-wrap {
     display: flex;
     gap: 25px;

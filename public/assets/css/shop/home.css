@@ -53,6 +53,11 @@ h6 {
     font-size: 2.2rem;
 }
 
+.promo-text {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
 .wrap-btn-wel-shop {
     /* background-color: aliceblue; */
     margin-top: 14px;
@@ -78,7 +83,9 @@ h6 {
 
 .portal-menu {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
     padding: 10px;
 }
 
@@ -137,12 +144,9 @@ h6 {
 
 .best-product-section .wrap-best-product {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.wrap-best-product .product-card-2 {
-    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* width: 100%; */
 }
 
 .gradient-text {
@@ -151,4 +155,33 @@ h6 {
     background: linear-gradient(45deg, #ff7e5f, #feb47b); /* Warna gradasi */
     -webkit-background-clip: text; /* Membuat latar belakang hanya berlaku untuk teks */
     -webkit-text-fill-color: transparent; /* Membuat isi teks transparan untuk menampilkan gradasi */
+}
+
+@media only screen and (max-width: 897px) {
+    .wrap-text-img {
+        top: 45%;
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 523px) {
+    .wel-title {
+        font-size: 2.3rem;
+    }
+    .wel-text {
+        font-size: 1.6rem;
+    }
+    .promo-text {
+        font-size: 0.8rem;
+    }
+
+    /* .promo-text {
+        display: none;
+    } */
+}
+
+@media only screen and (max-width: 1318px) and (min-width: 998px) {
+    .wrap-best-product {
+        padding: 4rem;
+    }
 }

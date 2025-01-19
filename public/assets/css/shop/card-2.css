@@ -1,5 +1,5 @@
 .product-card-2 {
-    max-width: 300px;
+    width: 19rem;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     overflow: hidden;
@@ -83,4 +83,20 @@
 
 .cart-button-card-2:hover {
     background-color: #ff7a18;
+}
+
+@media only screen and (max-width: 1318px) and (min-width: 998px) {
+    .product-card-2 {
+        width: 40%;
+    }
+
+    .image-container-card-2 {
+        padding-top: 40%;
+    }
+}
+
+@media only screen and (max-width: 678px) {
+    .product-card-2 {
+        width: 60%;
+    }
 }
