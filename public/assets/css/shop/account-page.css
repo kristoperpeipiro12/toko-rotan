@@ -89,6 +89,21 @@ table * {
     font-weight: bold;
 }
 
+.res-bio-biodata-section .res-bio-group p {
+    display: inline;
+    background-color: #6beb6b;
+    border-radius: 5px;
+    padding: 2px 8px;
+    transition: all ease 0.2s;
+}
+
+.res-bio-biodata-section .res-bio-group p:hover {
+    background-color: #57d157;
+    cursor: pointer;
+    color: white;
+    text-decoration: underline;
+}
+
 /* Responsivitas */
 @media (max-width: 768px) {
     .res-bio-content {

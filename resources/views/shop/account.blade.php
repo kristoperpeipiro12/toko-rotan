@@ -55,11 +55,11 @@
                         </div>
                         <div class="res-bio-group">
                             <span>Tanggal Lahir:</span>
-                            Tambah Tanggal Lahir
+                            <p id="openTglModal">Tambah Tanggal Lahir</p>
                         </div>
                         <div class="res-bio-group">
                             <span>Jenis Kelamin:</span>
-                            Tambah Jenis Kelamin
+                            <p id="openJKModal">Tambah Jenis Kelamin</p>
                         </div>
                         <h3>Ubah Kontak</h3>
                         <div class="res-bio-group">
@@ -116,6 +116,7 @@
 
     <script src="{{ asset('assets/js/shop/sidebar-cus1.js') }}"></script>
     <script src="{{ asset('assets/js/shop/cus-cn1.js') }}"></script>
+    <script src="{{ asset('assets/js/shop/all-popup-account.js') }}"></script>
 </body>
 
 </html>
