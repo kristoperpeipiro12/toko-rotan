@@ -1,0 +1,95 @@
+.card-container-cus-cn1 {
+    /* max-width: 800px; */
+    margin: 20px 4rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.nav-tabs-cus-cn1 {
+    display: flex;
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.nav-tab-cus-cn1 {
+    flex: 1;
+    text-align: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+}
+
+.nav-tab-cus-cn1.active-cus-cn1 {
+    background: #fff;
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+}
+
+.card-content-cus-cn1 {
+    padding: 20px;
+    display: none;
+}
+
+.card-content-cus-cn1.active-cus-cn1 {
+    display: block;
+}
+
+.profile-section-cus-cn1 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-photo-cus-cn1 img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+}
+
+.profile-details-cus-cn1 {
+    flex: 1;
+}
+
+.profile-details-cus-cn1 h2 {
+    margin: 0 0 10px;
+}
+
+.actions-cus-cn1 {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-cus-cn1 {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    color: #fff;
+    background: #007bff;
+    cursor: pointer;
+}
+
+.btn-cus-cn1.secondary-cus-cn1 {
+    background: #6c757d;
+}
+
+/* Add scrollbar styles for better usability */
+.nav-tabs-cus-cn1::-webkit-scrollbar {
+    height: 6px;
+}
+
+.nav-tabs-cus-cn1::-webkit-scrollbar-thumb {
+    background: rgba(146, 146, 146, 0.5);
+    border-radius: 3px;
+}
+
+.nav-tabs-cus-cn1::-webkit-scrollbar-track {
+    background: #f8f8f8;
+}

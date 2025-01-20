@@ -1,0 +1,178 @@
+.card-bio-cus {
+    display: flex;
+    align-items: center;
+    padding: 1.4rem;
+    gap: 10px;
+    flex-direction: column;
+    /* border: 1px solid rgba(24, 20, 28, 0.7); */
+    border-radius: 14px;
+    width: 18rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan shadow */
+    transition: all 0.3s ease; /* Tambahkan transisi */
+}
+
+.card-bio-cus:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Shadow lebih besar saat hover */
+}
+
+.img-bio-cus {
+    width: 100%;
+}
+
+.card-bio-cus .btn-pilih {
+    border: 1px solid #18141c;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: transparent;
+    width: 100%;
+    margin-bottom: 19px;
+    transition: all ease 0.3s;
+}
+
+.card-bio-cus .btn-pilih:hover {
+    cursor: pointer;
+    background-color: #18141c;
+    color: white;
+}
+
+.card-bio-cus span {
+    font-size: 0.75rem;
+}
+
+table * {
+    font-size: 0.9rem;
+}
+
+/* pebaharuan disini */
+.res-bio-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+/* Gambar dan upload file */
+.res-bio-photo-section {
+    flex: 1 1 300px; /* Minimum 300px, bisa membesar */
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.res-bio-photo-section img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Biodata dan kontak */
+.res-bio-biodata-section {
+    flex: 2 1 300px; /* Minimum 300px, bisa membesar */
+    background: #e0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.res-bio-biodata-section h3 {
+    margin-top: 0;
+}
+
+.res-bio-biodata-section .res-bio-group {
+    margin-bottom: 15px;
+}
+
+.res-bio-biodata-section .res-bio-group span {
+    display: block;
+    font-weight: bold;
+}
+
+/* Responsivitas */
+@media (max-width: 768px) {
+    .res-bio-content {
+        flex-direction: column;
+    }
+
+    .res-bio-photo-section,
+    .res-bio-biodata-section {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+/* pembahruan batas bawah */
+
+@media only screen and (max-width: 935px) {
+    .card-bio-cus {
+        width: 100%;
+    }
+}
+
+/* alamat section start */
+.container-bio-almt {
+    display: flex;
+    flex-direction: column;
+    background-color: #eaffea;
+    border: 2px solid #9be89b;
+    border-radius: 10px;
+    padding: 20px;
+    gap: 10px;
+    /* max-width: 600px; */
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.header-bio-almt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-bio-almt .title-bio-almt {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2f5e2f;
+}
+
+.header-bio-almt .label-bio-almt {
+    background-color: #57d157;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.content-bio-almt {
+    font-size: 1rem;
+    color: #333;
+}
+
+.footer-bio-almt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.footer-bio-almt .actions-bio-almt {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-bio-almt .actions-bio-almt a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.footer-bio-almt .actions-bio-almt a:hover {
+    text-decoration: underline;
+}
+
+.icon-bio-almt {
+    color: #28a745;
+    font-size: 1.5rem;
+}
+/* alamat section end */

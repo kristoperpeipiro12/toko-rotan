@@ -1,0 +1,106 @@
+.con-tlg-popup {
+    position: absolute;
+    background-color: rgba(31, 31, 31, 0.7);
+    min-width: 100vw;
+    min-height: 100vh;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-tgl-popup {
+    margin: 0 20px;
+    width: 100vw;
+    max-width: 740px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.con-tlg-popup.active {
+    display: flex;
+}
+
+.con-tlg-popup.active * {
+    overflow: hidden;
+}
+
+/* main tgl popup */
+.container-ttl-pop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.popup-ttl-pop {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.wrap-head-pop {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.title-ttl-pop {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.x-rotate {
+    display: flex;
+    align-items: center;
+    transition: all ease 0.3s;
+}
+.x-rotate:hover {
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+
+.x-popup {
+    font-size: 1.4rem;
+}
+
+.description-ttl-pop {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+.dropdown-container-ttl-pop {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.dropdown-ttl-pop {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.button-ttl-pop {
+    background: #1da1f2;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+}
+.button-ttl-pop:hover {
+    background: #0d8ae0;
+}
+/* batas akhir tgl popup */
