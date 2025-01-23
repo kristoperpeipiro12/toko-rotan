@@ -1,67 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('auth.main')
+@section('title','Login')
+@section('content')
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img"
+                        style="background-image: url({{ asset('assets/images/dummy-images/welcome-img.jpg') }});">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Sign In</h3>
+                            </div>
+                            <div class="w-100">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ asset('slogin/dist/style.css') }}">
+                            </div>
+                        </div>
+                        <form action="{{ route('login.proses') }}" method="POST">
+                            @csrf
+                            <div class="form-group mb-3">
+                                <label class="label" for="name">Username</label>
+                                <input type="text" name="email_or_name" placeholder="Nama Pengguna" class="form-control"
+                                    required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Password</label>
+                                <input type="password" name="password" placeholder="Kata Sandi" class="form-control"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit"
+                                    class="form-control btn btn-primary rounded submit px-3">Masuk</button>
+                            </div>
+                            <div class="form-group d-md-flex">
 
-
-</head>
-
-<body>
-    <!-- partial:index.partial.html -->
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <title>Slide Navbar</title>
-        <link rel="stylesheet" type="text/css" href="{{ asset('slogin/slide navbar style.css') }}">
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-
-    </head>
-
-    <body>
-        @include('sweetalert::alert')
-        {{-- <div class="wrap-all-cus"> --}}
-        <img src="{{ asset('assets/images/bg-login2.jpg') }}" class="bg-login-cus"></img>
-        <div class="main">
-            <input type="checkbox" id="chk" aria-hidden="true">
-            <span class="logo-login-cus">AL-ZAHRA</span>
-
-            <div class="signup">
-                <form action="{{ route('register.proses') }}" method="POST">
-                    @csrf
-                    <label for="chk" aria-hidden="true">Daftar</label>
-                    <input type="text" name="name" placeholder="User name" required="">
-                    <input type="email" name="email" placeholder="Email" required="">
-                    <input type="password" name="password" placeholder="Password" required="">
-                    <button>Daftar</button>
-                </form>
-            </div>
-
-            <div class="login">
-                <form action="{{ route('login.proses') }}" method="POST">
-                    @csrf
-                    <label for="chk" aria-hidden="true">Masuk</label>
-                    {{-- <input type="email" name="email" placeholder="Email" required=""> --}}
-                    <input type="text" name="email_or_name" placeholder="Email_or_name">
-
-                    <input type="password" name="password" placeholder="Password">
-                    {{-- <input type="password" name="pswd" placeholder="Password" required=""> --}}
-
-                    <button>Masuk</button>
-                </form>
+                            </div>
+                        </form>
+                        <p class="text-center">Belum terdaftar? <a href="{{ route('register') }}">Daftar
+                                Sekarang!</a></p>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-        {{-- </div> --}}
-    </body>
-
-    </html>
-    <!-- partial -->
-
-</body>
-
-</html>
+    </div>
+</section>
+@endsection

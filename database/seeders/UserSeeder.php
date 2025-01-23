@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Customer;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,19 +13,26 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        // Admin User
+        Customer::create([
+            'id_customer' => uniqid(), // ID unik untuk primary key
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('1234'),
             'role' => 'admin',
+            'no_hp' => '081234567890', // Isi default
+            'alamat' => 'Alamat Admin', // Isi default
         ]);
 
-
-        User::create([
+        // Regular Customer
+        Customer::create([
+            'id_customer' => uniqid(), // ID unik untuk primary key
             'name' => 'customer',
             'email' => 'customer@gmail.com',
             'password' => Hash::make('1234'),
             'role' => 'customer',
+            'no_hp' => '089876543210', // Isi default
+            'alamat' => 'Alamat Customer', // Isi default
         ]);
     }
 }

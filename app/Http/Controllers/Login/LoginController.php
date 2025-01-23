@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,57 +13,74 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view("auth.login-login");
+        return view("auth.login");
     }
 
-    public function login(Request $request)
-    {
+public function login(Request $request)
+{
+
     $credentials = $request->validate([
-        'email_or_name' => 'required',
-        'password' => 'required',
+        'email_or_name' => 'required|string',
+        'password' => 'required|string',
     ]);
 
-    $user = User::where('email', $request->email_or_name)
-                ->orWhere('name', $request->email_or_name)
-                ->first();
 
-    if ($user && Hash::check($request->password, $user->password)) {
+    $customer = Customer::where('email', $request->email_or_name)
+                        ->orWhere('name', $request->email_or_name)
+                        ->first();
 
-        Auth::login($user);
+
+    if ($customer && Hash::check($request->password, $customer->password)) {
+
+        Auth::login($customer);
         $request->session()->regenerate();
 
 
-        if ($user->role === 'admin') {
+        if ($customer->role === 'admin') {
             return redirect()->route('admin.dashboard')->with('toast_success', 'Anda berhasil Login sebagai Admin!');
         }
 
         return redirect()->route('shop.home')->with('toast_success', 'Anda berhasil Login!');
     }
+
     return back()->with('toast_error', 'Email/Nama atau password salah.');
-    }
+}
+
 
     public function register()
     {
         return view("auth.regist");
     }
 
-    public function registerproses(Request $request)
-    {
 
-        $user = User::create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "password" => Hash::make($request->password),
-            "role" => 'customer',
-        ]);
+public function registerproses(Request $request)
+{
+    // Validasi input
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:customer,email',
+        'password' => 'required|string',
+    ]);
 
-        event(new Registered($user));
 
-        Auth::login($user);
+    $customer = Customer::create([
+        "id_customer" => uniqid(),
+        "name" => $request->name,
+        "email" => $request->email,
+        "password" => Hash::make($request->password),
+        "no_hp"=> $request->no_hp,
+        "alamat"=> $request->alamat,
+        "role" => 'customer',
+    ]);
 
-        // Arahkan ke halaman verifikasi email
-        return redirect('/email/verify');
-    }
+
+    event(new Registered($customer));
+
+
+    Auth::login($customer);
+
+    return redirect('/email/verify');
+}
 
     public function logout(Request $request)
     {

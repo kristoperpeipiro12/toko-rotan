@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="nowa">Nomor WA</label>
-                                <input type="text" name="nowa" placeholder="+ 62" class="form-control" id="onlyNumber"
+                                <input type="text" name="no_hp" placeholder="+ 62" class="form-control" id="onlyNumber"
                                     required="">
                             </div>
                             <div class="form-group">

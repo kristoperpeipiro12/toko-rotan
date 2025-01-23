@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('customer', function (Blueprint $table) {
             $table->uuid('id_customer')->primary();
-            $table->string('username');
-            $table->string('email');
+            $table->string('name');
+            $table->string('email')->unique();
             $table->string('password');
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('no_hp',16);
             $table->text('alamat');
+            $table->enum('role', ['customer', 'admin'])->default('customer');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

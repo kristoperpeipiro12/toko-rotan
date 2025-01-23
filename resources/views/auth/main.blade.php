@@ -6,7 +6,7 @@
     @yield('content')
 
 
-
+@include('sweetalert::alert')
     @include('auth.includes.footer')
 </body>
 

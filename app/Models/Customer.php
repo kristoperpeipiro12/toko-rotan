@@ -3,66 +3,70 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Customer extends Model
+class Customer extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
+    // Primary Key
     protected $primaryKey = 'id_customer';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
     public $incrementing = false;
-
-    /**
-     * The data type of the primary key.
-     *
-     * @var string
-     */
     protected $keyType = 'string';
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
+    // Table Name
     protected $table = 'customer';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    // Fillable Attributes
     protected $fillable = [
         'id_customer',
-        'username',
+        'name',
         'email',
         'password',
         'no_hp',
         'alamat',
+        'role',
     ];
 
-    /**
-     * Automatically hide attributes from arrays and JSON.
-     *
-     * @var array
-     */
+    // Hidden Attributes
     protected $hidden = [
-        'password', // Menyembunyikan password saat data diubah menjadi array atau JSON
+        'password',
+        'remember_token',
+    ];
+
+    // Casts
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed', // Pastikan hashing di controller/service layer saat membuat pengguna
     ];
 
     /**
-     * Relationships
-     * A Customer can have many orders.
+     * Check if the customer is an admin.
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Check if the customer is a regular customer.
+     *
+     * @return bool
+     */
+    public function isCustomer(): bool
+    {
+        return $this->role === 'customer';
+    }
+
+    /**
+     * Define the relationship to the Order model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function orders()
     {
