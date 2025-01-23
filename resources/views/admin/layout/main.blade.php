@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('focus/./images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('focus/./vendor/owl-carousel/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('focus/./vendor/owl-carousel/css/owl.theme.default.min.css') }}">
-    {{-- <link href="{{ asset('focus/./vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('focus/./vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="{{ asset('focus/./vendor/jqvmap/css/jqvmap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('focus/./css/style.css') }}" rel="stylesheet">
@@ -27,6 +27,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
+    
 
 
 
@@ -141,50 +142,52 @@
             Sidebar end
             ***********************************-->
 
-            <!--**********************************
+        <!--**********************************
             Content body start
             ***********************************-->
-            <div class="content-body">
-                <!-- row -->
-                @yield('content')
-            </div>
-            <!--**********************************
+        <div class="content-body">
+            <!-- row -->
+            @yield('content')
+        </div>
+        <!--**********************************
             Content body end
             ***********************************-->
 
 
 
-                    <!-- Log Out Modal -->
-                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Apakah Anda yakin ingin keluar?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary">Keluar</button>
-                                    </form>
-                                </div>
-                            </div>
+
+
+
+            <!-- Log Out Modal -->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda yakin ingin keluar?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Keluar</button>
+                            </form>
                         </div>
                     </div>
-
+                </div>
+            </div>
 
         <!--**********************************
             Footer start
             ***********************************-->
 
-        <div class="footer">
-            <div class="copyright">
+            <div class="footer">
+                <div class="copyright">
                 <p>
                     Copyright © Designed &amp; Developed by
                     <a href="#" target="_blank">Bukan Saya</a>
@@ -197,7 +200,7 @@
             Footer end
             ***********************************-->
 
-            <!--**********************************
+        <!--**********************************
                 Support ticket button start
                 ***********************************-->
 
@@ -208,16 +211,16 @@
 
                 </div>
                 <!--**********************************
-        Main wrapper end
-        ***********************************-->
+                    Main wrapper end
+                    ***********************************-->
 
-        <!--**********************************
-            Scripts
-            ***********************************-->
-    <!-- Required vendors -->
-    <script src="{{ asset('focus/./vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('focus/./js/quixnav-init.js') }}"></script>
-    <script src="{{ asset('focus/./js/custom.min.js') }}"></script>
+                    <!--**********************************
+                        Scripts
+                        ***********************************-->
+                        <!-- Required vendors -->
+                        <script src="{{ asset('focus/./vendor/global/global.min.js') }}"></script>
+                        <script src="{{ asset('focus/./js/quixnav-init.js') }}"></script>
+                        <script src="{{ asset('focus/./js/custom.min.js') }}"></script>
 
 
     <!-- Vectormap -->
@@ -249,3 +252,4 @@
 </body>
 
 </html>
+

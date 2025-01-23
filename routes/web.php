@@ -86,4 +86,3 @@ Route::get('/download-katalog', function () {
     $filePath = public_path('katalog/katalog.pdf'); // Lokasi file katalog
     return Response::download($filePath, 'katalog.pdf');
 })->name('download.katalog');
-

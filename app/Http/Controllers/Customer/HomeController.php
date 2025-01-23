@@ -19,8 +19,7 @@ class HomeController extends Controller
 
     public function shop()
     {
-        // saat rancang backend, tambahkan parameter untuk
-        // menampilkan detail yang di request!
+       
 
         return view('customer.shop');
     }

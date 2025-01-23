@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush table-hover" id="dataTable">
+                        <table class="table align-items-center table-flush table-hover" id="example">
                             <thead class="thead-light">
                                 <tr>
                                     <th class="mini-th">No</th>
