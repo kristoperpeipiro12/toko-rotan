@@ -11,8 +11,10 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Shop\ShopController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 // Route Catalog
@@ -51,7 +53,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     //produk
     Route::get('/produk', [ProdukController::class, 'index'])->name('admin.produk');
-    Route::post('/store', [ProdukController::class,'store'])->name('admin.produk.store');
+    Route::post('/produk', [ProdukController::class,'store'])->name('admin.produk.store');
+
     Route::put('/produk/update/{id}', [ProdukController::class, 'update'])->name('admin.produk.update');
 Route::delete('/produk/delete/{id}', [ProdukController::class, 'delete'])->name('admin.produk.delete');
 

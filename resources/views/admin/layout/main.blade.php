@@ -33,6 +33,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
 
     <!--**********************************
         Main wrapper start
@@ -146,7 +147,6 @@
             <div class="content-body">
                 <!-- row -->
                 @yield('content')
-                @include('sweetalert::alert')
             </div>
             <!--**********************************
             Content body end

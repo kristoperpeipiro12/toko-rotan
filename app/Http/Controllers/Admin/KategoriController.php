@@ -29,7 +29,7 @@ class KategoriController extends Controller
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->save();
         // Redirect kembali dengan pesan sukses
-        return redirect()->route('admin.kategori')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()->route('admin.kategori')->with('toast_success', 'Kategori berhasil ditambahkan.');
     }
     public function update(Request $request, $id)
     {
@@ -38,27 +38,23 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        // Temukan dan update kategori berdasarkan ID
+
         $kategori = Kategori::findOrFail($id);
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->save();
 
         // Redirect kembali dengan pesan sukses
-        return redirect()->route('admin.kategori')->with('success', 'Kategori berhasil diperbarui.');
+        return redirect()->route('admin.kategori')->with('toast_success', 'Kategori berhasil diubah.');
     }
 
 
-public function delete($id)
-{
-    $kategori = Kategori::findOrFail($id);
+    public function delete($id)
+    {
+        $kategori = Kategori::findOrFail($id);
 
-    $kategori->delete();
+        $kategori->delete();
 
-    // Setelah penghapusan, ambil semua kategori lagi dan kirimkan ke view
-    $kategori = Kategori::all(); // Mengambil kembali daftar kategori yang sudah diperbarui
-    $pageTitle = 'Kategori';
+        return redirect()->route('admin.kategori')->with('toast_success', 'Kategori berhasil dihapus.');
+    }
 
-    // Redirect kembali ke halaman index dengan data kategori yang sudah diperbarui
-    return view('admin.kategori.index', compact('kategori','pageTitle'))->with('toast_success', 'Kategori berhasil dihapus.');
-}
 }

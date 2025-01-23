@@ -37,7 +37,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard')->with('toast_success', 'Anda berhasil Login sebagai Admin!');
         }
 
-        return redirect()->route('shop.home')->with('toast_success', 'Anda berhasil Login sebagai Customer!');
+        return redirect()->route('shop.home')->with('toast_success', 'Anda berhasil Login!');
     }
     return back()->with('toast_error', 'Email/Nama atau password salah.');
     }
@@ -54,7 +54,7 @@ class LoginController extends Controller
             "name" => $request->name,
             "email" => $request->email,
             "password" => Hash::make($request->password),
-            "role" => 'customer',   
+            "role" => 'customer',
         ]);
 
         event(new Registered($user));

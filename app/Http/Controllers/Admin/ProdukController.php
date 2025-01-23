@@ -13,44 +13,55 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $produk = Produk::with('kategori')->get();
         $kategori = Kategori::all();
+        $produk = Produk::with('kategori')->get();
         $pageTitle = 'Produk';
 
         return view('admin.produk.index', compact('produk', 'kategori','pageTitle'));
     }
     public function store(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'id_kategori'  => 'required|exists:kategori,id_kategori',
-            'nama_produk'  => 'required|string|max:255',
-            'warna'        => 'nullable|string|max:100',
-            'ukuran'       => 'nullable|string|max:50',
-            'harga'        => 'required|numeric|min:0',
-            'stok'         => 'required|integer|min:0',
-            'gambar'       => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+{
+    // Hapus format ribuan dari input harga
+    $request->merge([
+        'harga' => str_replace('.', '', $request->harga),
+    ]);
 
-        // Upload gambar jika ada
-        $gambarPath = null;
-        if ($request->hasFile('gambar')) {
-            $gambarPath = $request->file('gambar')->store('produk', 'public');
-        }
+    // Validasi input
+    $request->validate([
+        'id_kategori'  => 'required|exists:kategori,id_kategori',
+        'nama_produk'  => 'required|string|max:255',
+        'warna'        => 'nullable|string|max:100',
+        'ukuran'       => 'nullable|string|max:50',
+        'harga'        => 'required|numeric|min:0|max:1000000000', // Tambahkan validasi max
+        'stok'         => 'required|integer|min:0',
+        'gambar'       => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ], [
+        'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
+        'harga.min' => 'Harga tidak boleh kurang dari 0.',
+        'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
+    ]);
 
-        // Simpan produk baru
-        Produk::create([
-            'id_kategori'  => $request->id_kategori,
-            'nama_produk'  => $request->nama_produk,
-            'warna'        => $request->warna,
-            'ukuran'       => $request->ukuran,
-            'harga'        => $request->harga,
-            'stok'         => $request->stok,
-            'gambar'       => $gambarPath,
-        ]);
-
-        return redirect()->route('admin.produk')->with('success', 'Produk berhasil ditambahkan.');
+    // Upload gambar jika ada
+    $gambarPath = null;
+    if ($request->hasFile('gambar')) {
+        $gambarPath = $request->file('gambar')->store('produk', 'public');
     }
+
+    // Simpan produk baru ke database
+    Produk::create([
+        'id_kategori'  => $request->id_kategori,
+        'nama_produk'  => $request->nama_produk,
+        'warna'        => $request->warna,
+        'ukuran'       => $request->ukuran,
+        'harga'        => $request->harga,
+        'stok'         => $request->stok,
+        'gambar'       => $gambarPath,
+    ]);
+
+    // Redirect dengan notifikasi sukses
+    return redirect()->route('admin.produk')->with('toast_success', 'Produk berhasil ditambahkan.');
+}
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -86,7 +97,7 @@ class ProdukController extends Controller
 
         $produk->save();
 
-        return redirect()->route('admin.produk')->with('success', 'Produk berhasil diperbarui.');
+        return redirect()->route('admin.produk')->with('toast_success', 'Produk berhasil diubah.');
     }
 
 public function delete($id)
@@ -94,7 +105,7 @@ public function delete($id)
     $produk = Produk::findOrFail($id);
     $produk->delete();
 
-    return redirect()->route('admin.produk')->with('success', 'Produk berhasil dihapus.');
+    return redirect()->route('admin.produk')->with('toast_success', 'Produk berhasil dihapus.');
 }
 
 }

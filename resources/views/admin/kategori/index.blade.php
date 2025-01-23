@@ -214,9 +214,7 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah Anda yakin ingin menghapus kategori
-                                                        <strong>{{ $k->nama_kategori }}</strong>?
-                                                    </p>
+                                                    <p>Apakah Anda yakin ingin menghapus kategori ini?</p>
                                                     <form method="POST"
                                                         action="{{ route('admin.kategori.delete', $k->id_kategori) }}">
                                                         @csrf
@@ -286,7 +284,8 @@
                             <input type="hidden" name="id_kategori" id="edit_id_kategori">
                             <div class="mb-3">
                                 <label for="edit_nama_kategori" class="form-label">Nama Kategori</label>
-                                <input type="text" class="form-control" id="edit_nama_kategori" name="nama_kategori" value="{{ old('nama_kategori', $k->nama_kategori) }}" required>
+                                <input type="text" class="form-control" id="edit_nama_kategori" name="nama_kategori"
+                                    value="{{ old('nama_kategori', $k->nama_kategori) }}" required>
                             </div>
 
                             <div class="text-end">

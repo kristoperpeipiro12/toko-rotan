@@ -19,10 +19,10 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('slogin/slide navbar style.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 
-        @include('sweetalert::alert')
     </head>
 
     <body>
+        @include('sweetalert::alert')
         {{-- <div class="wrap-all-cus"> --}}
         <img src="{{ asset('assets/images/bg-login2.jpg') }}" class="bg-login-cus"></img>
         <div class="main">
