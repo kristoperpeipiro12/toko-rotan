@@ -32,22 +32,27 @@ class ProdukController extends Controller
         'nama_produk'  => 'required|string|max:255',
         'warna'        => 'nullable|string|max:100',
         'ukuran'       => 'nullable|string|max:50',
-        'harga'        => 'required|numeric|min:0|max:1000000000', // Tambahkan validasi max
+        'harga'        => 'required|numeric|min:0|max:1000000000',
         'stok'         => 'required|integer|min:0',
         'gambar'       => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ], [
+        'gambar.image' => 'File yang diupload harus berupa gambar.',
+    'gambar.mimes' => 'Gambar harus berformat: jpeg, png, atau jpg.',
+    'gambar.max'   => 'Ukuran gambar tidak boleh lebih dari 2MB.',
+        'nama_produk.required'=> 'Nama produk terlalu panjang',
         'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
         'harga.min' => 'Harga tidak boleh kurang dari 0.',
         'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
     ]);
+    
 
     // Upload gambar jika ada
     $gambarPath = null;
     if ($request->hasFile('gambar')) {
-        $gambarPath = $request->file('gambar')->store('produk', 'public');
-    }
 
-    // Simpan produk baru ke database
+        $filename = strtolower(str_replace(' ', '_', $request->nama_produk)) . '-' . now()->format('Y-m-d') . '.' . $request->gambar->getClientOriginalExtension();
+        $gambarPath = $request->file('gambar')->storeAs('produk', $filename, 'public');
+    }
     Produk::create([
         'id_kategori'  => $request->id_kategori,
         'nama_produk'  => $request->nama_produk,
@@ -72,6 +77,15 @@ class ProdukController extends Controller
             'harga'       => 'required|numeric|min:0',
             'stok'        => 'required|integer|min:0',
             'gambar'      => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ],
+        [
+            'gambar.image' => 'File yang diupload harus berupa gambar.',
+        'gambar.mimes' => 'Gambar harus berformat: jpeg, png, atau jpg.',
+        'gambar.max'   => 'Ukuran gambar tidak boleh lebih dari 2MB.',
+            'nama_produk.required'=> 'Nama produk terlalu panjang',
+            'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
+            'harga.min' => 'Harga tidak boleh kurang dari 0.',
+            'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
         ]);
 
         $produk = Produk::findOrFail($id);
@@ -81,7 +95,9 @@ class ProdukController extends Controller
             if ($produk->gambar && Storage::exists('public/' . $produk->gambar)) {
                 Storage::delete('public/' . $produk->gambar);
             }
-            $gambarPath = $request->file('gambar')->store('produk', 'public');
+
+            $namaGambar = $request->nama_produk . '_' . date('YmdHis') . '.' . $request->file('gambar')->getClientOriginalExtension();
+            $gambarPath = $request->file('gambar')->storeAs('produk', $namaGambar, 'public');
             $produk->gambar = $gambarPath;
         }
 

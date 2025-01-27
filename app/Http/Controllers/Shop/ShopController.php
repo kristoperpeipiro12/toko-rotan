@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -14,7 +15,8 @@ class ShopController extends Controller
 
     public function shop()
     {
-        return view('shop.shop');
+        $produk = Produk::all();
+        return view('shop.shop', compact('produk'));
     }
 
     public function about()

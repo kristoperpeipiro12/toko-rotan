@@ -8,8 +8,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // return view('customer.home');
-        return view('shop.account');
+        return view('customer.home');
+        // return view('shop.account');
     }
 
     public function about()
@@ -19,8 +19,6 @@ class HomeController extends Controller
 
     public function shop()
     {
-       
-
         return view('customer.shop');
     }
 }

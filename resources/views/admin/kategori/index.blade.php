@@ -133,35 +133,37 @@
 
         <!-- Modal Edit Kategori -->
         <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Kategori</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body modal-content">
-                        <form id="editCategoryForm"
-                            action="{{ route('admin.kategori.update', ['id' => $k->id_kategori]) }}" method="POST"
-                            style="width: 100%">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="id_kategori" id="edit_id_kategori">
-                            <div class="mb-3">
-                                <label for="edit_nama_kategori" class="form-label">Nama Kategori</label>
-                                <input type="text" class="form-control" id="edit_nama_kategori" name="nama_kategori"
-                                    value="{{ old('nama_kategori', $k->nama_kategori) }}" required>
-                            </div>
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Kategori</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-content">
+                    <form id="editCategoryForm"
+                        action="{{ isset($k) ? route('admin.kategori.update', ['id' => $k->id_kategori]) : '#' }}"
+                        method="POST"
+                        style="width: 100%">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="id_kategori" id="edit_id_kategori"
+                            value="{{ isset($k) ? $k->id_kategori : '' }}">
+                        <div class="mb-3">
+                            <label for="edit_nama_kategori" class="form-label">Nama Kategori</label>
+                            <input type="text" class="form-control" id="edit_nama_kategori" name="nama_kategori"
+                                value="{{ isset($k) ? old('nama_kategori', $k->nama_kategori) : '' }}" required>
+                        </div>
 
-                            <div class="text-end">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
-
-                    </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary" {{ isset($k) ? '' : 'disabled' }}>Update</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+
 
 
     </div>
