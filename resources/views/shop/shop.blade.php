@@ -18,11 +18,10 @@
         <div class="d-flex w-100 justify-content-center flex-wrap"
             style="column-gap: 4rem; row-gap: 3rem; margin-bottom: 3.8rem;">
             @foreach ($produk as $p)
-                <a href="{{ route('shop.detail', ['id' => $p->id]) }}" class="card5-cus">
+                <a href="{{ route('shop.detail', ['slug' => $p->slug]) }}" class="card5-cus">
                     <div class="wrap-main-c5">
                         <div class="wrap-img-c5">
-                            <img src="{{ asset('storage/' . $p->gambar) }}" alt="Gambar Produk"
-                                class="card-img-c5" />
+                            <img src="{{ asset('storage/' . $p->gambar) }}" alt="Gambar Produk" class="card-img-c5" />
                             {{-- <span class="promo-c5">-50%</span> --}}
                         </div>
                         <span class="product-name-c5">{{ $p->nama_produk }}</span>
@@ -41,11 +40,11 @@
     </div>
 
 
-        <div class="d-flex justify-content-center" style="gap: 2rem; margin-bottom: 5rem">
-            <a href="#" class="one-shop">1</a>
-            <a href="#" class="two-shop">2</a>
-            <a href="#" class="next-shop"><i class="fa-solid fa-arrow-right"></i></a>
-        </div>
+    <div class="d-flex justify-content-center" style="gap: 2rem; margin-bottom: 5rem">
+        <a href="#" class="one-shop">1</a>
+        <a href="#" class="two-shop">2</a>
+        <a href="#" class="next-shop"><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
     </div>
 
     {{-- Footer Section --}}

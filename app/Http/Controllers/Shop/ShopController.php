@@ -24,9 +24,10 @@ class ShopController extends Controller
         return view('shop.about');
     }
 
-    public function detail()
+    public function detail($slug)
     {
-        return view('shop.detail');
+        $produk = Produk::where('slug',$slug)->first();
+        return view('shop.detail', compact('produk'));
     }
     public function cart()
     {

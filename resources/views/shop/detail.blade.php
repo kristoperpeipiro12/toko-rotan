@@ -11,17 +11,16 @@
     {{-- @include('shop.includes.navbar') --}}
     <div class="wrap-detail content-border">
         <div class="container-pdt-dt1">
-            <a href="{{ route('shop.home') }}" class="btn mb-3"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+            <a href="{{ route('shop.shop') }}" class="btn mb-3"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
             <div class="product-header-pdt-dt1">
                 <div class="product-image-pdt-dt1">
-                    <img src="{{ asset('assets/images/product-img/wood-carpet-sungkai-motif.jpg') }}" alt="Produk Image" />
+                    <img src="{{ asset('storage/' . $produk->gambar) }}" alt="Produk Image" />
                 </div>
                 <div class="product-details-pdt-dt1">
-                    <div class="product-title-pdt-dt1">Wood Carpet Sungkai Motif</div>
-                    <div class="product-price-pdt-dt1">Rp 1.000.000</div>
+                    <div class="product-title-pdt-dt1">{{ $produk->nama_produk }}</div>
+                    <div class="product-price-pdt-dt1">Rp. {{ number_format($produk->harga, 0, ',', '.') }}</div>
                     <div class="product-description-pdt-dt1">
-                        Deskripsi singkat tentang produk ini. Dibuat dengan material terbaik
-                        dan dirancang untuk kenyamanan Anda.
+                        {{ $produk->deskripsi }}
                     </div>
                     <div class="options-pdt-dt1">
                         <div class="option-group-pdt-dt1">
@@ -47,7 +46,7 @@
                                 <button type="button" id="decrease">-</button>
                                 <input type="text" id="quantity" value="1">
                                 <button type="button" id="increase">+</button>
-                                <span>Stok: <strong>106</strong></span>
+                                <span>Stok: <strong>{{ $produk->stok }}</strong></span>
                             </div>
                         </div>
                     </div>

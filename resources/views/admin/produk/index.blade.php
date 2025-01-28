@@ -26,6 +26,7 @@
                                     <th class="mini-th">No</th>
                                     <th>Kategori</th>
                                     <th>Nama Produk</th>
+                                    <th>Deskripsi</th>
                                     <th>Warna</th>
                                     <th>Ukuran</th>
                                     <th>Harga</th>
@@ -40,6 +41,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $p->kategori->nama_kategori }}</td>
                                         <td>{{ $p->nama_produk }}</td>
+                                        <td>{{ $p->deskripsi }}</td>
                                         <td>{{ $p->warna }}</td>
                                         <td>{{ $p->ukuran }}</td>
                                         <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
@@ -137,6 +139,12 @@
                             <div class="mb-3">
                                 <label for="nama_produk" class="form-label">Nama Produk</label>
                                 <input type="text" class="form-control" id="nama_produk" name="nama_produk" required>
+                            </div>
+
+                            <!-- Deskripsi Produk -->
+                            <div class="mb-3">
+                                <label for="deskripsi" class="form-label">Desk. Produk</label>
+                                <input type="text" class="form-control" id="deskripsi" name="deskripsi" required>
                             </div>
 
                             <!-- Warna -->
@@ -319,6 +327,19 @@
             if (editHargaInput) {
                 editHargaInput.addEventListener('input', formatRupiah);
             }
+
+            // Stock Validation
+            const stokInput = document.getElementById('stok');
+            const stokError = document.getElementById('stok-error');
+
+            stokInput.addEventListener('input', function() {
+                if (stokInput.value < 0) {
+                    stokInput.value = '';
+                    stokError.style.display = 'block';
+                } else {
+                    stokError.style.display = 'none';
+                }
+            });
         </script>
 
     </div>

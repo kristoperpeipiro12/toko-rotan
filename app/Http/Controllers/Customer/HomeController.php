@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produk;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,7 @@ class HomeController extends Controller
 
     public function shop()
     {
-        return view('customer.shop');
+        $produk = Produk::all();
+        return view('customer.shop', compact('produk'));
     }
 }

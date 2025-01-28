@@ -19,11 +19,13 @@ class Produk extends Model
         'id_produk',
         'id_kategori',
         'nama_produk',
+        'deskripsi',
         'warna',
         'ukuran',
         'harga',
         'stok',
         'gambar',
+        'slug',
     ];
 
     /**
