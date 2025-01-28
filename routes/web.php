@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/shop/about', [ShopController::class, 'about'])->name('shop.about');
     Route::get('/shop/detail/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
     Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
+    Route::get('/account', [ShopController::class, 'account'])->name('shop.account');
 });
 
 // Download Catalog

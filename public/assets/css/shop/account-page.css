@@ -1,3 +1,24 @@
+.kembali-account {
+    display: flex;
+    justify-content: end;
+    margin: 0 4rem;
+    font-weight: 600;
+}
+
+.kembali-account a {
+    display: flex;
+    text-decoration: none;
+    border-radius: 8px;
+    color: #333;
+    padding: 5px 8px;
+    background-color: rgb(209, 207, 207);
+}
+
+.kembali-account a i {
+    align-self: center;
+    font-size: 1.5rem;
+}
+
 .card-bio-cus {
     display: flex;
     align-items: center;
@@ -175,14 +196,14 @@ table * {
     gap: 15px;
 }
 
-.footer-bio-almt .actions-bio-almt a {
+.footer-bio-almt .actions-bio-almt .edit-bio-almt {
     color: #28a745;
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
 }
 
-.footer-bio-almt .actions-bio-almt a:hover {
+.footer-bio-almt .actions-bio-almt .edit-bio-almt:hover {
     text-decoration: underline;
 }
 

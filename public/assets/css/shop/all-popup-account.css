@@ -104,3 +104,23 @@
     background: #0d8ae0;
 }
 /* batas akhir tgl popup */
+
+/* alamat */
+.almt-con {
+    flex-direction: column;
+    align-items: start;
+}
+
+.wrap-input-almt {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+}
+
+.wrap-input-almt input {
+    width: 100%;
+    border: solid rgb(99, 99, 99) 0.8px;
+    border-radius: 4px;
+    padding: 4px 6px;
+}

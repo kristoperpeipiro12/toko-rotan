@@ -10,24 +10,33 @@
                     href="{{ route('shop.about') }}">About</a></li>
             <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus"
                     href="{{ route('shop.home') . '#contact' }}">Contact</a></li>
-            {{-- <li class="nav-item-cus hidden-tablet">
-                <a class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus" href="#">iTech</a>
-                <ul class="dropdown-cus-1" id="dd-cus">
-                    <li><a href="#">Account</a></li>
-                    <li><a href="#">Log-out</a></li>
-                </ul>
-            </li> --}}
-            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="#">Account</a></li>
 
-            <li class="nav-item-cus hover-eff-mq-cus">
+            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('shop.account') }}">Account</a>
+            </li>
+            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('shop.account') }}"
+                    data-bs-toggle="modal" data-bs-target="#logoutModal">Log-Out</a>
+            </li>
+
+            {{-- <li class="nav-item-cus hover-eff-mq-cus">
                 <button type="button" class="btn btn-transparent fw-bold" data-bs-toggle="modal"
                     data-bs-target="#logoutModal">
                     Log-out
                 </button>
-            </li>
+            </li> --}}
         </ul>
         <div class="user-section-cus" id="user-section-cus">
-            <a href="#" class=""><i class="fa-color-cus fa-solid fa-user"></i></a>
+            <div class="nav-item-cus hidden-tablet">
+                <a href="{{ route('shop.account') }}" class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus"><i
+                        class="fa-color-cus fa-solid fa-user"></i></a>
+                <ul class="dropdown-cus-1" id="dd-cus">
+                    <li><a style="font-size: 1rem; color: black;" href="{{ route('shop.account') }}">Account</a></li>
+                    <li>
+                        <p style="font-size: 1rem; color: black; margin-bottom: 0;" data-bs-toggle="modal"
+                            data-bs-target="#logoutModal">
+                            Log-out</p>
+                    </li>
+                </ul>
+            </div>
             <a href="{{ route('shop.cart') }}"><i class="fa-color-cus fa-solid fa-cart-shopping"></i></a>
         </div>
         <i class="fa-solid fa-bars" id="hum-menu-cus"></i>

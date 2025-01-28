@@ -16,10 +16,15 @@
 </head>
 
 <body style="position: relative">
-    @include('shop.account.pop-up.tgl-lahir-popup')
+    @include('shop.account.pop-up.pop-up-account')
     @include('shop.includes.sidebar-user')
     <section class="home-section">
         <div class="text">Akun Saya</div>
+        <div class="kembali-account">
+            <a href="{{ route('shop.home') }}">
+                <i class='bx bx-left-arrow-alt'></i>
+                Kembali</a>
+        </div>
         <div class="card-container-cus-cn1">
             <div class="nav-tabs-cus-cn1">
                 <div class="nav-tab-cus-cn1 active-cus-cn1" data-target="biodata">Biodata Diri</div>
@@ -55,11 +60,11 @@
                         </div>
                         <div class="res-bio-group">
                             <span>Tanggal Lahir:</span>
-                            <p id="openTglModal">Tambah Tanggal Lahir</p>
+                            <p id="openAccModal" data-content="content-1">Tambah Tanggal Lahir</p>
                         </div>
                         <div class="res-bio-group">
                             <span>Jenis Kelamin:</span>
-                            <p id="openJKModal">Tambah Jenis Kelamin</p>
+                            <p id="openAccModal" data-content="content-2">Tambah Jenis Kelamin</p>
                         </div>
                         <h3>Ubah Kontak</h3>
                         <div class="res-bio-group">
@@ -86,7 +91,7 @@
                     </div>
                     <div class="footer-bio-almt">
                         <div class="actions-bio-almt">
-                            <a href="#" class="edit-bio-almt">Ubah Alamat</a>
+                            <p class="edit-bio-almt" id="openAccModal" data-content="content-3">Ubah Alamat</p>
                         </div>
                     </div>
                 </div>
