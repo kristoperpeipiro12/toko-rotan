@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DataWilayahController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\PesananController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\ProdukVarianController;
 use App\Http\Controllers\Customer\HomeController as CustomerHomeController;
 use App\Http\Controllers\Login\LoginController as LoginLoginController;
 use App\Http\Controllers\Login\LoginController;
@@ -52,9 +53,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     //produk
     Route::get('/produk', [ProdukController::class, 'index'])->name('admin.produk');
     Route::post('/produk', [ProdukController::class, 'store'])->name('admin.produk.store');
-
+    
     Route::put('/produk/update/{id}', [ProdukController::class, 'update'])->name('admin.produk.update');
     Route::delete('/produk/delete/{id}', [ProdukController::class, 'delete'])->name('admin.produk.delete');
+    
+    // varian produk
+    Route::post('/produk-varian', [ProdukVarianController::class, 'store'])->name('admin.produk_varian.store');
+    Route::put('/produk-varian/update/{id}', [ProdukVarianController::class, 'update'])->name('admin.produk_varian.update');
+    Route::delete('/produk-varian/delete/{id}', [ProdukVarianController::class, 'delete'])->name('admin.produk_varian.delete');
+
+
 
     //kategori
     Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');

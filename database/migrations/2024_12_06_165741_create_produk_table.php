@@ -15,10 +15,7 @@ return new class extends Migration {
             $table->uuid('id_kategori');
             $table->string('nama_produk');
             $table->string('deskripsi');
-            $table->string('warna');
-            $table->string('ukuran');
             $table->double('harga');
-            $table->integer('stok');
             $table->string('gambar')->nullable(); // Tambahan kolom gambar
             $table->string('slug');
             $table->timestamps();

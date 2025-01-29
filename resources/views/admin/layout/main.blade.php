@@ -109,12 +109,31 @@
                                 class="icon-speedometer"></i><span class="nav-text">Dashboard</span></a></li>
                     <li><a href="{{ route('admin.kategori') }}" aria-expanded="false"><i
                                 class="icon icon-globe-2"></i><span class="nav-text">Kategori</span></a></li>
-                    <li><a href="{{ route('admin.produk') }}" aria-expanded="false"><i
-                                class="icon fas fa-gem"></i><span class="nav-text">Produk</span></a></li>
+
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon fas fa-gem"></i><span class="nav-text">Produk</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('admin.produk') }}"><i class="fa fa-clipboard-check"></i>Daftar
+                                    Produk</a></li>
+
+                            <li><a href="#"><i class="fa-solid fa-droplet"></i>Varian
+                                    Produk</a>
+                            </li>
+                            <li><a href="#"><i class="icon fas fa-gem"></i></i>
+                                    Display Produk</a></li>
+                        </ul>
+                    </li>
+
+                    {{-- <li><a href="{{ route('admin.produk') }}" aria-expanded="false"><i
+                                class="icon fas fa-gem"></i><span class="nav-text">Produk</span></a></li> --}}
+
+
                     <li><a href="{{ route('admin.datawilayah') }}" aria-expanded="false"><i
                                 class="icon icon-world-2"></i><span class="nav-text">Data Wilayah</span></a></li>
 
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+
+                    {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-shopping-cart"></i><span class="nav-text">Pesanan</span>
                         </a>
                         <ul aria-expanded="false">
@@ -122,15 +141,15 @@
                                         class="fa fa-box-open"></i>Dikemas</a></li>
                             <li><a href="{{ route('admin.pesanan.dikirim') }}"><i class="fa fa-truck"></i>Dikirim</a>
                             </li>
-                            <li><a href="{{ route('admin.pesanan.konfirmasi') }}"><i class="fa fa-clipboard-check"></i>
+                            <li><a href="{{ route('admin.pesanan.konfirmasi') }}"><i
+                                        class="fa fa-clipboard-check"></i>
                                     Konfirmasi</a></li>
                             <li><a href="{{ route('admin.pesanan.selesai') }}"><i class="fa fa-check"></i>Selesai</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"
-                            aria-expanded="false">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" aria-expanded="false">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-text">Logout</span>
                         </a>
@@ -158,36 +177,36 @@
 
 
 
-            <!-- Log Out Modal -->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Apakah Anda yakin ingin keluar?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <form id="logoutForm" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-primary">Keluar</button>
-                            </form>
-                        </div>
+        <!-- Log Out Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Apakah Anda yakin ingin keluar?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Keluar</button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
 
         <!--**********************************
             Footer start
             ***********************************-->
 
-            <div class="footer">
-                <div class="copyright">
+        <div class="footer">
+            <div class="copyright">
                 <p>
                     Copyright © Designed &amp; Developed by
                     <a href="#" target="_blank">Bukan Saya</a>
@@ -204,23 +223,23 @@
                 Support ticket button start
                 ***********************************-->
 
-                <!--**********************************
+        <!--**********************************
                     Support ticket button end
                     ***********************************-->
 
 
-                </div>
-                <!--**********************************
+    </div>
+    <!--**********************************
                     Main wrapper end
                     ***********************************-->
 
-                    <!--**********************************
+    <!--**********************************
                         Scripts
                         ***********************************-->
-                        <!-- Required vendors -->
-                        <script src="{{ asset('focus/./vendor/global/global.min.js') }}"></script>
-                        <script src="{{ asset('focus/./js/quixnav-init.js') }}"></script>
-                        <script src="{{ asset('focus/./js/custom.min.js') }}"></script>
+    <!-- Required vendors -->
+    <script src="{{ asset('focus/./vendor/global/global.min.js') }}"></script>
+    <script src="{{ asset('focus/./js/quixnav-init.js') }}"></script>
+    <script src="{{ asset('focus/./js/custom.min.js') }}"></script>
 
 
     <!-- Vectormap -->
@@ -252,4 +271,3 @@
 </body>
 
 </html>
-

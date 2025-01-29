@@ -197,6 +197,10 @@
             </div>
         </div>
 
+        {{-- Modal Add Varian Produk >> --}}
+
+        {{-- << Modal Add Varian Produk --}}
+
         <!-- Modal Edit Produk -->
         @foreach ($produk as $p)
             <div class="modal fade" id="editProductModal{{ $p->id_produk }}" tabindex="-1"

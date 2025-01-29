@@ -31,10 +31,7 @@ class ProdukController extends Controller
             'id_kategori' => 'required|exists:kategori,id_kategori',
             'nama_produk' => 'required|string|max:255',
             'deskripsi' => 'nullable|string|max:255',
-            'warna' => 'nullable|string|max:100',
-            'ukuran' => 'nullable|string|max:50',
             'harga' => 'required|numeric|min:0|max:1000000000',
-            'stok' => 'required|integer|min:0',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:8192',
         ], [
             'gambar.image' => 'File yang diupload harus berupa gambar.',
@@ -58,10 +55,7 @@ class ProdukController extends Controller
             'id_kategori' => $request->id_kategori,
             'nama_produk' => $request->nama_produk,
             'deskripsi' => $request->deskripsi,
-            'warna' => $request->warna,
-            'ukuran' => $request->ukuran,
             'harga' => $request->harga,
-            'stok' => $request->stok,
             'gambar' => $gambarPath,
             'slug' => Str::slug($request->nama_produk),
         ]);

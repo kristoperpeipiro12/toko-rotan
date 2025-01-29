@@ -20,10 +20,7 @@ class Produk extends Model
         'id_kategori',
         'nama_produk',
         'deskripsi',
-        'warna',
-        'ukuran',
         'harga',
-        'stok',
         'gambar',
         'slug',
     ];
@@ -45,8 +42,10 @@ class Produk extends Model
 
         static::creating(function ($model) {
             if (empty($model->id_produk)) {
-                $model->id_produk = 'PRO-' . rand(10000, 99999);
+                $timestamp = date('His-dmY'); // Format: HHMMSS-DDMMYYYY
+                $model->id_produk = 'PRO-' . rand(10000, 99999) . '-' . $timestamp;
             }
         });
     }
+
 }
