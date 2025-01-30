@@ -18,6 +18,7 @@ class Produk_Varian extends Model
         'id_produk',
         'warna',
         'ukuran',
+        'gambar',
         'stok',
     ];
 
@@ -33,7 +34,7 @@ class Produk_Varian extends Model
         static::creating(function ($model) {
             if (empty($model->id_varian)) {
                 $timestamp = date('His-dmY'); // Format: HHMMSS-DDMMYYYY
-                $model->id_produk = 'VAR-' . rand(10000, 99999) . '-' . $timestamp;
+                $model->id_varian = 'VAR-' . rand(10000, 99999) . '-' . $timestamp;
             }
         });
     }

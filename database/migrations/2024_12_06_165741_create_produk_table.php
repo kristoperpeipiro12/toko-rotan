@@ -14,9 +14,8 @@ return new class extends Migration {
             $table->uuid('id_produk')->primary();
             $table->uuid('id_kategori');
             $table->string('nama_produk');
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->double('harga');
-            $table->string('gambar')->nullable(); // Tambahan kolom gambar
             $table->string('slug');
             $table->timestamps();
 

@@ -28,7 +28,7 @@
                                     <th>Nama Produk</th>
                                     <th>Deskripsi</th>
                                     <th>Harga</th>
-                                    <th>Gambar</th>
+
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -40,14 +40,7 @@
                                         <td>{{ $p->nama_produk }}</td>
                                         <td>{{ $p->deskripsi }}</td>
                                         <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
-                                        <td>
-                                            @if ($p->gambar)
-                                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->nama_produk }}"
-                                                    width="100">
-                                            @else
-                                                <span>Tidak ada gambar</span>
-                                            @endif
-                                        </td>
+
                                         <td>
                                             <!-- Tombol Edit -->
                                             <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
@@ -138,7 +131,8 @@
                             <!-- Deskripsi Produk -->
                             <div class="mb-3">
                                 <label for="deskripsi" class="form-label">Desk. Produk</label>
-                                <input type="text" class="form-control" id="deskripsi" name="deskripsi" required>
+                                {{-- <input type="text" class="form-control" id="deskripsi" name="deskripsi" required> --}}
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="5" cols="50"></textarea>
                             </div>
 
                             <!-- Harga -->
@@ -151,16 +145,6 @@
                                 </div>
                             </div>
 
-                            <!-- Gambar Produk -->
-                            <div class="mb-3">
-                                <label for="gambar" class="form-label">Gambar Produk</label>
-                                <input type="file" class="form-control" id="gambar" name="gambar"
-                                    accept="image/*" onchange="previewImage(event)">
-                            </div>
-                            <div class="mb-3" style="text-align: center;">
-                                <img id="preview" src="" alt="Preview Gambar"
-                                    style="max-width: 200px; display: none; margin: 0 auto;" />
-                            </div>
 
                             <!-- Tombol Simpan -->
                             <div class="text-end">
@@ -210,6 +194,15 @@
                                     <input type="text" class="form-control" id="edit_nama_produk" name="nama_produk"
                                         value="{{ old('nama_produk', $p->nama_produk) }}" required>
                                 </div>
+                                  <!-- Deskripsi -->
+                                  <div class="mb-3">
+                                    <label for="edit_deskripsi" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="edit_deskripsi" name="deskripsi" rows="5" cols="50">{{ old('deskripsi', $p->deskripsi) }}</textarea>
+
+
+                                    {{-- <input type="text" class="form-control" id="edit_deskripsi" name="deskripsi"
+                                        value="{{ old('deskripsi', $p->deskripsi) }}" required> --}}
+                                </div>
 
                                 <!-- Harga -->
                                 <div class="mb-3">
@@ -219,13 +212,6 @@
                                         <input type="text" class="form-control format-rupiah" id="edit_harga"
                                             name="harga" value="{{ old('harga', $p->harga) }}" required>
                                     </div>
-                                </div>
-
-                                <!-- Gambar Produk -->
-                                <div class="mb-3">
-                                    <label for="edit_gambar" class="form-label">Gambar Produk</label>
-                                    <input type="file" class="form-control" id="edit_gambar" name="gambar"
-                                        accept="image/*">
                                 </div>
 
                                 <!-- Tombol Simpan -->
@@ -243,21 +229,7 @@
 
 
         <script>
-            // Preview Image
-            function previewImage(event) {
-                const file = event.target.files[0];
-                const reader = new FileReader();
 
-                reader.onload = function() {
-                    const preview = document.getElementById('preview');
-                    preview.src = reader.result;
-                    preview.style.display = 'block';
-                };
-
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
-            }
 
             function formatRupiah(event) {
                 let input = event.target;

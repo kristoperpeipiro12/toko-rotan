@@ -18,7 +18,7 @@
         <div class="con-shop-cus">
             <div class="d-flex w-100 justify-content-center flex-wrap"
                 style="column-gap: 4rem ;row-gap: 3rem; margin-bottom: 3.8rem">
-                @foreach ($produk as $p)
+                @foreach ($produk_varian as $p)
                     <a href="{{ route('shop.detail', ['slug' => $p->slug]) }}" class="card5-cus">
                         <div class="wrap-main-c5">
                             <div class="wrap-img-c5">

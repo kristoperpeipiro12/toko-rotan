@@ -29,10 +29,13 @@
                                 <tr>
                                     <th class="mini-th">No</th>
                                     <th>Nama Produk</th>
+                                    <th>Deaskripsi</th>
                                     <th>Warna</th>
                                     <th>Ukuran</th>
+                                    <th>Harga</th>
                                     <th>Stok</th>
-                                    <th>Edit</th>
+                                    <th>Gambar</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,16 +43,18 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pv->produk->nama_produk }}</td>
+                                        <td>{{ $pv->produk->deskripsi }}</td>
                                         <td>{{ $pv->warna }}</td>
                                         <td>{{ $pv->ukuran }}</td>
+                                        <td>Rp {{ number_format($pv->produk->harga, 0, ',', '.') }}</td>
                                         <td>{{ $pv->stok }}</td>
-                                        <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                         <td>
-                                            <!-- Tombol Edit -->
-                                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#editProductModal{{ $p->id_produk }}">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                            @if ($pv->gambar)
+                                                <img src="{{ asset('storage/' . $pv->gambar) }}" alt="{{ $pv->nama_produk }}"
+                                                    width="100">
+                                            @else
+                                                <span>Tidak ada gambar</span>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

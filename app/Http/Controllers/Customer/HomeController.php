@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Produk;
+use App\Models\Produk_Varian;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,8 @@ class HomeController extends Controller
 
     public function shop()
     {
-        $produk = Produk::all();
-        return view('customer.shop', compact('produk'));
+        $produk_varian = Produk_Varian::with('Produk')->get();
+
+        return view('customer.shop', compact('produk_varian'));
     }
 }

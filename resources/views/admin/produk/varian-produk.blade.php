@@ -29,7 +29,8 @@
                                     <th>Warna</th>
                                     <th>Ukuran</th>
                                     <th>Stok</th>
-                                    <th>Edit</th>
+                                    <th>Gambar</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,13 +41,24 @@
                                         <td>{{ $pv->warna }}</td>
                                         <td>{{ $pv->ukuran }}</td>
                                         <td>{{ $pv->stok }}</td>
-                                        <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
+                                        <td>
+                                            @if ($pv->gambar)
+                                                <img src="{{ asset('storage/' . $pv->gambar) }}" alt="{{ $pv->nama_produk }}"
+                                                    width="100">
+                                            @else
+                                                <span>Tidak ada gambar</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <!-- Tombol Edit -->
                                             <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#editProductModal{{ $p->id_produk }}">
+                                                data-bs-target="#editProductModal{{ $pv->id_varian }}">
                                                 <i class="fas fa-edit"></i>
                                             </button>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#deleteProductModal{{ $pv->id_varian }}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                         </td>
                                     </tr>
 
@@ -66,7 +78,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="{{ route('admin.produk.delete', $p->id_produk) }}"
+                                                    <form action="{{ route('admin.produk.delete', $pv->id_produk) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -108,14 +120,12 @@
                                 <select class="form-select" id="id_produk" name="id_produk" required>
                                     <option value="" disabled selected>Pilih Produk</option>
                                     <!-- Placeholder option -->
-                                    @foreach ($produk_varian as $pv)
-                                        <option value="{{ $pv->produk->id_produk }}">{{ $pv->produk->nama_produk }}
+                                    @foreach ($produk as $p)
+                                        <option value="{{ $p->id_produk }}">{{ $p->nama_produk }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-
-
 
                             <!-- Warna -->
                             <div class="mb-3">
@@ -133,6 +143,17 @@
                             <div class="mb-3">
                                 <label for="stok" class="form-label">Stok</label>
                                 <input type="number" class="form-control" id="stok" name="stok" required>
+                            </div>
+
+                            <!-- Gambar Produk -->
+                            <div class="mb-3">
+                                <label for="gambar" class="form-label">Gambar Produk</label>
+                                <input type="file" class="form-control" id="gambar" name="gambar"
+                                    accept="image/*" onchange="previewImage(event)">
+                            </div>
+                            <div class="mb-3" style="text-align: center;">
+                                <img id="preview" src="" alt="Preview Gambar"
+                                    style="max-width: 200px; display: none; margin: 0 auto;" />
                             </div>
 
                             <!-- Tombol Simpan -->
@@ -159,7 +180,7 @@
                         </div>
                         <div class="modal-body">
                             <form id="editProductForm{{ $pv->id_varian }}"
-                                action="{{ route('admin.varian_produk.update', $pv->id_varian) }}" method="POST"
+                                action="{{ route('admin.produk_varian.update', $pv->id_varian) }}" method="POST"
                                 enctype="multipart/form-data" style="width: 100%">
                                 @csrf
                                 @method('PUT')
@@ -167,13 +188,13 @@
                                 <!-- Dropdown Kategori -->
                                 <div class="mb-3">
                                     <label for="edit_id_kategori" class="form-label">Produk</label>
-                                    <select class="form-select" id="edit_id_kategori" name="id_kategori" required>
-                                        @foreach ($produk_varian as $pv)
-                                            <option value="{{ $pv->produk->id_produk }}"
-                                                @if ($pv->produk->id_produk == old('id_produk', $pv->produk->id_produk)) selected @endif>
-                                                {{ $pv->produk->id_produk }}
-                                            </option>
-                                        @endforeach
+                                    <select class="form-select" id="edit_id_kategori" name="id_produk" required>
+                                        @foreach ($produk as $p)
+                                        <option value="{{ $p->id_produk }}"
+                                            @if ($p->id_produk == old('id_produk', $p->id_produk)) selected @endif>
+                                            {{ $p->nama_produk }}
+                                        </option>
+                                    @endforeach
                                     </select>
                                 </div>
 
@@ -189,6 +210,14 @@
                                     <label for="edit_ukuran" class="form-label">Ukuran</label>
                                     <input type="text" class="form-control" id="edit_ukuran" name="ukuran"
                                         value="{{ old('ukuran', $pv->ukuran) }}" required>
+                                </div>
+
+                                {{-- Gambar --}}
+
+                                  <div class="mb-3">
+                                    <label for="edit_gambar" class="form-label">Gambar Produk</label>
+                                    <input type="file" class="form-control" id="edit_gambar" name="gambar"
+                                        accept="image/*">
                                 </div>
 
                                 <!-- Stok -->
@@ -213,6 +242,20 @@
 
 
         <script>
+                        function previewImage(event) {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function() {
+                    const preview = document.getElementById('preview');
+                    preview.src = reader.result;
+                    preview.style.display = 'block';
+                };
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            }
             // Stock Validation
             const stokInput = document.getElementById('stok');
             const stokError = document.getElementById('stok-error');

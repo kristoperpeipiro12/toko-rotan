@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->uuid('id_produk');
             $table->string('warna');
             $table->string('ukuran');
+            $table->string('gambar')->nullable();
             $table->integer('stok');
             $table->timestamps();
 
