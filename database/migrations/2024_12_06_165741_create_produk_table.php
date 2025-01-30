@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->uuid('id_kategori');
             $table->string('nama_produk');
             $table->text('deskripsi');
-            $table->double('harga');
             $table->string('slug');
             $table->timestamps();
 

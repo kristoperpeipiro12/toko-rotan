@@ -28,6 +28,7 @@
                                     <th>Nama Produk</th>
                                     <th>Warna</th>
                                     <th>Ukuran</th>
+                                    <th>Harga</th>
                                     <th>Stok</th>
                                     <th>Gambar</th>
                                     <th>Aksi</th>
@@ -40,6 +41,8 @@
                                         <td>{{ $pv->produk->nama_produk }}</td>
                                         <td>{{ $pv->warna }}</td>
                                         <td>{{ $pv->ukuran }}</td>
+                                        <td>Rp {{ number_format($pv->harga, 0, ',', '.') }}</td>
+
                                         <td>{{ $pv->stok }}</td>
                                         <td>
                                             @if ($pv->gambar)
@@ -140,11 +143,21 @@
                                 <input type="text" class="form-control" id="ukuran" name="ukuran" required>
                             </div>
 
+                            <!-- Harga -->
+                            <div class="mb-3">
+                                <label for="harga" class="form-label">Harga</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="text" class="form-control format-rupiah" id="harga"
+                                        name="harga" required>
+                                </div>
+                            </div>
                             <!-- Stok -->
                             <div class="mb-3">
                                 <label for="stok" class="form-label">Stok</label>
                                 <input type="number" class="form-control" id="stok" name="stok" required>
                             </div>
+
 
                             <!-- Gambar Produk -->
                             <div class="mb-3">
@@ -152,10 +165,13 @@
                                 <input type="file" class="form-control" id="gambar" name="gambar"
                                     accept="image/*" onchange="previewImage(event)">
                             </div>
-                            <div class="mb-3" style="text-align: center;">
+
+                            <!-- Preview Gambar -->
+                            <div class="mb-3 text-center">
                                 <img id="preview" src="" alt="Preview Gambar"
-                                    style="max-width: 200px; display: none; margin: 0 auto;" />
+                                    style="max-width: 200px; display: none; margin: 0 auto; border-radius: 8px;" />
                             </div>
+
 
                             <!-- Tombol Simpan -->
                             <div class="text-end">
@@ -212,20 +228,35 @@
                                     <input type="text" class="form-control" id="edit_ukuran" name="ukuran"
                                         value="{{ old('ukuran', $pv->ukuran) }}" required>
                                 </div>
-
-                                {{-- Gambar --}}
-
+                                <!-- Harga -->
                                 <div class="mb-3">
-                                    <label for="edit_gambar" class="form-label">Gambar Produk</label>
-                                    <input type="file" class="form-control" id="edit_gambar" name="gambar"
-                                        accept="image/*">
+                                    <label for="edit_harga" class="form-label">Harga</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="text" class="form-control format-rupiah" id="edit_harga"
+                                            name="harga" value="{{ old('harga', $pv->harga) }}" required>
+                                    </div>
                                 </div>
+
 
                                 <!-- Stok -->
                                 <div class="mb-3">
                                     <label for="edit_stok" class="form-label">Stok</label>
                                     <input type="number" class="form-control" id="edit_stok" name="stok"
                                         value="{{ old('stok', $pv->stok) }}" required>
+                                </div>
+
+                                {{-- gambar --}}
+                                <div class="mb-3">
+                                    <label for="edit_gambar" class="form-label">Gambar Produk</label>
+                                    <input type="file" class="form-control" id="edit_gambar" name="gambar"
+                                        accept="image/*" onchange="previewEditImage(event)">
+                                </div>
+
+                                <!-- Preview Edit Gambar -->
+                                <div class="mb-3 text-center">
+                                    <img id="edit_preview" src="" alt="Preview Edit Gambar"
+                                        style="max-width: 200px; display: none; margin: 0 auto; border-radius: 8px;" />
                                 </div>
 
                                 <!-- Tombol Simpan -->
@@ -241,22 +272,62 @@
             </div>
         @endforeach
 
-
         <script>
             function previewImage(event) {
-                const file = event.target.files[0];
-                const reader = new FileReader();
+                var input = event.target;
+                var preview = document.getElementById('preview');
 
-                reader.onload = function() {
-                    const preview = document.getElementById('preview');
-                    preview.src = reader.result;
-                    preview.style.display = 'block';
-                };
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-                if (file) {
-                    reader.readAsDataURL(file);
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
                 }
             }
+
+            function previewEditImage(event) {
+        var input = event.target;
+        var preview = document.getElementById('edit_preview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+            function formatRupiah(event) {
+                let input = event.target;
+                let value = input.value.replace(/[^0-9]/g, '');
+                let rawValue = parseInt(value, 10);
+                if (isNaN(rawValue)) {
+                    input.value = '';
+                    document.getElementById('harga_raw').value = '';
+                    return;
+                }
+
+                input.value = rawValue.toLocaleString('id-ID');
+
+                document.getElementById('harga_raw').value = rawValue;
+            }
+
+            const hargaInput = document.getElementById('harga');
+            hargaInput.addEventListener('input', formatRupiah);
+
+            const editHargaInput = document.getElementById('edit_harga');
+            if (editHargaInput) {
+                editHargaInput.addEventListener('input', formatRupiah);
+            }
+
             // Stock Validation
             const stokInput = document.getElementById('stok');
             const stokError = document.getElementById('stok-error');
@@ -268,8 +339,8 @@
                 } else {
                     stokError.style.display = 'none';
                 }
-            });
+            })
         </script>
 
-    </div>
+</div>
 @endsection

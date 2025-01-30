@@ -27,8 +27,6 @@
                                     <th>Kategori</th>
                                     <th>Nama Produk</th>
                                     <th>Deskripsi</th>
-                                    <th>Harga</th>
-
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -39,7 +37,6 @@
                                         <td>{{ $p->kategori->nama_kategori }}</td>
                                         <td>{{ $p->nama_produk }}</td>
                                         <td>{{ $p->deskripsi }}</td>
-                                        <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
 
                                         <td>
                                             <!-- Tombol Edit -->
@@ -135,15 +132,6 @@
                                 <textarea class="form-control" id="deskripsi" name="deskripsi" rows="5" cols="50"></textarea>
                             </div>
 
-                            <!-- Harga -->
-                            <div class="mb-3">
-                                <label for="harga" class="form-label">Harga</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">Rp</span>
-                                    <input type="text" class="form-control format-rupiah" id="harga"
-                                        name="harga" required>
-                                </div>
-                            </div>
 
 
                             <!-- Tombol Simpan -->
@@ -198,21 +186,9 @@
                                   <div class="mb-3">
                                     <label for="edit_deskripsi" class="form-label">Deskripsi</label>
                                     <textarea class="form-control" id="edit_deskripsi" name="deskripsi" rows="5" cols="50">{{ old('deskripsi', $p->deskripsi) }}</textarea>
-
-
-                                    {{-- <input type="text" class="form-control" id="edit_deskripsi" name="deskripsi"
-                                        value="{{ old('deskripsi', $p->deskripsi) }}" required> --}}
                                 </div>
 
-                                <!-- Harga -->
-                                <div class="mb-3">
-                                    <label for="edit_harga" class="form-label">Harga</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">Rp</span>
-                                        <input type="text" class="form-control format-rupiah" id="edit_harga"
-                                            name="harga" value="{{ old('harga', $p->harga) }}" required>
-                                    </div>
-                                </div>
+
 
                                 <!-- Tombol Simpan -->
                                 <div class="text-end">
@@ -231,41 +207,6 @@
         <script>
 
 
-            function formatRupiah(event) {
-                let input = event.target;
-                let value = input.value.replace(/[^0-9]/g, '');
-                let rawValue = parseInt(value, 10);
-                if (isNaN(rawValue)) {
-                    input.value = '';
-                    document.getElementById('harga_raw').value = '';
-                    return;
-                }
-
-                input.value = rawValue.toLocaleString('id-ID');
-
-                document.getElementById('harga_raw').value = rawValue;
-            }
-
-            const hargaInput = document.getElementById('harga');
-            hargaInput.addEventListener('input', formatRupiah);
-
-            const editHargaInput = document.getElementById('edit_harga');
-            if (editHargaInput) {
-                editHargaInput.addEventListener('input', formatRupiah);
-            }
-
-            // Stock Validation
-            const stokInput = document.getElementById('stok');
-            const stokError = document.getElementById('stok-error');
-
-            stokInput.addEventListener('input', function() {
-                if (stokInput.value < 0) {
-                    stokInput.value = '';
-                    stokError.style.display = 'block';
-                } else {
-                    stokError.style.display = 'none';
-                }
-            });
         </script>
 
     </div>

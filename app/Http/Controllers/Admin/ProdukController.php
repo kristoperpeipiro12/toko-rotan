@@ -21,30 +21,21 @@ class ProdukController extends Controller
     }
     public function store(Request $request)
     {
-        // Hapus format ribuan dari input harga
-        $request->merge([
-            'harga' => str_replace('.', '', $request->harga),
-        ]);
+
 
         // Validasi input
         $request->validate([
             'id_kategori' => 'required|exists:kategori,id_kategori',
             'nama_produk' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'harga' => 'required|numeric|min:0|max:1000000000',
-        ], [
 
-            'nama_produk.required' => 'Nama produk terlalu panjang',
-            'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
-            'harga.min' => 'Harga tidak boleh kurang dari 0.',
-            'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
-        ]);
+        ],);
 
         Produk::create([
             'id_kategori' => $request->id_kategori,
             'nama_produk' => $request->nama_produk,
             'deskripsi' => $request->deskripsi,
-            'harga' => $request->harga,
+
             'slug' => Str::slug($request->nama_produk),
         ]);
 
@@ -59,8 +50,8 @@ class ProdukController extends Controller
                 'id_kategori' => 'required|exists:kategori,id_kategori',
                 'nama_produk' => 'required|string|max:255',
                 'deskripsi' => 'nullable|string',
-                'harga' => 'required|numeric|min:0',
-               
+
+
                 // 'slug' => 'required|string|max:255',
             ],
             [
@@ -68,9 +59,7 @@ class ProdukController extends Controller
                 'gambar.mimes' => 'Gambar harus berformat: jpeg, png, atau jpg.',
                 'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
                 'nama_produk.required' => 'Nama produk terlalu panjang',
-                'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
-                'harga.min' => 'Harga tidak boleh kurang dari 0.',
-                'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
+
             ]
         );
 
@@ -94,7 +83,7 @@ class ProdukController extends Controller
             'deskripsi'=> $request->deskripsi,
             'warna' => $request->warna,
             'ukuran' => $request->ukuran,
-            'harga' => $request->harga,
+            
             'stok' => $request->stok,
             'slug' => Str::slug($request->nama_produk)
         ]);

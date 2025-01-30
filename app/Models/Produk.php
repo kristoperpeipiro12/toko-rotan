@@ -20,8 +20,7 @@ class Produk extends Model
         'id_kategori',
         'nama_produk',
         'deskripsi',
-        'harga',
-        'gambar',
+        
         'slug',
     ];
 

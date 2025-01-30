@@ -18,6 +18,7 @@ class Produk_Varian extends Model
         'id_produk',
         'warna',
         'ukuran',
+        'harga',
         'gambar',
         'stok',
     ];

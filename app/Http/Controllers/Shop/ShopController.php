@@ -16,6 +16,7 @@ class ShopController extends Controller
 
     public function shop()
     {
+
         $produk_varian = Produk_Varian::with('Produk')->get();
         return view('shop.shop', compact('produk_varian'));
     }
@@ -27,21 +28,28 @@ class ShopController extends Controller
 
     public function detail($slug)
     {
+// Assuming 'id_varian' is the key that links to the color data
+$produk = Produk::where('slug', $slug)->first();
+
+$id_produk = Produk::where('slug', $slug)->pluck('id_produk')->first();
+$varian = Produk_Varian::where('id_produk', $id_produk)->first();
+
+$warna = Produk_Varian::where('id_produk', $id_produk)->get();  // Get all variants for the product
+
+return view('shop.detail', compact('produk', 'varian', 'warna'));
+
+
         // Cari produk berdasarkan slug
-        $produk = Produk::where('slug', $slug)->first();
+        // $produk = Produk::where('slug', $slug)->first();
 
-        $id_produk = Produk::where('slug', $slug)->pluck('id_produk')->first();
-        $varian = Produk_Varian::where('id_produk', $id_produk)->first();
+        // $id_produk = Produk::where('slug', $slug)->pluck('id_produk')->first();
+        // $varian = Produk_Varian::where('id_produk', $id_produk)->first();
 
-        $id_varian = Produk_Varian::where('id_produk', $id_produk)->pluck('id_varian')->first();
-        $warna = Produk_Varian::where('id_varian', $id_varian)->get();
+        // $id_varian = Produk_Varian::where('id_produk', $id_produk)->pluck('id_varian')->first();
+        // $warna = Produk_Varian::where('id_varian', $id_varian)->get();
 
-        // Jika produk tidak ditemukan, bisa diarahkan ke halaman 404
-        if (!$produk) {
-            abort(404, 'Produk tidak ditemukan');
-        }
 
-        return view('shop.detail', compact('produk', 'varian', 'warna'));
+        // return view('shop.detail', compact('produk', 'varian', 'warna'));
 
         // $produk = Produk::where('slug', $slug)->first();
         // $produk_varian = Produk_Varian::with('Produk')->get();

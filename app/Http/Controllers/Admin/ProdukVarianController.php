@@ -19,14 +19,21 @@ class ProdukVarianController extends Controller
     }
     public function store(Request $request)
     {
+        $request->merge([
+            'harga' => str_replace('.', '', $request->harga),
+        ]);
         // Validasi input
         $request->validate([
             'id_produk' => 'required|exists:produk,id_produk',
             'warna' => 'nullable|string|max:100',
             'ukuran' => 'nullable|string|max:50',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:8192',
+            'harga' => 'required|numeric|min:0|max:1000000000',
             'stok' => 'required|integer|min:0',
         ], [
+                'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
+                'harga.min' => 'Harga tidak boleh kurang dari 0.',
+                'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
             'gambar.image' => 'File yang diupload harus berupa gambar.',
             'gambar.mimes' => 'Gambar harus berformat: jpeg, png, atau jpg.',
             'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 8MB.',
@@ -43,6 +50,7 @@ class ProdukVarianController extends Controller
             'id_produk' => $request->id_produk,
             'warna' => $request->warna,
             'ukuran' => $request->ukuran,
+            'harga' => $request->harga,
             'gambar' => $gambarPath,
             'stok' => $request->stok,
         ]);
@@ -54,14 +62,22 @@ class ProdukVarianController extends Controller
     // yg dibawah ini belum di set
     public function update(Request $request, $id)
     {
+        $request->merge([
+            'harga' => str_replace('.', '', $request->harga),
+        ]);
         $request->validate(
             [
                 'id_produk' => 'required|exists:produk,id_produk',
                 'warna' => 'nullable|string|max:100',
                 'ukuran' => 'nullable|string|max:100',
+                'harga' => 'required|numeric|min:0',
                 'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:8192',
                 'stok' => 'required|integer|min:0',
-            ],
+            ],[
+                'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
+                'harga.min' => 'Harga tidak boleh kurang dari 0.',
+                'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
+            ]
         );
 
         $produk_varian = Produk_Varian::findOrFail($id);
@@ -80,7 +96,8 @@ class ProdukVarianController extends Controller
             'id_produk' => $request->id_produk,
             'warna' => $request->warna,
             'ukuran' => $request->ukuran,
-            'gambar' => $gambarPath,
+            'harga' => $request->harga,
+            // 'gambar' => $gambarPath,
             'stok' => $request->stok,
         ]);
 
