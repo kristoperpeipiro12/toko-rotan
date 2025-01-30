@@ -6,7 +6,7 @@
     $clr = ['white', 'white']; // warna text
     $wrn = ['Motif', 'Polos']; // deskripsi warna
     $uk = ['140 cm x 200 cm', '175 cm x 250 cm']; // ukuran produk
-
+    
     ?>
     {{-- @include('shop.includes.navbar') --}}
     <div class="wrap-detail content-border">
@@ -14,8 +14,7 @@
             <a href="{{ route('shop.shop') }}" class="btn mb-3"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
             <div class="product-header-pdt-dt1">
                 <div class="product-image-pdt-dt1">
-                    <img src="{{ asset('storage/' . $produk->gambar) }}" alt="Produk Image" />
-                    {{-- <p>{{ $produk->gambar }}</p> --}}
+                    <img src="{{ asset('storage/' . $varian->gambar) }}" alt="Produk Image" />
                 </div>
                 <div class="product-details-pdt-dt1">
                     <div class="product-title-pdt-dt1">{{ $produk->nama_produk }}</div>
@@ -35,6 +34,9 @@
                         <div class="option-group-pdt-dt1">
                             <label for="color-pdt-dt1">Pilih Warna:</label>
                             <div class="wrap-warna-detail">
+                                @foreach ($warna as $w)
+                                    <p>{{ $w->warna }}</p>
+                                @endforeach
                                 @for ($i = 0; $i < 2; $i++)
                                     <a href="#" class="card-warna"
                                         style="background-color: {{ $bg[$i] }}; color: {{ $clr[$i] }}">{{ $wrn[$i] }}</a>

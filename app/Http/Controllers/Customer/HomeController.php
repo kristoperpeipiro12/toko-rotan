@@ -22,7 +22,6 @@ class HomeController extends Controller
     public function shop()
     {
         $produk_varian = Produk_Varian::with('Produk')->get();
-
         return view('customer.shop', compact('produk_varian'));
     }
 }

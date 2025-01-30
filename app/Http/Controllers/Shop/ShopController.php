@@ -27,15 +27,21 @@ class ShopController extends Controller
 
     public function detail($slug)
     {
-         // Cari produk berdasarkan slug
-    $produk = Produk_Varian::where('slug', $slug)->with('produk_varian')->first();
+        // Cari produk berdasarkan slug
+        $produk = Produk::where('slug', $slug)->first();
 
-    // Jika produk tidak ditemukan, bisa diarahkan ke halaman 404
-    if (!$produk) {
-        abort(404, 'Produk tidak ditemukan');
-    }
+        $id_produk = Produk::where('slug', $slug)->pluck('id_produk')->first();
+        $varian = Produk_Varian::where('id_produk', $id_produk)->first();
 
-    return view('shop.detail', compact('produk'));
+        $id_varian = Produk_Varian::where('id_produk', $id_produk)->pluck('id_varian')->first();
+        $warna = Produk_Varian::where('id_varian', $id_varian)->get();
+
+        // Jika produk tidak ditemukan, bisa diarahkan ke halaman 404
+        if (!$produk) {
+            abort(404, 'Produk tidak ditemukan');
+        }
+
+        return view('shop.detail', compact('produk', 'varian', 'warna'));
 
         // $produk = Produk::where('slug', $slug)->first();
         // $produk_varian = Produk_Varian::with('Produk')->get();

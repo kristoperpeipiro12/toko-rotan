@@ -43,8 +43,8 @@
                                         <td>{{ $pv->stok }}</td>
                                         <td>
                                             @if ($pv->gambar)
-                                                <img src="{{ asset('storage/' . $pv->gambar) }}" alt="{{ $pv->nama_produk }}"
-                                                    width="100">
+                                                <img src="{{ asset('storage/' . $pv->gambar) }}"
+                                                    alt="{{ $pv->nama_produk }}" width="100">
                                             @else
                                                 <span>Tidak ada gambar</span>
                                             @endif
@@ -56,9 +56,9 @@
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#deleteProductModal{{ $pv->id_varian }}">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                                data-bs-target="#deleteProductModal{{ $pv->id_varian }}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
 
@@ -78,7 +78,8 @@
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="{{ route('admin.produk.delete', $pv->id_produk) }}"
+                                                    <form
+                                                        action="{{ route('admin.produk_varian.delete', $pv->id_varian) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -190,11 +191,11 @@
                                     <label for="edit_id_kategori" class="form-label">Produk</label>
                                     <select class="form-select" id="edit_id_kategori" name="id_produk" required>
                                         @foreach ($produk as $p)
-                                        <option value="{{ $p->id_produk }}"
-                                            @if ($p->id_produk == old('id_produk', $p->id_produk)) selected @endif>
-                                            {{ $p->nama_produk }}
-                                        </option>
-                                    @endforeach
+                                            <option value="{{ $p->id_produk }}"
+                                                @if ($p->id_produk == old('id_produk', $p->id_produk)) selected @endif>
+                                                {{ $p->nama_produk }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -214,7 +215,7 @@
 
                                 {{-- Gambar --}}
 
-                                  <div class="mb-3">
+                                <div class="mb-3">
                                     <label for="edit_gambar" class="form-label">Gambar Produk</label>
                                     <input type="file" class="form-control" id="edit_gambar" name="gambar"
                                         accept="image/*">
@@ -242,7 +243,7 @@
 
 
         <script>
-                        function previewImage(event) {
+            function previewImage(event) {
                 const file = event.target.files[0];
                 const reader = new FileReader();
 
