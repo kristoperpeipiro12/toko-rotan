@@ -27,10 +27,7 @@
                                     <th>Kategori</th>
                                     <th>Nama Produk</th>
                                     <th>Deskripsi</th>
-                                    <th>Warna</th>
-                                    <th>Ukuran</th>
                                     <th>Harga</th>
-                                    <th>Stok</th>
                                     <th>Gambar</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -42,10 +39,7 @@
                                         <td>{{ $p->kategori->nama_kategori }}</td>
                                         <td>{{ $p->nama_produk }}</td>
                                         <td>{{ $p->deskripsi }}</td>
-                                        <td>{{ $p->warna }}</td>
-                                        <td>{{ $p->ukuran }}</td>
                                         <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
-                                        <td>{{ $p->stok }}</td>
                                         <td>
                                             @if ($p->gambar)
                                                 <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->nama_produk }}"
@@ -147,18 +141,6 @@
                                 <input type="text" class="form-control" id="deskripsi" name="deskripsi" required>
                             </div>
 
-                            <!-- Warna -->
-                            <div class="mb-3">
-                                <label for="warna" class="form-label">Warna</label>
-                                <input type="text" class="form-control" id="warna" name="warna">
-                            </div>
-
-                            <!-- Ukuran -->
-                            <div class="mb-3">
-                                <label for="ukuran" class="form-label">Ukuran</label>
-                                <input type="text" class="form-control" id="ukuran" name="ukuran">
-                            </div>
-
                             <!-- Harga -->
                             <div class="mb-3">
                                 <label for="harga" class="form-label">Harga</label>
@@ -167,12 +149,6 @@
                                     <input type="text" class="form-control format-rupiah" id="harga"
                                         name="harga" required>
                                 </div>
-                            </div>
-
-                            <!-- Stok -->
-                            <div class="mb-3">
-                                <label for="stok" class="form-label">Stok</label>
-                                <input type="number" class="form-control" id="stok" name="stok" required>
                             </div>
 
                             <!-- Gambar Produk -->
@@ -196,10 +172,6 @@
                 </div>
             </div>
         </div>
-
-        {{-- Modal Add Varian Produk >> --}}
-
-        {{-- << Modal Add Varian Produk --}}
 
         <!-- Modal Edit Produk -->
         @foreach ($produk as $p)
@@ -239,21 +211,6 @@
                                         value="{{ old('nama_produk', $p->nama_produk) }}" required>
                                 </div>
 
-                                <!-- Warna -->
-                                <div class="mb-3">
-                                    <label for="edit_warna" class="form-label">Warna</label>
-                                    <input type="text" class="form-control" id="edit_warna" name="warna"
-                                        value="{{ old('warna', $p->warna) }}">
-                                </div>
-
-                                <!-- Ukuran -->
-                                <div class="mb-3">
-                                    <label for="edit_ukuran" class="form-label">Ukuran</label>
-                                    <input type="text" class="form-control" id="edit_ukuran" name="ukuran"
-                                        value="{{ old('ukuran', $p->ukuran) }}">
-                                </div>
-
-
                                 <!-- Harga -->
                                 <div class="mb-3">
                                     <label for="edit_harga" class="form-label">Harga</label>
@@ -262,13 +219,6 @@
                                         <input type="text" class="form-control format-rupiah" id="edit_harga"
                                             name="harga" value="{{ old('harga', $p->harga) }}" required>
                                     </div>
-                                </div>
-
-                                <!-- Stok -->
-                                <div class="mb-3">
-                                    <label for="edit_stok" class="form-label">Stok</label>
-                                    <input type="number" class="form-control" id="edit_stok" name="stok"
-                                        value="{{ old('stok', $p->stok) }}" required>
                                 </div>
 
                                 <!-- Gambar Produk -->

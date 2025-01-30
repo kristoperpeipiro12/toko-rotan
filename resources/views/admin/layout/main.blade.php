@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{{ $pageTitle }} </title>
+    <title>Admin - {{ $pageTitle }} </title>
     {{-- <title>dashboard</title> --}}
 
     <!-- Favicon icon -->
@@ -117,20 +117,16 @@
                             <li><a href="{{ route('admin.produk') }}"><i class="fa fa-clipboard-check"></i>Daftar
                                     Produk</a></li>
 
-                            <li><a href="#"><i class="fa-solid fa-droplet"></i>Varian
+                            <li><a href="{{ route('admin.produk_varian') }}"><i class="fa-solid fa-droplet"></i>Varian
                                     Produk</a>
                             </li>
-                            <li><a href="#"><i class="icon fas fa-gem"></i></i>
+                            <li><a href="{{ route('admin.produk_display') }}"><i class="icon fas fa-gem"></i></i>
                                     Display Produk</a></li>
                         </ul>
                     </li>
 
                     {{-- <li><a href="{{ route('admin.produk') }}" aria-expanded="false"><i
                                 class="icon fas fa-gem"></i><span class="nav-text">Produk</span></a></li> --}}
-
-
-                    <li><a href="{{ route('admin.datawilayah') }}" aria-expanded="false"><i
-                                class="icon icon-world-2"></i><span class="nav-text">Data Wilayah</span></a></li>
 
 
                     {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">

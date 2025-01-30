@@ -15,9 +15,9 @@ class ProdukController extends Controller
     {
         $kategori = Kategori::all();
         $produk = Produk::with('kategori')->get();
-        $pageTitle = 'Produk';
+        $pageTitle = 'Daftar Produk';
 
-        return view('admin.produk.index', compact('produk', 'kategori', 'pageTitle'));
+        return view('admin.produk.daftar-produk', compact('produk', 'kategori', 'pageTitle'));
     }
     public function store(Request $request)
     {
@@ -70,10 +70,7 @@ class ProdukController extends Controller
             [
                 'id_kategori' => 'required|exists:kategori,id_kategori',
                 'nama_produk' => 'required|string|max:255',
-                'warna' => 'nullable|string|max:100',
-                'ukuran' => 'nullable|string|max:100',
                 'harga' => 'required|numeric|min:0',
-                'stok' => 'required|integer|min:0',
                 'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                 'slug' => 'required|string|max:255',
             ],

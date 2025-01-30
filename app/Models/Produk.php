@@ -33,6 +33,11 @@ class Produk extends Model
         return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
     }
 
+    public function produk_varian()
+    {
+        return $this->hasMany(Produk_Varian::class, 'id_produk');
+    }
+
     /**
      * Auto-generate ID with 'PRO-' prefix.
      */

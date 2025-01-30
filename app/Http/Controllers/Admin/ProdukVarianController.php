@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ProdukVarianController extends Controller
 {
+    public function index()
+    {
+        $produk_varian = Produk_Varian::all();
+        $pageTitle = 'Varian Produk';
+        return view('admin.produk.varian-produk', compact('produk_varian', 'pageTitle'));
+    }
     public function store(Request $request)
     {
         // Validasi input
@@ -53,7 +59,7 @@ class ProdukVarianController extends Controller
 
         $produk_varian->save();
 
-        return redirect()->route('admin.produk')->with('toast_success', 'Varian Produk berhasil diubah.');
+        return redirect()->route('admin.produk_varian')->with('toast_success', 'Varian Produk berhasil diubah.');
     }
 
     public function delete($id)
@@ -61,6 +67,6 @@ class ProdukVarianController extends Controller
         $produk_varian = Produk_Varian::findOrFail($id);
         $produk_varian->delete();
 
-        return redirect()->route('admin.produk')->with('toast_success', 'Varian Produk berhasil dihapus.');
+        return redirect()->route('admin.produk_varian')->with('toast_success', 'Varian Produk berhasil dihapus.');
     }
 }

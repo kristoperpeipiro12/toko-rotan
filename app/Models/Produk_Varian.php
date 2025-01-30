@@ -23,7 +23,7 @@ class Produk_Varian extends Model
 
     public function produk()
     {
-        return $this->belongsTo(Produk_Varian::class, 'id_produk', 'id_produk');
+        return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
     }
 
     protected static function boot()
