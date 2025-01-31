@@ -64,6 +64,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::put('/produk-varian/update/{id}', [ProdukVarianController::class, 'update'])->name('admin.produk_varian.update');
     Route::delete('/produk-varian/delete/{id}', [ProdukVarianController::class, 'delete'])->name('admin.produk_varian.delete');
 
+    // search varian
+    Route::post('/produk-varian/search', [ProdukVarianController::class, 'search'])->name('admin.produk_varian.f_produk');
+
+
     // display produk
     Route::get('/display-produk', [DisplayProdukController::class, 'index'])->name('admin.produk_display');
 

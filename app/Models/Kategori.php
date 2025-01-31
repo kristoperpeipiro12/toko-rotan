@@ -27,7 +27,7 @@ class Kategori extends Model
         static::creating(function ($model) {
             if (empty($model->id_kategori)) {
                 $timestamp = date('His-dmY'); // Format: HHMMSS-DDMMYYYY
-                $model->id_produk = 'KAT-' . rand(10000, 99999) . '-' . $timestamp;
+                $model->id_kategori = 'KAT-' . rand(10000, 99999) . '-' . $timestamp;
             }
         });
     }

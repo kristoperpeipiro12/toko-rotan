@@ -21,6 +21,22 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        <div class="wrap-filter-cus">
+                            <div class="wrap-filter-produk">
+                                <form action="admin.produk_varian.f_produk" method="POST">
+                                    @csrf
+                                    <label for="f_id_pro" class="form-label">Filter Produk</label>
+                                    <select name="id_produk" id="f_id_pro">
+                                        <option value=""></option>
+                                        @foreach ($produk as $p)
+                                            <option value="{{ $p->id_produk }}">{{ $p->nama_produk }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="wrap-filter-warna"></div>
+                            <div class="wrap-filter-ukuran"></div>
+                        </div>
                         <table class="table align-items-center table-flush table-hover" id="example">
                             <thead class="thead-light">
                                 <tr>
@@ -290,20 +306,20 @@
             }
 
             function previewEditImage(event) {
-        var input = event.target;
-        var preview = document.getElementById('edit_preview');
+                var input = event.target;
+                var preview = document.getElementById('edit_preview');
 
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
             }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
 
             function formatRupiah(event) {
                 let input = event.target;
@@ -342,5 +358,5 @@
             })
         </script>
 
-</div>
+    </div>
 @endsection

@@ -19,6 +19,15 @@ class ProdukVarianController extends Controller
     }
     public function store(Request $request)
     {
+        $nama_produk = Produk::where('id_produk', $request->id_produk)->pluck('nama_produk')->first();
+        $cek_input = Produk_Varian::where('id_produk', $request->id_produk)
+            ->where('warna', $request->warna)
+            ->where('ukuran', $request->ukuran)
+            ->first();
+        if (!empty($cek_input)) {
+            return redirect()->route('admin.produk_varian')->with('toast_error', 'Varian tersebut telah dimiliki Produk' . $nama_produk . '!');
+        }
+
         $request->merge([
             'harga' => str_replace('.', '', $request->harga),
         ]);
@@ -31,9 +40,9 @@ class ProdukVarianController extends Controller
             'harga' => 'required|numeric|min:0|max:1000000000',
             'stok' => 'required|integer|min:0',
         ], [
-                'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
-                'harga.min' => 'Harga tidak boleh kurang dari 0.',
-                'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
+            'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
+            'harga.min' => 'Harga tidak boleh kurang dari 0.',
+            'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',
             'gambar.image' => 'File yang diupload harus berupa gambar.',
             'gambar.mimes' => 'Gambar harus berformat: jpeg, png, atau jpg.',
             'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 8MB.',
@@ -73,7 +82,8 @@ class ProdukVarianController extends Controller
                 'harga' => 'required|numeric|min:0',
                 'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:8192',
                 'stok' => 'required|integer|min:0',
-            ],[
+            ],
+            [
                 'harga.numeric' => 'Harga harus berupa angka tanpa format ribuan.',
                 'harga.min' => 'Harga tidak boleh kurang dari 0.',
                 'harga.max' => 'Harga tidak boleh lebih dari 1.000.000.000.',

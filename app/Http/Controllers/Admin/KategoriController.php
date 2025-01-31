@@ -12,7 +12,7 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::all();
         $pageTitle = 'Kategori';
-        return view("admin.kategori.index",compact('kategori','pageTitle'));
+        return view("admin.kategori.index", compact('kategori', 'pageTitle'));
     }
     public function store(Request $request)
     {
@@ -21,7 +21,8 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        $id_kategori = 'KAT-' . rand(1000, 9999);
+        $timestamp = date('His-dmY'); // Format: HHMMSS-DDMMYYYY
+        $id_kategori = 'KAT-' . rand(1000, 9999) . '-' . $timestamp;
 
         // Simpan kategori baru
         $kategori = new Kategori();

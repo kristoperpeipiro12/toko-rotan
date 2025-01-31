@@ -28,15 +28,15 @@ class ShopController extends Controller
 
     public function detail($slug)
     {
-// Assuming 'id_varian' is the key that links to the color data
-$produk = Produk::where('slug', $slug)->first();
+        // Assuming 'id_varian' is the key that links to the color data
+        $produk = Produk::where('slug', $slug)->first();
 
-$id_produk = Produk::where('slug', $slug)->pluck('id_produk')->first();
-$varian = Produk_Varian::where('id_produk', $id_produk)->first();
+        $id_produk = Produk::where('slug', $slug)->pluck('id_produk')->first();
+        $varian = Produk_Varian::where('id_produk', $id_produk)->first();
 
-$warna = Produk_Varian::where('id_produk', $id_produk)->get();  // Get all variants for the product
+        $warna = Produk_Varian::where('id_produk', $id_produk)->get();  // Get all variants for the product
 
-return view('shop.detail', compact('produk', 'varian', 'warna'));
+        return view('shop.detail', compact('produk', 'varian', 'warna'));
 
 
         // Cari produk berdasarkan slug

@@ -15,12 +15,14 @@
             <div class="card mb-2">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Daftar Produk</h6>
-                    <a href="{{ route('admin.produk') }}" class="btn btn-primary mb-1">
-                        <i class="fas fa-plus" style="margin-right: 5px;"></i>Tambah Produk
-                    </a>
-                    <a href="{{ route('admin.produk_varian') }}" class="btn btn-info mb-1">
-                        <i class="fas fa-plus" style="margin-right: 5px;"></i>Tambah Varian
-                    </a>
+                    <div class="wrap-btn-atur">
+                        <a href="{{ route('admin.produk') }}" class="btn btn-primary mb-1">
+                            <i class="fa-solid fa-gear" style="margin-right: 5px;"></i>Atur Produk
+                        </a>
+                        <a href="{{ route('admin.produk_varian') }}" class="btn btn-info mb-1">
+                            <i class="fa-solid fa-gears" style="margin-right: 5px;"></i>Atur Varian
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -46,12 +48,12 @@
                                         <td>{{ $pv->produk->deskripsi }}</td>
                                         <td>{{ $pv->warna }}</td>
                                         <td>{{ $pv->ukuran }}</td>
-                                        <td>Rp {{ number_format($pv->produk->harga, 0, ',', '.') }}</td>
+                                        <td>Rp {{ number_format($pv->harga, 0, ',', '.') }}</td>
                                         <td>{{ $pv->stok }}</td>
                                         <td>
                                             @if ($pv->gambar)
-                                                <img src="{{ asset('storage/' . $pv->gambar) }}" alt="{{ $pv->nama_produk }}"
-                                                    width="100">
+                                                <img src="{{ asset('storage/' . $pv->gambar) }}"
+                                                    alt="{{ $pv->nama_produk }}" width="100">
                                             @else
                                                 <span>Tidak ada gambar</span>
                                             @endif
