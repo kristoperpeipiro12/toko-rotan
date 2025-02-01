@@ -20,8 +20,11 @@ class ProdukVarianController extends Controller
             $query->where('id_produk', $request->id_produk);
         }
         $filter_produk = $query->paginate(5);
-
-        $produk_varian = Produk_Varian::all();
+        $produk_varian = Produk_Varian::with('produk')
+        ->join('produk', 'produk_varian.id_produk', '=', 'produk.id_produk')
+        ->orderByRaw('CAST(SUBSTRING(produk.nama_produk, 7) AS UNSIGNED) ASC') // Sesuaikan dengan pola nama produk
+        ->select('produk_varian.*')
+        ->get();
         $pageTitle = 'Varian Produk';
         return view('admin.produk.varian-produk', compact('produk_varian', 'produk', 'pageTitle', 'filter_produk'));
     }

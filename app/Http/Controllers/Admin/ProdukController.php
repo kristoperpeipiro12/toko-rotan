@@ -14,7 +14,11 @@ class ProdukController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $produk = Produk::with('kategori')->get();
+        $produk = Produk::with('kategori')
+    ->join('kategori', 'produk.id_kategori', '=', 'kategori.id_kategori')
+    ->orderByRaw('CAST(SUBSTRING(produk.nama_produk, 7) AS UNSIGNED) ASC')
+    ->select('produk.*')
+    ->get();
         $pageTitle = 'Daftar Produk';
 
         return view('admin.produk.daftar-produk', compact('produk', 'kategori', 'pageTitle'));
@@ -39,7 +43,7 @@ class ProdukController extends Controller
             'slug' => Str::slug($request->nama_produk),
         ]);
 
-        // Redirect dengan notifikasi sukses
+
         return redirect()->route('admin.produk')->with('toast_success', 'Produk berhasil ditambahkan.');
     }
 
@@ -51,13 +55,8 @@ class ProdukController extends Controller
                 'nama_produk' => 'required|string|max:255',
                 'deskripsi' => 'nullable|string',
 
-
-                // 'slug' => 'required|string|max:255',
             ],
             [
-                'gambar.image' => 'File yang diupload harus berupa gambar.',
-                'gambar.mimes' => 'Gambar harus berformat: jpeg, png, atau jpg.',
-                'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
                 'nama_produk.required' => 'Nama produk terlalu panjang',
 
             ]
@@ -81,10 +80,6 @@ class ProdukController extends Controller
             'id_kategori' => $request->id_kategori,
             'nama_produk' => $request->nama_produk,
             'deskripsi'=> $request->deskripsi,
-            'warna' => $request->warna,
-            'ukuran' => $request->ukuran,
-            
-            'stok' => $request->stok,
             'slug' => Str::slug($request->nama_produk)
         ]);
 

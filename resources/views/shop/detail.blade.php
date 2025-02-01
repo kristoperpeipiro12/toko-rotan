@@ -14,7 +14,9 @@
             <a href="{{ route('shop.shop') }}" class="btn mb-3"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
             <div class="product-header-pdt-dt1">
                 <div class="product-image-pdt-dt1">
-                    <img src="{{ asset('storage/' . $varian->gambar) }}" alt="Produk Image" />
+                    <img src="{{ Str::startsWith($varian->gambar, 'http') || Str::startsWith($varian->gambar, 'https') ? $varian->gambar : asset('storage/' . $varian->gambar) }}"
+                    alt="Gambar Produk" class="card-img-c5"
+                    onerror="this.onerror=null; this.src='{{ asset('images/default-product.jpg') }}';" />
                 </div>
                 <div class="product-details-pdt-dt1">
                     <div class="product-title-pdt-dt1">{{ $varian->produk->nama_produk }}</div>

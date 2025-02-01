@@ -204,10 +204,6 @@
         @endforeach
 
 
-        <script>
-
-
-        </script>
 
     </div>
 @endsection

@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = Kategori::all();
+        $kategori = Kategori::orderBy('nama_kategori', 'asc')->get();
         $pageTitle = 'Kategori';
         return view("admin.kategori.index", compact('kategori', 'pageTitle'));
     }

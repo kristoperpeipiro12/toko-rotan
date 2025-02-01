@@ -65,9 +65,16 @@
                                         <td>{{ $pv->stok }}</td>
                                         <td>
                                             @if ($pv->gambar)
-                                                <img src="{{ asset('storage/' . $pv->gambar) }}"
-                                                    alt="{{ $pv->nama_produk }}" width="100">
+                                                {{-- Cek apakah gambar berasal dari storage lokal --}}
+                                                @if (Str::startsWith($pv->gambar, 'http') || Str::startsWith($pv->gambar, 'https'))
+                                                    {{-- Jika gambar adalah URL eksternal --}}
+                                                    <img src="{{ $pv->gambar }}" alt="{{ $pv->nama_produk }}" width="100">
+                                                @else
+                                                    {{-- Jika gambar berasal dari storage lokal --}}
+                                                    <img src="{{ asset('storage/' . $pv->gambar) }}" alt="{{ $pv->nama_produk }}" width="100">
+                                                @endif
                                             @else
+                                                {{-- Jika tidak ada gambar --}}
                                                 <span>Tidak ada gambar</span>
                                             @endif
                                         </td>
@@ -223,11 +230,11 @@
 
                                 <!-- Dropdown Kategori -->
                                 <div class="mb-3">
-                                    <label for="edit_id_kategori" class="form-label">Produk</label>
-                                    <select class="form-select" id="edit_id_kategori" name="id_produk" required>
+                                    <label for="edit_id_produk_{{ $pv->id_varian }}" class="form-label">Produk</label>
+                                    <select class="form-select" id="edit_id_produk_{{ $pv->id_varian }}" name="id_produk" required>
                                         @foreach ($produk as $p)
                                             <option value="{{ $p->id_produk }}"
-                                                @if ($p->id_produk == old('id_produk', $p->id_produk)) selected @endif>
+                                                @if ($p->id_produk == $pv->id_produk) selected @endif>
                                                 {{ $p->nama_produk }}
                                             </option>
                                         @endforeach
