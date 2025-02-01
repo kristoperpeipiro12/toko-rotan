@@ -10,12 +10,20 @@ use Illuminate\Support\Facades\Storage;
 
 class ProdukVarianController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $produk = Produk::all();
+
+        // Jika ada filter berdasarkan id_produk
+        $query = Produk_Varian::query();
+        if ($request->has('id_produk') && $request->id_produk != '') {
+            $query->where('id_produk', $request->id_produk);
+        }
+        $filter_produk = $query->paginate(5);
+
         $produk_varian = Produk_Varian::all();
         $pageTitle = 'Varian Produk';
-        return view('admin.produk.varian-produk', compact('produk_varian', 'produk', 'pageTitle'));
+        return view('admin.produk.varian-produk', compact('produk_varian', 'produk', 'pageTitle', 'filter_produk'));
     }
     public function store(Request $request)
     {

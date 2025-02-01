@@ -23,13 +23,16 @@
                     <div class="table-responsive">
                         <div class="wrap-filter-cus">
                             <div class="wrap-filter-produk">
-                                <form action="admin.produk_varian.f_produk" method="POST">
+                                <form action="{{ route('admin.produk_varian') }}" method="POST">
                                     @csrf
                                     <label for="f_id_pro" class="form-label">Filter Produk</label>
-                                    <select name="id_produk" id="f_id_pro">
+                                    <select name="id_produk" id="f_id_pro" class="form-select"
+                                        onchange="this.form.submit()">
                                         <option value=""></option>
                                         @foreach ($produk as $p)
-                                            <option value="{{ $p->id_produk }}">{{ $p->nama_produk }}</option>
+                                            <option value="{{ $p->id_produk }}"
+                                                {{ request('id_produk') == $p->id_produk ? 'selected' : '' }}>
+                                                {{ $p->nama_produk }}</option>
                                         @endforeach
                                     </select>
                                 </form>
