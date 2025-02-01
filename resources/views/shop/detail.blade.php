@@ -6,7 +6,7 @@
     $clr = ['white', 'white']; // warna text
     $wrn = ['Motif', 'Polos']; // deskripsi warna
     $uk = ['140 cm x 200 cm', '175 cm x 250 cm']; // ukuran produk
-
+    
     ?>
     {{-- @include('shop.includes.navbar') --}}
     <div class="wrap-detail content-border">
@@ -15,8 +15,8 @@
             <div class="product-header-pdt-dt1">
                 <div class="product-image-pdt-dt1">
                     <img src="{{ Str::startsWith($varian->gambar, 'http') || Str::startsWith($varian->gambar, 'https') ? $varian->gambar : asset('storage/' . $varian->gambar) }}"
-                    alt="Gambar Produk" class="card-img-c5"
-                    onerror="this.onerror=null; this.src='{{ asset('images/default-product.jpg') }}';" />
+                        alt="Gambar Produk" class="card-img-c5"
+                        onerror="this.onerror=null; this.src='{{ asset('images/default-product.jpg') }}';" />
                 </div>
                 <div class="product-details-pdt-dt1">
                     <div class="product-title-pdt-dt1">{{ $varian->produk->nama_produk }}</div>
@@ -38,8 +38,9 @@
                             <label for="size-pdt-dt1">Pilih Ukuran:</label>
                             <div class="wrap-uk-detail">
                                 <select id="size-select" name="size">
-                                    @foreach ($warna as $v)
-                                        <option value="{{ $v->id_varian }}" data-price="{{ $v->harga }}" data-stock="{{ $v->stok }}">
+                                    @foreach ($ukuran as $v)
+                                        <option value="{{ $v->id_varian }}" data-price="{{ $v->harga }}"
+                                            data-stock="{{ $v->stok }}">
                                             {{ $v->ukuran }}
                                         </option>
                                     @endforeach
@@ -47,21 +48,34 @@
                             </div>
                         </div>
 
-                            <div class="option-group-pdt-dt1">
-                                <label for="color-pdt-dt1">Pilih Warna:</label>
-                                <div class="wrap-warna-detail">
-                                    <select id="color-pdt-dt1" name="color">
+                        <div class="option-group-pdt-dt1">
+                            <label for="color-pdt-dt1">Pilih Warna:</label>
+                            <div class="wrap-warna-detail">
+                                {{-- <select id="color-pdt-dt1" name="color">
                                         @foreach ($warna as $w)
                                             <option value="{{ $w->warna }}"
                                                 style="background-color: {{ $w->warna }}">
                                                 {{ $w->warna }}
                                             </option>
                                         @endforeach
-                                    </select>
-                                </div>
+                                    </select> --}}
+                                @foreach ($result as $r)
+                                    {{-- <div class="card-protal-warna" id="selected-portal-warna">
+                                        <img class="img-portal-warna" width="70px" src="" alt="gambar-produk">
+                                        <span></span>
+                                        <p></p>
+                                    </div> --}}
+                                    <a href="#" class="card-protal-warna" id="selected-portal-warna">
+                                        <img class="img-portal-warna" width="70px"
+                                            src="{{ asset('storage/' . $r['gambar']) }}" alt="gambar-produk">
+                                        <span>{{ $r['warna'] }}</span>
+                                        <p>{{ $r['slug'] }}</p>
+                                    </a>
+                                @endforeach
                             </div>
+                        </div>
 
-                            {{-- <div class="option-group-pdt-dt1">
+                        {{-- <div class="option-group-pdt-dt1">
                             <label for="color-pdt-dt1">Pilih Warna:</label>
                             <div class="wrap-warna-detail">
                                 @foreach ($warna as $w)
@@ -74,65 +88,64 @@
                             </div>
                         </div> --}}
 
-                            <div class="option-group-pdt-dt1">
-                                <label for="quantity">Jumlah:</label>
-                                <div class="quantity-container">
-                                    <button type="button" id="decrease">-</button>
-                                    <input type="text" id="quantity" value="1">
-                                    <button type="button" id="increase">+</button>
-                                    <span>Stok: <strong id="stock-amount">{{ $varian->stok }}</strong></span>
-                                </div>
+                        <div class="option-group-pdt-dt1">
+                            <label for="quantity">Jumlah:</label>
+                            <div class="quantity-container">
+                                <button type="button" id="decrease">-</button>
+                                <input type="text" id="quantity" value="1">
+                                <button type="button" id="increase">+</button>
+                                <span>Stok: <strong id="stock-amount">{{ $varian->stok }}</strong></span>
                             </div>
                         </div>
-                        <a href="{{ route('shop.cart') }}"
-                            class="text-decoration-none text-center add-to-cart-btn-pdt-dt1">
-                            Tambahkan ke Keranjang
-                        </a>
                     </div>
+                    <a href="{{ route('shop.cart') }}" class="text-decoration-none text-center add-to-cart-btn-pdt-dt1">
+                        Tambahkan ke Keranjang
+                    </a>
                 </div>
             </div>
-
         </div>
+
+    </div>
     </div>
 
-        <script src="{{ asset('assets/js/shop/detail-page.js') }}"></script>
-        <script>
-            document.getElementById('size-select').addEventListener('change', function() {
-                // Get the selected option
-                var selectedOption = this.options[this.selectedIndex];
+    <script src="{{ asset('assets/js/shop/detail-page.js') }}"></script>
+    <script>
+        document.getElementById('size-select').addEventListener('change', function() {
+            // Get the selected option
+            var selectedOption = this.options[this.selectedIndex];
 
-                // Get the price and stock from the selected option's data-price and data-stock attributes
-                var newPrice = selectedOption.getAttribute('data-price');
-                var newStock = selectedOption.getAttribute('data-stock');
+            // Get the price and stock from the selected option's data-price and data-stock attributes
+            var newPrice = selectedOption.getAttribute('data-price');
+            var newStock = selectedOption.getAttribute('data-stock');
 
-                // Update the price and stock display
-                document.getElementById('product-price').innerHTML = 'Rp. ' + newPrice.toString().replace(
-                    /\B(?=(\d{3})+(?!\d))/g, ",");
-                document.getElementById('stock-amount').innerText = newStock;
+            // Update the price and stock display
+            document.getElementById('product-price').innerHTML = 'Rp. ' + newPrice.toString().replace(
+                /\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('stock-amount').innerText = newStock;
 
-                // Update stock input value for quantity
-                var quantityInput = document.getElementById('quantity');
-                if (parseInt(quantityInput.value) > newStock) {
-                    quantityInput.value = newStock;
-                }
-            });
+            // Update stock input value for quantity
+            var quantityInput = document.getElementById('quantity');
+            if (parseInt(quantityInput.value) > newStock) {
+                quantityInput.value = newStock;
+            }
+        });
 
-            document.getElementById('increase').addEventListener('click', function() {
-                var quantityInput = document.getElementById('quantity');
-                var stockAmount = parseInt(document.getElementById('stock-amount').innerText);
+        document.getElementById('increase').addEventListener('click', function() {
+            var quantityInput = document.getElementById('quantity');
+            var stockAmount = parseInt(document.getElementById('stock-amount').innerText);
 
-                if (parseInt(quantityInput.value) < stockAmount) {
-                    quantityInput.value = parseInt(quantityInput.value) + 1;
-                }
-            });
+            if (parseInt(quantityInput.value) < stockAmount) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            }
+        });
 
-            document.getElementById('decrease').addEventListener('click', function() {
-                var quantityInput = document.getElementById('quantity');
+        document.getElementById('decrease').addEventListener('click', function() {
+            var quantityInput = document.getElementById('quantity');
 
-                if (parseInt(quantityInput.value) > 1) {
-                    quantityInput.value = parseInt(quantityInput.value) - 1;
-                }
-            });
-        </script>
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        });
+    </script>
 
-    @endsection
+@endsection

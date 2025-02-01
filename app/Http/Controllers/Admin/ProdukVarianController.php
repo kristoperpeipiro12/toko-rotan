@@ -21,10 +21,10 @@ class ProdukVarianController extends Controller
         }
         $filter_produk = $query->paginate(5);
         $produk_varian = Produk_Varian::with('produk')
-        ->join('produk', 'produk_varian.id_produk', '=', 'produk.id_produk')
-        ->orderByRaw('CAST(SUBSTRING(produk.nama_produk, 7) AS UNSIGNED) ASC') // Sesuaikan dengan pola nama produk
-        ->select('produk_varian.*')
-        ->get();
+            ->join('produk', 'produk_varian.id_produk', '=', 'produk.id_produk')
+            ->orderByRaw('CAST(SUBSTRING(produk.nama_produk, 7) AS UNSIGNED) ASC') // Sesuaikan dengan pola nama produk
+            ->select('produk_varian.*')
+            ->get();
         $pageTitle = 'Varian Produk';
         return view('admin.produk.varian-produk', compact('produk_varian', 'produk', 'pageTitle', 'filter_produk'));
     }
@@ -36,7 +36,7 @@ class ProdukVarianController extends Controller
             ->where('ukuran', $request->ukuran)
             ->first();
         if (!empty($cek_input)) {
-            return redirect()->route('admin.produk_varian')->with('toast_error', 'Varian tersebut telah dimiliki Produk' . $nama_produk . '!');
+            return redirect()->route('admin.produk_varian')->with('toast_error', 'Varian tersebut telah dimiliki Produk ' . $nama_produk . '!');
         }
 
         $request->merge([

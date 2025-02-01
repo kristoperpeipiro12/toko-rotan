@@ -1,7 +1,6 @@
-
-const decreaseButton = document.getElementById('decrease');
-const increaseButton = document.getElementById('increase');
-const quantityInput = document.getElementById('quantity');
+const decreaseButton = document.getElementById("decrease");
+const increaseButton = document.getElementById("increase");
+const quantityInput = document.getElementById("quantity");
 const maxStock = 106; // Jumlah stok maksimal
 const minStock = 1; // Nilai minimum
 
@@ -10,8 +9,8 @@ function validateInput() {
     let currentValue = parseInt(quantityInput.value, 10);
 
     // Jika nilai kosong, biarkan sementara
-    if (isNaN(currentValue) || currentValue === '') {
-        quantityInput.value = '';
+    if (isNaN(currentValue) || currentValue === "") {
+        quantityInput.value = "";
         return;
     }
 
@@ -24,7 +23,7 @@ function validateInput() {
 }
 
 // Klik tombol decrease
-decreaseButton.addEventListener('click', function() {
+decreaseButton.addEventListener("click", function () {
     let currentValue = parseInt(quantityInput.value, 10) || minStock;
     if (currentValue > minStock) {
         quantityInput.value = currentValue - 1;
@@ -32,7 +31,7 @@ decreaseButton.addEventListener('click', function() {
 });
 
 // Klik tombol increase
-increaseButton.addEventListener('click', function() {
+increaseButton.addEventListener("click", function () {
     let currentValue = parseInt(quantityInput.value, 10) || minStock;
     if (currentValue < maxStock) {
         quantityInput.value = currentValue + 1;
@@ -40,17 +39,26 @@ increaseButton.addEventListener('click', function() {
 });
 
 // Ketika pengguna mengetik angka
-quantityInput.addEventListener('input', function() {
+quantityInput.addEventListener("input", function () {
     // Hapus karakter non-angka
-    this.value = this.value.replace(/[^0-9]/g, '');
+    this.value = this.value.replace(/[^0-9]/g, "");
     validateInput();
 });
 
 // Validasi ketika input kehilangan fokus (blur)
-quantityInput.addEventListener('blur', function() {
+quantityInput.addEventListener("blur", function () {
     validateInput();
     // Jika kosong, kembalikan ke nilai minimal
-    if (this.value === '') {
+    if (this.value === "") {
         this.value = minStock;
     }
+});
+
+// portal warna
+const selectedPortalWarna = document.querySelectorAll("#selected-portal-warna");
+
+selectedPortalWarna.forEach((element) => {
+    element.addEventListener("click", function () {
+        element.classList.add("active");
+    });
 });
