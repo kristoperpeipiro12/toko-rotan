@@ -7,6 +7,7 @@ use App\Models\Produk;
 use App\Models\Produk_Varian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProdukVarianController extends Controller
 {
@@ -73,6 +74,7 @@ class ProdukVarianController extends Controller
             'harga' => $request->harga,
             'gambar' => $gambarPath,
             'stok' => $request->stok,
+            'slug' => Str::slug($nama_produk),
         ]);
 
         // Redirect dengan notifikasi sukses
@@ -82,6 +84,7 @@ class ProdukVarianController extends Controller
     // yg dibawah ini belum di set
     public function update(Request $request, $id)
     {
+        $nama_produk = Produk::where('id_produk', $request->id_produk)->pluck('nama_produk')->first();
         $request->merge([
             'harga' => str_replace('.', '', $request->harga),
         ]);
@@ -118,8 +121,8 @@ class ProdukVarianController extends Controller
             'warna' => $request->warna,
             'ukuran' => $request->ukuran,
             'harga' => $request->harga,
-            // 'gambar' => $gambarPath,
             'stok' => $request->stok,
+            'slug' => Str::slug($nama_produk)
         ]);
 
         $produk_varian->save();

@@ -65,12 +65,12 @@
                                         <td>{{ $pv->stok }}</td>
                                         <td>
                                             @if ($pv->gambar)
-                                                {{-- Cek apakah gambar berasal dari storage lokal --}}
+                                               
                                                 @if (Str::startsWith($pv->gambar, 'http') || Str::startsWith($pv->gambar, 'https'))
-                                                    {{-- Jika gambar adalah URL eksternal --}}
+
                                                     <img src="{{ $pv->gambar }}" alt="{{ $pv->nama_produk }}" width="100">
                                                 @else
-                                                    {{-- Jika gambar berasal dari storage lokal --}}
+
                                                     <img src="{{ asset('storage/' . $pv->gambar) }}" alt="{{ $pv->nama_produk }}" width="100">
                                                 @endif
                                             @else

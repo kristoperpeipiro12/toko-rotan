@@ -20,7 +20,7 @@
 
 
             @foreach ($produk_varian as $p)
-                <a href="{{ route('shop.detail', ['slug' => $p->produk->slug]) }}" class="card5-cus">
+                <a href="{{ route('shop.detail', ['slug' => $p->slug]) }}" class="card5-cus">
                     <div class="wrap-main-c5">
                         <div class="wrap-img-c5">
                             <img src="{{ Str::startsWith($p->gambar, 'http') || Str::startsWith($p->gambar, 'https') ? $p->gambar : asset('storage/' . $p->gambar) }}"

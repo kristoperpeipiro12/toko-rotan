@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Produk_Varian;
 use App\Models\Produk;
+use App\Models\Produk_Varian;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ProdukVarianSeeder extends Seeder
 {
@@ -26,17 +27,19 @@ class ProdukVarianSeeder extends Seeder
         // URL gambar acak dari Picsum (contoh: https://picsum.photos/200/300)
         $gambarBaseUrl = 'https://picsum.photos/200/300'; // URL gambar acak dengan ukuran 200x300
 
-        // Loop untuk setiap produk
+
         foreach ($produk as $produkItem) {
-            // Buat 10 varian untuk setiap produk
-            for ($i = 0; $i < 10; $i++) {
+
+            for ($i = 0; $i < 3; $i++) {
                 Produk_Varian::create([
-                    'id_produk' => $produkItem->id_produk, // Pastikan kolom ini sesuai dengan struktur tabel
-                    'warna' => $warna[array_rand($warna)], // Pilih warna acak dari array
-                    'ukuran' => $ukuran[$i], // Gunakan indeks $i untuk ukuran
-                    'harga' => $harga[$i], // Gunakan indeks $i untuk harga
-                    'gambar' => $gambarBaseUrl . '?random=' . rand(1, 1000), // URL gambar acak
-                    'stok' => rand(10, 100), // Stok acak antara 10 dan 100
+                    'id_produk' => $produkItem->id_produk,
+                    'warna' => $warna[array_rand($warna)],
+                    'ukuran' => $ukuran[$i],
+                    'harga' => $harga[$i],
+                    'gambar' => $gambarBaseUrl . '?random=' . rand(1, 1000),
+                    'stok' => rand(10, 100),
+                    'slug' => Str::slug($produkItem->nama_produk . '-' . $i),
+
                 ]);
             }
         }

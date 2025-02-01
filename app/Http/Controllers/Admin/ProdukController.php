@@ -40,7 +40,7 @@ class ProdukController extends Controller
             'nama_produk' => $request->nama_produk,
             'deskripsi' => $request->deskripsi,
 
-            'slug' => Str::slug($request->nama_produk),
+
         ]);
 
 
@@ -80,7 +80,7 @@ class ProdukController extends Controller
             'id_kategori' => $request->id_kategori,
             'nama_produk' => $request->nama_produk,
             'deskripsi'=> $request->deskripsi,
-            'slug' => Str::slug($request->nama_produk)
+           
         ]);
 
         $produk->save();

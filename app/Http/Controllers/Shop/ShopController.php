@@ -17,7 +17,10 @@ class ShopController extends Controller
     public function shop()
     {
 
-        $produk_varian = Produk_Varian::with('Produk')->get();
+        $produk_varian = Produk_Varian::with('Produk')
+        ->get()
+        ->unique('warna');
+
         return view('shop.shop', compact('produk_varian'));
     }
 
@@ -29,9 +32,9 @@ class ShopController extends Controller
     public function detail($slug)
     {
         // Assuming 'id_varian' is the key that links to the color data
-        $produk = Produk::where('slug', $slug)->first();
+        $produk = Produk_Varian::where('slug', $slug)->first();
 
-        $id_produk = Produk::where('slug', $slug)->pluck('id_produk')->first();
+        $id_produk = Produk_Varian::where('slug', $slug)->pluck('id_produk')->first();
 
         $varian = Produk_Varian::where('id_produk', $id_produk)->first();
 
@@ -55,13 +58,13 @@ class ShopController extends Controller
         $result = [];
 
         foreach ($gambar_warna as $item) {
-            // $slug = Produk_Varian::where('id_produk', $item['id_produk']) 
-            //     ->where('id_varian', $item['id_varian'])
-            //     ->value('slug');
-            $slug = Produk_Varian::where('produk_varian.id_produk', $item['id_produk']) // Gunakan alias tabel
-                ->where('produk_varian.id_varian', $item['id_varian']) // Gunakan alias tabel
-                ->join('produk', 'produk.id_produk', '=', 'produk_varian.id_produk')
-                ->value('produk.slug'); // Ambil kolom slug dari tabel Produk
+            $slug = Produk_Varian::where('id_produk', $item['id_produk'])
+                ->where('id_varian', $item['id_varian'])
+                ->value('slug');
+            // $slug = Produk_Varian::where('produk_varian.id_produk', $item['id_produk']) // Gunakan alias tabel
+            //     ->where('produk_varian.id_varian', $item['id_varian']) // Gunakan alias tabel
+            //     ->join('produk', 'produk.id_produk', '=', 'produk_varian.id_produk')
+            //     ->value('produk.slug'); // Ambil kolom slug dari tabel Produk
 
             $result[] = [
                 'slug' => $slug,
@@ -76,22 +79,6 @@ class ShopController extends Controller
 
         return view('shop.detail', compact('produk', 'varian', 'ukuran', 'warna_portal', 'result'));
 
-
-        // Cari produk berdasarkan slug
-        // $produk = Produk::where('slug', $slug)->first();
-
-        // $id_produk = Produk::where('slug', $slug)->pluck('id_produk')->first();
-        // $varian = Produk_Varian::where('id_produk', $id_produk)->first();
-
-        // $id_varian = Produk_Varian::where('id_produk', $id_produk)->pluck('id_varian')->first();
-        // $warna = Produk_Varian::where('id_varian', $id_varian)->get();
-
-
-        // return view('shop.detail', compact('produk', 'varian', 'warna'));
-
-        // $produk = Produk::where('slug', $slug)->first();
-        // $produk_varian = Produk_Varian::with('Produk')->get();
-        // return view('shop.detail', compact('produk','produk_varian'));
     }
     public function cart()
     {

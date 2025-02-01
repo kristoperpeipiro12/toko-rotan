@@ -21,6 +21,7 @@ class Produk_Varian extends Model
         'harga',
         'gambar',
         'stok',
+        'slug',
     ];
 
     public function produk()

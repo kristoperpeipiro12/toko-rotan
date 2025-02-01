@@ -25,7 +25,7 @@ class ProdukSeeder extends Seeder
             $produk[] = [
                 'nama_produk' => 'Produk'.$i, // Nama produk berupa angka
                 'deskripsi' => 'Deskripsi untuk Produk ' . $i,
-                'slug' => Str::slug('Produk ' . $i),
+
             ];
         }
 

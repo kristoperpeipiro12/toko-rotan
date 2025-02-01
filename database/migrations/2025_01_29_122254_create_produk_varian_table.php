@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->double('harga');
             $table->string('gambar')->nullable();
             $table->integer('stok');
+            $table->string('slug');
             $table->timestamps();
 
             $table->foreign('id_produk')
