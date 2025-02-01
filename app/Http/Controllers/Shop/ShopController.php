@@ -14,12 +14,33 @@ class ShopController extends Controller
         return view('shop.home');
     }
 
+    // public function shop()
+    // {
+
+    //     $produk_varian = Produk_Varian::with('Produk') // Mengambil relasi Produk
+    //         ->get()
+    //         ->groupBy('warna') // Mengelompokkan berdasarkan warna
+    //         ->map(function ($group) {
+    //             // Jika ada lebih dari satu produk dalam grup warna yang sama, kita tidak perlu menyaring berdasarkan nama produk
+    //             return $group; // Kembalikan semua produk dengan warna yang sama
+    //         })
+    //         ->flatten(); // Flatten hasilnya untuk mendapatkan data dalam satu array
+
+
+
+    //     return view('shop.shop', compact('produk_varian'));
+    // }
+
     public function shop()
     {
-
-        $produk_varian = Produk_Varian::with('Produk')
-        ->get()
-        ->unique('warna');
+        $produk_varian = Produk_Varian::with('Produk') // Mengambil relasi Produk
+            ->get()
+            ->groupBy('id_produk') // Mengelompokkan berdasarkan ID produk
+            ->map(function ($group) {
+                // Mengelompokkan varian produk berdasarkan warna
+                return $group->unique('warna');
+            })
+            ->flatten(); // Flatten hasilnya untuk mendapatkan data dalam satu array
 
         return view('shop.shop', compact('produk_varian'));
     }

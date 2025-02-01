@@ -15,16 +15,22 @@ class ProdukController extends Controller
     {
         $kategori = Kategori::all();
         $produk = Produk::with('kategori')
-    ->join('kategori', 'produk.id_kategori', '=', 'kategori.id_kategori')
-    ->orderByRaw('CAST(SUBSTRING(produk.nama_produk, 7) AS UNSIGNED) ASC')
-    ->select('produk.*')
-    ->get();
+            ->join('kategori', 'produk.id_kategori', '=', 'kategori.id_kategori')
+            ->orderByRaw('CAST(SUBSTRING(produk.nama_produk, 7) AS UNSIGNED) ASC')
+            ->select('produk.*')
+            ->get();
         $pageTitle = 'Daftar Produk';
 
         return view('admin.produk.daftar-produk', compact('produk', 'kategori', 'pageTitle'));
     }
     public function store(Request $request)
     {
+
+        $cek_input = Produk::where('nama_produk', $request->nama_produk)
+            ->first();
+        if (!empty($cek_input)) {
+            return redirect()->route('admin.produk')->with('toast_error', 'Porduk ' . $request->nama_produk . 'telah ada!');
+        }
 
 
         // Validasi input
@@ -33,7 +39,7 @@ class ProdukController extends Controller
             'nama_produk' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
 
-        ],);
+        ], );
 
         Produk::create([
             'id_kategori' => $request->id_kategori,
@@ -79,8 +85,8 @@ class ProdukController extends Controller
         $produk->fill([
             'id_kategori' => $request->id_kategori,
             'nama_produk' => $request->nama_produk,
-            'deskripsi'=> $request->deskripsi,
-           
+            'deskripsi' => $request->deskripsi,
+
         ]);
 
         $produk->save();

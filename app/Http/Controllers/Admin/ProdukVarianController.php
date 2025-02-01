@@ -74,7 +74,7 @@ class ProdukVarianController extends Controller
             'harga' => $request->harga,
             'gambar' => $gambarPath,
             'stok' => $request->stok,
-            'slug' => Str::slug($nama_produk),
+            'slug' => Str::slug($nama_produk . '-' . $request->warna),
         ]);
 
         // Redirect dengan notifikasi sukses
