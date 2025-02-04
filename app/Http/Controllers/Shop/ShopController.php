@@ -59,7 +59,7 @@ class ShopController extends Controller
 
         $varian = Produk_Varian::where('id_produk', $id_produk)->first();
 
-        $ukuran = Produk_Varian::where('id_produk', $id_produk)->get();  // Get all variants for the product
+        $ukuran = Produk_Varian::where('slug', $slug)->get();  // Get all variants for the product
 
         // bagian portal >>
         $warna_portal = Produk_Varian::where('id_produk', $id_produk)
@@ -82,10 +82,7 @@ class ShopController extends Controller
             $slug = Produk_Varian::where('id_produk', $item['id_produk'])
                 ->where('id_varian', $item['id_varian'])
                 ->value('slug');
-            // $slug = Produk_Varian::where('produk_varian.id_produk', $item['id_produk']) // Gunakan alias tabel
-            //     ->where('produk_varian.id_varian', $item['id_varian']) // Gunakan alias tabel
-            //     ->join('produk', 'produk.id_produk', '=', 'produk_varian.id_produk')
-            //     ->value('produk.slug'); // Ambil kolom slug dari tabel Produk
+
 
             $result[] = [
                 'slug' => $slug,
@@ -94,6 +91,10 @@ class ShopController extends Controller
             ];
         }
         // << bagian portal
+
+        // $harga = Produk_Varian::where('id_produk', $id_produk)
+        //     ->where('')
+        //     ->first();
 
 
 

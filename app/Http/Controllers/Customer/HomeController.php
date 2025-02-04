@@ -21,7 +21,15 @@ class HomeController extends Controller
 
     public function shop()
     {
-        $produk_varian = Produk_Varian::with('Produk')->get();
+        $produk_varian = Produk_Varian::with('Produk') // Mengambil relasi Produk
+            ->get()
+            ->groupBy('id_produk') // Mengelompokkan berdasarkan ID produk
+            ->map(function ($group) {
+                // Mengelompokkan varian produk berdasarkan warna
+                return $group->unique('warna');
+            })
+            ->flatten(); // Flatten hasilnya untuk mendapatkan data dalam satu array
+
         return view('customer.shop', compact('produk_varian'));
     }
 }

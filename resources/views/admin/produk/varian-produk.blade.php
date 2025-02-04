@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <div class="wrap-filter-cus">
+                        {{-- <div class="wrap-filter-cus">
                             <div class="wrap-filter-produk">
                                 <form action="{{ route('admin.produk_varian') }}" method="POST">
                                     @csrf
@@ -39,7 +39,7 @@
                             </div>
                             <div class="wrap-filter-warna"></div>
                             <div class="wrap-filter-ukuran"></div>
-                        </div>
+                        </div> --}}
                         <table class="table align-items-center table-flush table-hover" id="example">
                             <thead class="thead-light">
                                 <tr>
@@ -65,13 +65,12 @@
                                         <td>{{ $pv->stok }}</td>
                                         <td>
                                             @if ($pv->gambar)
-                                               
                                                 @if (Str::startsWith($pv->gambar, 'http') || Str::startsWith($pv->gambar, 'https'))
-
-                                                    <img src="{{ $pv->gambar }}" alt="{{ $pv->nama_produk }}" width="100">
+                                                    <img src="{{ $pv->gambar }}" alt="{{ $pv->nama_produk }}"
+                                                        width="100">
                                                 @else
-
-                                                    <img src="{{ asset('storage/' . $pv->gambar) }}" alt="{{ $pv->nama_produk }}" width="100">
+                                                    <img src="{{ asset('storage/' . $pv->gambar) }}"
+                                                        alt="{{ $pv->nama_produk }}" width="100">
                                                 @endif
                                             @else
                                                 {{-- Jika tidak ada gambar --}}
@@ -231,7 +230,8 @@
                                 <!-- Dropdown Kategori -->
                                 <div class="mb-3">
                                     <label for="edit_id_produk_{{ $pv->id_varian }}" class="form-label">Produk</label>
-                                    <select class="form-select" id="edit_id_produk_{{ $pv->id_varian }}" name="id_produk" required>
+                                    <select class="form-select" id="edit_id_produk_{{ $pv->id_varian }}"
+                                        name="id_produk" required>
                                         @foreach ($produk as $p)
                                             <option value="{{ $p->id_produk }}"
                                                 @if ($p->id_produk == $pv->id_produk) selected @endif>

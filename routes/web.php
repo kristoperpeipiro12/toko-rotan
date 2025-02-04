@@ -12,8 +12,7 @@ use App\Http\Controllers\Login\LoginController as LoginLoginController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Shop\ShopController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
