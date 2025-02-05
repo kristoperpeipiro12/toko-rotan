@@ -26,6 +26,33 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        <!-- Input Filter -->
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <select id="filterNamaProduk" class="form-control">
+                                    <option value="">Semua Produk</option>
+                                    @foreach ($produk as $p)
+                                        <option value="{{ strtolower($p->nama_produk) }}">{{ $p->nama_produk }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="filterWarna" class="form-control">
+                                    <option value="">Semua Warna</option>
+                                    @foreach ($display_produk as $pv)
+                                        <option value="{{ strtolower($pv->warna) }}">{{ $pv->warna }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="filterUkuran" class="form-control">
+                                    <option value="">Semua Ukuran</option>
+                                    @foreach ($display_produk as $pv)
+                                        <option value="{{ strtolower($pv->ukuran) }}">{{ $pv->ukuran }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <table class="table align-items-center table-flush table-hover" id="example">
                             <thead class="thead-light">
                                 <tr>
@@ -42,8 +69,10 @@
                             </thead>
                             <tbody>
                                 @foreach ($display_produk as $pv)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                    <tr class="produk-row" data-nama="{{ strtolower($pv->produk->nama_produk) }}"
+                                        data-warna="{{ strtolower($pv->warna) }}"
+                                        data-ukuran="{{ strtolower($pv->ukuran) }}">
+                                        <td class="no-urut">{{ $loop->iteration }}</td>
                                         <td>{{ $pv->produk->nama_produk }}</td>
                                         <td>{{ $pv->produk->deskripsi }}</td>
                                         <td>{{ $pv->warna }}</td>
@@ -55,10 +84,12 @@
                                                 {{-- Cek apakah gambar berasal dari storage lokal --}}
                                                 @if (Str::startsWith($pv->gambar, 'http') || Str::startsWith($pv->gambar, 'https'))
                                                     {{-- Jika gambar adalah URL eksternal --}}
-                                                    <img src="{{ $pv->gambar }}" alt="{{ $pv->nama_produk }}" width="100">
+                                                    <img src="{{ $pv->gambar }}" alt="{{ $pv->nama_produk }}"
+                                                        width="100">
                                                 @else
                                                     {{-- Jika gambar berasal dari storage lokal --}}
-                                                    <img src="{{ asset('storage/' . $pv->gambar) }}" alt="{{ $pv->nama_produk }}" width="100">
+                                                    <img src="{{ asset('storage/' . $pv->gambar) }}"
+                                                        alt="{{ $pv->nama_produk }}" width="100">
                                                 @endif
                                             @else
                                                 {{-- Jika tidak ada gambar --}}
@@ -76,7 +107,59 @@
         </div>
 
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+        <script>
+            $(document).ready(function() {
+                function checkIfEmpty() {
+                    var visibleRows = $('.produk-row:visible').length;
+                    if (visibleRows === 0) {
+                        $('#noDataRow').show();
+                    } else {
+                        $('#noDataRow').hide();
+                    }
+                }
+
+                function updateRowNumbers() {
+                    var index = 1;
+                    $('.produk-row:visible').each(function() {
+                        $(this).find('.no-urut').text(index);
+                        index++;
+                    });
+                }
+
+                function applyFilters() {
+                    var filterNamaProduk = $('#filterNamaProduk').val().toLowerCase();
+                    var filterWarna = $('#filterWarna').val().toLowerCase();
+                    var filterUkuran = $('#filterUkuran').val().toLowerCase();
+
+                    $('.produk-row').each(function() {
+                        var namaProduk = $(this).data('nama');
+                        var warna = $(this).data('warna');
+                        var ukuran = $(this).data('ukuran');
+
+                        var matchNama = filterNamaProduk === '' || namaProduk === filterNamaProduk;
+                        var matchWarna = filterWarna === '' || warna === filterWarna;
+                        var matchUkuran = filterUkuran === '' || ukuran === filterUkuran;
+
+                        if (matchNama && matchWarna && matchUkuran) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+
+                    checkIfEmpty();
+                    updateRowNumbers();
+                }
+
+                $('#filterNamaProduk, #filterWarna, #filterUkuran').on('change', function() {
+                    applyFilters();
+                });
+
+                checkIfEmpty();
+            });
+        </script>
 
 
 

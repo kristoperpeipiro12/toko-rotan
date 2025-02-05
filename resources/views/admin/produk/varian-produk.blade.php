@@ -20,26 +20,34 @@
                     </a>
                 </div>
                 <div class="card-body">
+                    <!-- Input Filter -->
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <select id="filterNamaProduk" class="form-control">
+                                <option value="">Semua Produk</option>
+                                @foreach ($produk as $p)
+                                    <option value="{{ strtolower($p->nama_produk) }}">{{ $p->nama_produk }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="filterWarna" class="form-control">
+                                <option value="">Semua Warna</option>
+                                @foreach ($produk_varian as $pv)
+                                    <option value="{{ strtolower($pv->warna) }}">{{ $pv->warna }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="filterUkuran" class="form-control">
+                                <option value="">Semua Ukuran</option>
+                                @foreach ($produk_varian as $pv)
+                                    <option value="{{ strtolower($pv->ukuran) }}">{{ $pv->ukuran }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="table-responsive">
-                        {{-- <div class="wrap-filter-cus">
-                            <div class="wrap-filter-produk">
-                                <form action="{{ route('admin.produk_varian') }}" method="POST">
-                                    @csrf
-                                    <label for="f_id_pro" class="form-label">Filter Produk</label>
-                                    <select name="id_produk" id="f_id_pro" class="form-select"
-                                        onchange="this.form.submit()">
-                                        <option value=""></option>
-                                        @foreach ($produk as $p)
-                                            <option value="{{ $p->id_produk }}"
-                                                {{ request('id_produk') == $p->id_produk ? 'selected' : '' }}>
-                                                {{ $p->nama_produk }}</option>
-                                        @endforeach
-                                    </select>
-                                </form>
-                            </div>
-                            <div class="wrap-filter-warna"></div>
-                            <div class="wrap-filter-ukuran"></div>
-                        </div> --}}
                         <table class="table align-items-center table-flush table-hover" id="example">
                             <thead class="thead-light">
                                 <tr>
@@ -55,8 +63,11 @@
                             </thead>
                             <tbody>
                                 @foreach ($produk_varian as $pv)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                    <tr class="produk-row" data-nama="{{ strtolower($pv->produk->nama_produk) }}"
+                                        data-warna="{{ strtolower($pv->warna) }}"
+                                        data-ukuran="{{ strtolower($pv->ukuran) }}">
+
+                                        <td class="no-urut">{{ $loop->iteration }}</td>
                                         <td>{{ $pv->produk->nama_produk }}</td>
                                         <td>{{ $pv->warna }}</td>
                                         <td>{{ $pv->ukuran }}</td>
@@ -298,74 +309,126 @@
             </div>
         @endforeach
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script>
-            function previewImage(event) {
-                var input = event.target;
-                var preview = document.getElementById('preview');
+             $(document).ready(function() {
+                function checkIfEmpty() {
+                    var visibleRows = $('.produk-row:visible').length;
+                    if (visibleRows === 0) {
+                        $('#noDataRow').show();
+                    } else {
+                        $('#noDataRow').hide();
+                    }
+                }
 
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
+                function updateRowNumbers() {
+                    var index = 1;
+                    $('.produk-row:visible').each(function() {
+                        $(this).find('.no-urut').text(index);
+                        index++;
+                    });
+                }
 
-                    reader.onload = function(e) {
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
+                function applyFilters() {
+                    var filterNamaProduk = $('#filterNamaProduk').val().toLowerCase();
+                    var filterWarna = $('#filterWarna').val().toLowerCase();
+                    var filterUkuran = $('#filterUkuran').val().toLowerCase();
+
+                    $('.produk-row').each(function() {
+                        var namaProduk = $(this).data('nama');
+                        var warna = $(this).data('warna');
+                        var ukuran = $(this).data('ukuran');
+
+                        var matchNama = filterNamaProduk === '' || namaProduk === filterNamaProduk;
+                        var matchWarna = filterWarna === '' || warna === filterWarna;
+                        var matchUkuran = filterUkuran === '' || ukuran === filterUkuran;
+
+                        if (matchNama && matchWarna && matchUkuran) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+
+                    checkIfEmpty();
+                    updateRowNumbers();
+                }
+
+                $('#filterNamaProduk, #filterWarna, #filterUkuran').on('change', function() {
+                    applyFilters();
+                });
+
+                checkIfEmpty();
+            });
+
+                    function previewImage(event) {
+                        var input = event.target;
+                        var preview = document.getElementById('preview');
+
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                preview.src = e.target.result;
+                                preview.style.display = 'block';
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
                     }
 
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
+                    function previewEditImage(event) {
+                        var input = event.target;
+                        var preview = document.getElementById('edit_preview');
 
-            function previewEditImage(event) {
-                var input = event.target;
-                var preview = document.getElementById('edit_preview');
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
 
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
+                            reader.onload = function(e) {
+                                preview.src = e.target.result;
+                                preview.style.display = 'block';
+                            }
 
-                    reader.onload = function(e) {
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
+                            reader.readAsDataURL(input.files[0]);
+                        }
                     }
 
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
+                    function formatRupiah(event) {
+                        let input = event.target;
+                        let value = input.value.replace(/[^0-9]/g, '');
+                        let rawValue = parseInt(value, 10);
+                        if (isNaN(rawValue)) {
+                            input.value = '';
+                            document.getElementById('harga_raw').value = '';
+                            return;
+                        }
 
-            function formatRupiah(event) {
-                let input = event.target;
-                let value = input.value.replace(/[^0-9]/g, '');
-                let rawValue = parseInt(value, 10);
-                if (isNaN(rawValue)) {
-                    input.value = '';
-                    document.getElementById('harga_raw').value = '';
-                    return;
-                }
+                        input.value = rawValue.toLocaleString('id-ID');
 
-                input.value = rawValue.toLocaleString('id-ID');
+                        document.getElementById('harga_raw').value = rawValue;
+                    }
 
-                document.getElementById('harga_raw').value = rawValue;
-            }
+                    const hargaInput = document.getElementById('harga'); hargaInput.addEventListener('input', formatRupiah);
 
-            const hargaInput = document.getElementById('harga');
-            hargaInput.addEventListener('input', formatRupiah);
+                    const editHargaInput = document.getElementById('edit_harga');
+                    if (editHargaInput) {
+                        editHargaInput.addEventListener('input', formatRupiah);
+                    }
 
-            const editHargaInput = document.getElementById('edit_harga');
-            if (editHargaInput) {
-                editHargaInput.addEventListener('input', formatRupiah);
-            }
+                    // Stock Validation
+                    const stokInput = document.getElementById('stok');
+                    const stokError = document.getElementById('stok-error');
 
-            // Stock Validation
-            const stokInput = document.getElementById('stok');
-            const stokError = document.getElementById('stok-error');
+                    stokInput.addEventListener('input', function() {
+                        if (stokInput.value < 0) {
+                            stokInput.value = '';
+                            stokError.style.display = 'block';
+                        } else {
+                            stokError.style.display = 'none';
+                        }
+                    })
 
-            stokInput.addEventListener('input', function() {
-                if (stokInput.value < 0) {
-                    stokInput.value = '';
-                    stokError.style.display = 'block';
-                } else {
-                    stokError.style.display = 'none';
-                }
-            })
         </script>
 
     </div>
