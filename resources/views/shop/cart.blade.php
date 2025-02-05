@@ -6,7 +6,7 @@
             <h2 class="cart-title">Keranjang</h2>
             <a href="{{ route('shop.home') }}" class="btn"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
         </div>
-        {{-- @for ($i = 0; $i < 3; $i++) --}}
+        @for ($i = 0; $i < 3; $i++)
         <div class="cart-item">
             <div class="item-header">
                 <input type="checkbox" class="select-all" />
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        {{-- @endfor --}}
+        @endfor
 
         <!-- Repeat for additional items -->
 

@@ -85,6 +85,7 @@ class ShopController extends Controller
 
 
             $result[] = [
+                'id_varian' => $item['id_varian'],
                 'slug' => $slug,
                 'warna' => $item['warna'],
                 'gambar' => $item['gambar'],
@@ -92,9 +93,7 @@ class ShopController extends Controller
         }
         // << bagian portal
 
-        // $harga = Produk_Varian::where('id_produk', $id_produk)
-        //     ->where('')
-        //     ->first();
+        // $harga = Produk_Varian::where('id_varian', $id_varian)->first();
 
 
 
@@ -104,6 +103,7 @@ class ShopController extends Controller
     }
     public function cart()
     {
+        
         return view('shop.cart');
     }
 

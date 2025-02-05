@@ -37,7 +37,7 @@ class ProdukVarianController extends Controller
             ->where('ukuran', $request->ukuran)
             ->first();
         if (!empty($cek_input)) {
-            return redirect()->route('admin.produk_varian')->with('toast_error', 'Varian tersebut telah dimiliki Produk ' . $nama_produk . '!');
+            return redirect()->route('admin.produk_varian')->with('toast_error', 'Varian tersebut telah dimiliki ' . $nama_produk . '!');
         }
 
         $request->merge([
@@ -75,7 +75,7 @@ class ProdukVarianController extends Controller
             'gambar' => $gambarPath,
             'stok' => $request->stok,
             // 'slug' => Str::slug($nama_produk . '-' . $request->warna . '-' . $request->ukuran),
-            'slug' => Str::slug($nama_produk . '-' . $request->warna),
+            'slug' => Str::slug($nama_produk . '-' . $request->warna.'-'. $request->ukuran),
         ]);
 
         // Redirect dengan notifikasi sukses
