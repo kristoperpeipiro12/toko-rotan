@@ -38,19 +38,19 @@ class ProdukController extends Controller
             'id_kategori' => 'required|exists:kategori,id_kategori',
             'nama_produk' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-
         ], );
 
-        Produk::create([
-            'id_kategori' => $request->id_kategori,
-            'nama_produk' => $request->nama_produk,
-            'deskripsi' => $request->deskripsi,
+        if (!empty($request->id_kategori) && !empty($request->nama_produk) && !empty($request->deskripsi)) {
+            Produk::create([
+                'id_kategori' => $request->id_kategori,
+                'nama_produk' => $request->nama_produk,
+                'deskripsi' => $request->deskripsi,
+            ]);
+            return redirect()->route('admin.produk')->with('toast_success', 'Produk berhasil ditambahkan.');
+        } else {
+            return redirect()->route('admin.produk')->with('toast_error', 'Kolom tidak boleh ada yang kosong!');
+        }
 
-
-        ]);
-
-
-        return redirect()->route('admin.produk')->with('toast_success', 'Produk berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)

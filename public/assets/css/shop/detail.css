@@ -53,18 +53,30 @@
 
 /* ukuran card >> */
 
-.wrap-uk-detail {
-    background-color: aqua;
+.ukuran-item {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.ukuran-item {
-    padding: 8px 12px;
-    border: 1px solid black;
-    border-radius: 8px;
+.ukuran-item:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    color: black;
-    font-weight: 800;
-    text-decoration: none;
+.ukuran-item.active {
+    background-color: #ffcc99;
+    border-color: #ff9900;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(255, 153, 0, 0.4);
 }
 
 /* << ukuran card */
@@ -191,7 +203,9 @@
     position: relative;
     display: inline-block;
     border-radius: 8px;
+    border: 1px solid #ddd;
     cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .img-portal-warna {
@@ -211,6 +225,8 @@
     z-index: 10;
 }
 
-/* .card-protal-warna.active {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
-} */
+.card-protal-warna.active {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    border: 1px solid #ffa500;
+}

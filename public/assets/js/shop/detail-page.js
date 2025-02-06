@@ -3,6 +3,8 @@ const increaseButton = document.getElementById("increase");
 const quantityInput = document.getElementById("quantity");
 const maxStock = 106; // Jumlah stok maksimal
 const minStock = 1; // Nilai minimum
+const colorCards = document.querySelectorAll(".card-protal-warna");
+const localStorageKey = "selectedColor";
 
 // Fungsi untuk memastikan nilai input tetap dalam rentang yang diizinkan
 function validateInput() {
@@ -55,10 +57,27 @@ quantityInput.addEventListener("blur", function () {
 });
 
 // portal warna
-const selectedPortalWarna = document.querySelectorAll("#selected-portal-warna");
+// Fungsi untuk memulihkan pilihan dari localStorage
+document.addEventListener("DOMContentLoaded", () => {
+    const selectedSlug = localStorage.getItem(localStorageKey);
 
-selectedPortalWarna.forEach((element) => {
-    element.addEventListener("click", function () {
-        element.classList.add("active");
+    if (selectedSlug) {
+        // Temukan elemen yang sesuai dengan slug yang disimpan
+        const selectedCard = Array.from(colorCards).find(
+            (card) => card.getAttribute("href") === selectedSlug
+        );
+
+        if (selectedCard) {
+            selectedCard.classList.add("active"); // Berikan class 'active' ke elemen yang sesuai
+        }
+    }
+});
+
+// Tambahkan event listener pada setiap card
+colorCards.forEach((card) => {
+    card.addEventListener("click", function (e) {
+        // Simpan slug yang dipilih ke localStorage
+        const slug = this.getAttribute("href");
+        localStorage.setItem(localStorageKey, slug);
     });
 });

@@ -14,23 +14,6 @@ class ShopController extends Controller
         return view('shop.home');
     }
 
-    // public function shop()
-    // {
-
-    //     $produk_varian = Produk_Varian::with('Produk') // Mengambil relasi Produk
-    //         ->get()
-    //         ->groupBy('warna') // Mengelompokkan berdasarkan warna
-    //         ->map(function ($group) {
-    //             // Jika ada lebih dari satu produk dalam grup warna yang sama, kita tidak perlu menyaring berdasarkan nama produk
-    //             return $group; // Kembalikan semua produk dengan warna yang sama
-    //         })
-    //         ->flatten(); // Flatten hasilnya untuk mendapatkan data dalam satu array
-
-
-
-    //     return view('shop.shop', compact('produk_varian'));
-    // }
-
     public function shop()
     {
         $produk_varian = Produk_Varian::with('Produk') // Mengambil relasi Produk
@@ -59,8 +42,10 @@ class ShopController extends Controller
 
         $varian = Produk_Varian::where('id_produk', $id_produk)->first();
 
-        $ukuran = Produk_Varian::where('slug', $slug)->get();  // Get all variants for the product
-
+        $filter_slug = explode('-', $slug, 4); // memisahkan
+        $filter_slug = implode('-', array_slice($filter_slug, 0, 3)); // menyatukan
+        $ukuran = Produk_Varian::where('slug', 'like', $filter_slug . '%')->get();  // Get all variants for the product
+        $selectedUkuran = request('ukuran', $ukuran->first()->ukuran ?? null);
         // bagian portal >>
         $warna_portal = Produk_Varian::where('id_produk', $id_produk)
             ->distinct()
@@ -98,12 +83,12 @@ class ShopController extends Controller
 
 
 
-        return view('shop.detail', compact('produk', 'varian', 'ukuran', 'warna_portal', 'result'));
+        return view('shop.detail', compact('produk', 'varian', 'ukuran', 'warna_portal', 'result', 'selectedUkuran'));
 
     }
     public function cart()
     {
-        
+
         return view('shop.cart');
     }
 

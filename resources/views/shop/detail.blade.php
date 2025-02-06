@@ -18,37 +18,15 @@
                         {{ $produk->produk->deskripsi }}
                     </div>
                     <div class="options-pdt-dt1">
-                        {{-- <div class="option-group-pdt-dt1">
-                            <label for="size-pdt-dt1">Pilih Ukuran:</label>
-                            <div class="wrap-uk-detail">
-                                @for ($i = 0; $i < 2; $i++)
-                                    <a href="#" class="card-uk"> {{ $uk[$i] }} </a>
-                                @endfor
-                            </div>
-                        </div> --}}
-                        {{-- <div class="option-group-pdt-dt1">
-                            <label for="size-pdt-dt1">Pilih Ukuran:</label>
-                            <div class="wrap-uk-detail">
-                                <select id="size-select" name="size">
-                                    @foreach ($ukuran as $v)
-                                        <option value="{{ $v->id_varian }}" data-price="{{ $v->harga }}"
-                                            data-stock="{{ $v->stok }}">
-                                            {{ $v->ukuran }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
-
                         <div class="option-group-pdt-dt1">
                             <label for="size-pdt-dt1">Pilih Ukuran:</label>
                             <div class="wrap-uk-detail">
                                 @foreach ($ukuran as $uk)
-                                    <a href="#" class="ukuran-item">{{ $uk->ukuran }}</a>
+                                    <a href="#" class="ukuran-item {{ $uk->ukuran == $selectedUkuran ? 'active' : '' }}">{{ $uk->ukuran }}</a>
                                 @endforeach
                             </div>
                         </div>
-
+                        
                         <div class="option-group-pdt-dt1">
                             <label for="color-pdt-dt1">Pilih Warna:</label>
                             <div class="wrap-warna-detail">
