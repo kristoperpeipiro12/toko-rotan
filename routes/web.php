@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProdukVarianController;
 use App\Http\Controllers\Customer\HomeController as CustomerHomeController;
 use App\Http\Controllers\Login\LoginController as LoginLoginController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Shop\AccountController;
 use App\Http\Controllers\Shop\ShopController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Response;
@@ -93,7 +94,12 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/shop/about', [ShopController::class, 'about'])->name('shop.about');
     Route::get('/shop/detail/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
     Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
-    Route::get('/account', [ShopController::class, 'account'])->name('shop.account');
+
+
+    Route::get('/account', [AccountController::class, 'index'])->name('cs.account');
+    Route::post('/account/tanggal-lahir', [AccountController::class, 'updateTanggalLahir'])->name('cs.tgl_lahir');
+Route::post('/account/jenis-kelamin', [AccountController::class, 'updateJenisKelamin'])->name('cs.jk');
+
 });
 
 // Download Catalog

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Produk;
 use App\Models\Produk_Varian;
 use Illuminate\Http\Request;
@@ -76,13 +77,7 @@ class ShopController extends Controller
                 'gambar' => $item['gambar'],
             ];
         }
-        // << bagian portal
-
-        // $harga = Produk_Varian::where('id_varian', $id_varian)->first();
-
-
-
-
+    
         return view('shop.detail', compact('produk', 'varian', 'ukuran', 'warna_portal', 'result', 'selectedUkuran'));
 
     }
@@ -91,9 +86,4 @@ class ShopController extends Controller
 
         return view('shop.cart');
     }
-
-    public function account()
-    {
-        return view('shop.account.pages.account');
-    }
-}
+   }

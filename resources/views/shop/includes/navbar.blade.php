@@ -11,9 +11,9 @@
             <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus"
                     href="{{ route('shop.home') . '#contact' }}">Contact</a></li>
 
-            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('shop.account') }}">Account</a>
+            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('cs.account') }}">Account</a>
             </li>
-            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('shop.account') }}"
+            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('cs.account') }}"
                     data-bs-toggle="modal" data-bs-target="#logoutModal">Log-Out</a>
             </li>
 
@@ -26,10 +26,10 @@
         </ul>
         <div class="user-section-cus" id="user-section-cus">
             <div class="nav-item-cus hidden-tablet">
-                <a href="{{ route('shop.account') }}" class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus"><i
+                <a href="{{ route('cs.account') }}" class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus"><i
                         class="fa-color-cus fa-solid fa-user"></i></a>
                 <ul class="dropdown-cus-1" id="dd-cus">
-                    <li><a style="font-size: 1rem; color: black;" href="{{ route('shop.account') }}">Account</a></li>
+                    <li><a style="font-size: 1rem; color: black;" href="{{ route('cs.account') }}">Account</a></li>
                     <li>
                         <p style="font-size: 1rem; color: black; margin-bottom: 0;" data-bs-toggle="modal"
                             data-bs-target="#logoutModal">

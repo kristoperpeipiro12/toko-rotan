@@ -18,6 +18,7 @@
 <body style="position: relative">
     @include('shop.account.pop-up.pop-up-account')
     @include('shop.includes.sidebar-user')
+    @include('sweetalert::alert')
     <section class="home-section">
         <div class="text">Akun Saya</div>
         <div class="kembali-account">
@@ -56,24 +57,39 @@
                         <h3>Ubah Biodata Diri</h3>
                         <div class="res-bio-group">
                             <span>Nama:</span>
-                            Hans
+                            {{ auth()->user()->name }}
                         </div>
                         <div class="res-bio-group">
                             <span>Tanggal Lahir:</span>
-                            <p id="openAccModal" data-content="content-1">Tambah Tanggal Lahir</p>
+
+                            @if (auth()->user()->tanggal_lahir)
+                                <p>{{ \Carbon\Carbon::parse(auth()->user()->tanggal_lahir)->format('d/m/Y') }}</p>
+                            @else
+                                <p id="openAccModal" data-content="content-1">Tambahkan Tanggal Lahir</p>
+                            @endif
                         </div>
+
                         <div class="res-bio-group">
                             <span>Jenis Kelamin:</span>
-                            <p id="openAccModal" data-content="content-2">Tambah Jenis Kelamin</p>
+
+                            @if (auth()->user()->jenis_kelamin)
+                                <p>{{ auth()->user()->jenis_kelamin }}</p>
+                            @else
+                                <p id="openAccModal" data-content="content-2">Tambahkan Jenis Kelamin</p>
+                            @endif
                         </div>
+
+
                         <h3>Ubah Kontak</h3>
                         <div class="res-bio-group">
                             <span>Email:</span>
-                            hans@gmail.com (Terverifikasi)
+                            {{ auth()->user()->email }}
+
                         </div>
                         <div class="res-bio-group">
                             <span>Nomor HP:</span>
-                            0812 3456 7891 (Terverifikasi)
+                            {{ auth()->user()->no_hp }}
+
                         </div>
                     </div>
                 </div>
@@ -85,9 +101,10 @@
                         <div class="title-bio-almt">Rumah</div>
                     </div>
                     <div class="content-bio-almt">
-                        <strong>Charisma Yedutun</strong><br>
-                        6285845177710<br>
-                        Jl. Parit H Muksin II, Komp. Star Borneo Residence, No. D16
+                        <strong>{{ auth()->user()->name }}
+                            </strong><br>
+                            {{ auth()->user()->no_hp }}<br>
+                            {{ auth()->user()->alamat }}
                     </div>
                     <div class="footer-bio-almt">
                         <div class="actions-bio-almt">

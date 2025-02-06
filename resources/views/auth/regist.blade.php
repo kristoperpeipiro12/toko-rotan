@@ -45,6 +45,21 @@
                                 <input type="text" name="no_hp" placeholder="+ 62" class="form-control" id="onlyNumber"
                                     required="">
                             </div>
+                            {{-- <div class="form-group mb-3">
+                                <label class="label" for="tanggal_lahir">Tanggal Lahir</label>
+                                <input type="date" name="tanggal_lahir" class="form-control" id="tanggal_lahir" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="label" for="jenis_kelamin">Jenis Kelamin</label>
+                                <select name="jenis_kelamin" class="form-control" id="jenis_kelamin" required>
+                                    <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div> --}}
+
                             <div class="form-group">
                                 <button type="submit"
                                     class="form-control btn btn-primary rounded submit px-3">Daftar</button>

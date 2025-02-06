@@ -8,48 +8,52 @@
                         <i class='bx bx-x x-popup'></i>
                     </div>
                 </div>
-                <p class="description-ttl-pop">Kamu hanya dapat mengatur tanggal lahir satu kali. Pastikan tanggal
-                    lahir sudah benar.</p>
+                <p class="description-ttl-pop">Kamu hanya dapat mengatur tanggal lahir satu kali. Pastikan tanggal lahir sudah benar.</p>
 
-                <div class="dropdown-container-ttl-pop">
-                    <select class="dropdown-ttl-pop" name="fd">
-                        <option>Tanggal</option>
-                        @for ($i = 1; $i < 32; $i++)
-                            <option value="">{{ $i }}</option>
-                        @endfor
-                    </select>
-                    <select class="dropdown-ttl-pop">
-                        <option>Bulan</option>
-                        <option>Januari</option>
-                        <option>Februari</option>
-                        <option>Maret</option>
-                        <option>April</option>
-                        <option>Mei</option>
-                        <option>Juni</option>
-                        <option>Juli</option>
-                        <option>Agustus</option>
-                        <option>September</option>
-                        <option>Oktober</option>
-                        <option>November</option>
-                        <option>Desember</option>
-                    </select>
-                    <select class="dropdown-ttl-pop">
-                        <option>Tahun</option>
-                        <script>
-                            let yearSelect = document.currentScript.parentElement;
-                            let currentYear = new Date().getFullYear();
-                            for (let i = currentYear; i >= 1900; i--) {
-                                let option = document.createElement("option");
-                                option.textContent = i;
-                                option.value = i;
-                                yearSelect.appendChild(option);
-                            }
-                        </script>
-                    </select>
-                </div>
+                <form action="{{ route('cs.tgl_lahir') }}" method="POST">
+                    @csrf
+                    <div class="dropdown-container-ttl-pop">
+                        <select class="dropdown-ttl-pop" name="tanggal" required>
+                            <option value="">Tanggal</option>
+                            @for ($i = 1; $i <= 31; $i++)
+                                <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                        <select class="dropdown-ttl-pop" name="bulan" required>
+                            <option value="">Bulan</option>
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <select class="dropdown-ttl-pop" name="tahun" required>
+                            <option value="">Tahun</option>
+                            <script>
+                                let yearSelect = document.currentScript.parentElement;
+                                let currentYear = new Date().getFullYear();
+                                for (let i = currentYear; i >= 1900; i--) {
+                                    let option = document.createElement("option");
+                                    option.textContent = i;
+                                    option.value = i;
+                                    yearSelect.appendChild(option);
+                                }
+                            </script>
+                        </select>
+                    </div>
 
-                <button class="button-ttl-pop">Simpan</button>
+                    <button type="submit" class="button-ttl-pop">Simpan</button>
+                </form>
             </div>
+
+
 
             <div class="popup-ttl-pop" id="content-2">
                 <div class="wrap-head-pop">
@@ -58,18 +62,24 @@
                         <i class='bx bx-x x-popup'></i>
                     </div>
                 </div>
-                <p class="description-ttl-pop">Kamu hanya dapat mengatur jenis kelamin satu kali. Pastikan jenis kelamin
-                    sudah benar.</p>
 
-                <div class="dropdown-container-ttl-pop">
-                    <select class="dropdown-ttl-pop">
-                        <option>Laki-laki</option>
-                        <option>Perempuan</option>
-                    </select>
-                </div>
+                <p class="description-ttl-pop">Kamu hanya dapat mengatur jenis kelamin satu kali. Pastikan jenis kelamin sudah benar.</p>
 
-                <button class="button-ttl-pop">Simpan</button>
+                <form action="{{ route('cs.jk') }}" method="POST">
+                    @csrf
+                    <div class="dropdown-container-ttl-pop">
+                        <select name="jenis_kelamin" class="dropdown-ttl-pop" required>
+                            <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="button-ttl-pop">Simpan</button>
+                </form>
             </div>
+
 
             <div class="popup-ttl-pop" id="content-3">
                 <div class="wrap-head-pop">
