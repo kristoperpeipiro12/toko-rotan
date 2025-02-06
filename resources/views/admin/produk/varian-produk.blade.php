@@ -11,7 +11,7 @@
                     alert("Tabel tidak ditemukan!");
                     return;
                 }
-r
+
                 let clonedTable = table.cloneNode(true);
                 let rows = clonedTable.rows;
 
