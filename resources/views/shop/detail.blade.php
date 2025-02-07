@@ -18,15 +18,26 @@
                         {{ $produk->produk->deskripsi }}
                     </div>
                     <div class="options-pdt-dt1">
-                        <div class="option-group-pdt-dt1">
+                        {{-- <div class="option-group-pdt-dt1">
                             <label for="size-pdt-dt1">Pilih Ukuran:</label>
                             <div class="wrap-uk-detail">
                                 @foreach ($ukuran as $uk)
                                     <a href="#" class="ukuran-item {{ $uk->ukuran == $selectedUkuran ? 'active' : '' }}">{{ $uk->ukuran }}</a>
                                 @endforeach
                             </div>
+                        </div> --}}
+
+                        <div class="option-group-pdt-dt1">
+                            <label for="size-pdt-dt1">Pilih Ukuran:</label>
+                            <div class="wrap-uk-detail">
+                                @foreach ($ukuran as $uk)
+                                    <div class="ukuran-item" data-ukuran="{{ $uk->ukuran }}">
+                                        {{ $uk->ukuran }}
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                        
+
                         <div class="option-group-pdt-dt1">
                             <label for="color-pdt-dt1">Pilih Warna:</label>
                             <div class="wrap-warna-detail">
@@ -62,6 +73,20 @@
 
     <script src="{{ asset('assets/js/shop/detail-page.js') }}"></script>
     <script>
+        // Ambil semua elemen ukuran
+        const ukuranItems = document.querySelectorAll('.ukuran-item');
+
+        // Tambahkan event listener untuk setiap elemen
+        ukuranItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Hapus class active dari semua elemen
+                ukuranItems.forEach(i => i.classList.remove('active'));
+
+                // Tambahkan class active pada elemen yang diklik
+                this.classList.add('active');
+            });
+        });
+
         document.getElementById('size-select').addEventListener('change', function() {
             // Get the selected option
             var selectedOption = this.options[this.selectedIndex];
