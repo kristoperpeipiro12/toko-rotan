@@ -34,6 +34,7 @@
                                     <div class="ukuran-item" data-ukuran="{{ $uk->ukuran }}">
                                         {{ $uk->ukuran }}
                                     </div>
+                                    {{-- <p>{{ $uk->slug }}</p> --}}
                                 @endforeach
                             </div>
                         </div>
@@ -61,9 +62,16 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ route('shop.cart') }}" class="text-decoration-none text-center add-to-cart-btn-pdt-dt1">
-                        Tambahkan ke Keranjang
-                    </a>
+                    <form action="" method="POST">
+                        {{-- hidden input --}}
+                        <input type="hidden" name="selected_ukuran" id="selected_ukuran">
+                        <input type="hidden" name="selected_slug" id="selected_slug">
+                        <button type="submit" class="text-decoration-none text-center add-to-cart-btn-pdt-dt1">
+                            Tambahkan ke Keranjang
+                        </button>
+                    </form>
+
+
                 </div>
             </div>
         </div>
@@ -122,6 +130,22 @@
             if (parseInt(quantityInput.value) > 1) {
                 quantityInput.value = parseInt(quantityInput.value) - 1;
             }
+        });
+
+        // Kirim ukuran ke backend
+        document.addEventListener("DOMContentLoaded", function() {
+            let selectedUkuran = document.getElementById("selected_ukuran");
+            let selectedSlug = document.getElementById("selected_slug");
+
+            document.querySelectorAll(".ukuran-item").forEach(function(item) {
+                item.addEventListener("click", function() {
+                    let ukuran = item.getAttribute("data-ukuran");
+                    let slug = item.getAttribute("data-slug");
+
+                    selectedUkuran.value = ukuran;
+                    selectedSlug.value = slug;
+                });
+            });
         });
     </script>
 
