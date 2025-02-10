@@ -8,7 +8,8 @@
                         <i class='bx bx-x x-popup'></i>
                     </div>
                 </div>
-                <p class="description-ttl-pop">Kamu hanya dapat mengatur tanggal lahir satu kali. Pastikan tanggal lahir sudah benar.</p>
+                <p class="description-ttl-pop">Kamu hanya dapat mengatur tanggal lahir satu kali. Pastikan tanggal lahir
+                    sudah benar.</p>
 
                 <form action="{{ route('cs.tgl_lahir') }}" method="POST">
                     @csrf
@@ -63,7 +64,8 @@
                     </div>
                 </div>
 
-                <p class="description-ttl-pop">Kamu hanya dapat mengatur jenis kelamin satu kali. Pastikan jenis kelamin sudah benar.</p>
+                <p class="description-ttl-pop">Kamu hanya dapat mengatur jenis kelamin satu kali. Pastikan jenis kelamin
+                    sudah benar.</p>
 
                 <form action="{{ route('cs.jk') }}" method="POST">
                     @csrf

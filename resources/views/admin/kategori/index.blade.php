@@ -1,20 +1,5 @@
 @extends('admin.layout.main')
 @section('content')
-    <script>
-
-
-        $('#editCategoryModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget);
-            var id_kategori = button.data('id'); // Ambil data-id
-            var nama_kategori = button.data('nama'); // Ambil data-nama
-
-            var modal = $(this);
-            modal.find('#edit_id_kategori').val(id_kategori); // Set ID Kategori ke input hidden
-            modal.find('#edit_nama_kategori').val(nama_kategori).focus(); // Set Nama Kategori ke input text
-        });
-
-  </script>
-
     <!-- DataTable with Hover -->
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
@@ -52,10 +37,9 @@
                                         <td>{{ $k->nama_kategori }}</td>
                                         <td class="d-flex justify-content-center">
                                             <!-- Tombol Edit -->
-                                            <a href="#" class="btn btn-primary btn-sm mr-2" data-bs-toggle="modal"
-                                                data-bs-target="#editCategoryModal" data-id="{{ $k->id_kategori }}"
-                                                data-nama="{{ $k->nama_kategori }}">
-                                                <i class="fas fa-pen-alt"></i>
+                                            <a class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#editProductModal{{ $k->id_kategori }}">
+                                                <i class="fas fa-edit"></i>
                                             </a>
 
                                             <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
@@ -131,39 +115,42 @@
         </div>
 
 
-        <!-- Modal Edit Kategori -->
-        <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Kategori</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body modal-content">
-                    <form id="editCategoryForm"
-                        action="{{ isset($k) ? route('admin.kategori.update', ['id' => $k->id_kategori]) : '#' }}"
-                        method="POST"
-                        style="width: 100%">
-                        @csrf
-                        @method('PUT')
-                        <input type="hidden" name="id_kategori" id="edit_id_kategori"
-                            value="{{ isset($k) ? $k->id_kategori : '' }}">
-                        <div class="mb-3">
-                            <label for="edit_nama_kategori" class="form-label">Nama Kategori</label>
-                            <input type="text" class="form-control" id="edit_nama_kategori" name="nama_kategori"
-                                value="{{ isset($k) ? old('nama_kategori', $k->nama_kategori) : '' }}" required>
+        <!-- Modal Edit kategori -->
+        @foreach ($kategori as $k)
+            <div class="modal fade" id="editProductModal{{ $k->id_kategori }}" tabindex="-1"
+                aria-labelledby="editProductModalLabel{{ $k->id_kategori }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Kategori</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <div class="modal-body">
+                            <form id="editProductForm{{ $k->id_kategori }}"
+                                action="{{ route('admin.kategori.update', $k->id_kategori) }}" method="POST"
+                                enctype="multipart/form-data" style="width: 100%">
+                                @csrf
+                                @method('PUT')
 
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary" {{ isset($k) ? '' : 'disabled' }}>Update</button>
+                                <!-- nama _kategori -->
+                                <div class="mb-3">
+                                    <label for="edit_nama" class="form-label">Nama Kategori</label>
+                                    <input type="text" class="form-control" id="edit_nama" name="nama_kategori"
+                                        value="{{ old('nama_kategori', $k->nama_kategori) }}" required>
+                                </div>
+
+                                <!-- Tombol Simpan -->
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">Ubah</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Batal</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
+        @endforeach
 
 
     </div>
