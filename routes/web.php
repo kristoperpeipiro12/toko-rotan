@@ -93,12 +93,12 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
     Route::get('/shop/about', [ShopController::class, 'about'])->name('shop.about');
     Route::get('/shop/detail/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
-    Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
+    Route::post('/cart', [ShopController::class, 'cart'])->name('shop.cart');
 
 
     Route::get('/account', [AccountController::class, 'index'])->name('cs.account');
     Route::post('/account/tanggal-lahir', [AccountController::class, 'updateTanggalLahir'])->name('cs.tgl_lahir');
-Route::post('/account/jenis-kelamin', [AccountController::class, 'updateJenisKelamin'])->name('cs.jk');
+    Route::post('/account/jenis-kelamin', [AccountController::class, 'updateJenisKelamin'])->name('cs.jk');
 
 });
 

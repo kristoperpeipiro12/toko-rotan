@@ -2,6 +2,10 @@
 @section('title', 'Cart')
 @section('content')
     <div class="cart-container">
+        <div>
+            <h1>ini {{ $slug }}</h1>
+            <h1>ini {{ $ukuran }}</h1>
+        </div>
         <div class="header-cart">
             <h2 class="cart-title">Keranjang</h2>
             <a href="{{ url()->previous() }}" class="btn"><i class="fa-solid fa-arrow-left"></i> Kembali</a>

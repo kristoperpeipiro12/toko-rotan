@@ -43,7 +43,7 @@ class ShopController extends Controller
 
         $varian = Produk_Varian::where('id_produk', $id_produk)->first();
 
-        $filter_slug = explode('-', $slug, 4); // memisahkan
+        $filter_slug = explode('-', $slug, limit: 4); // memisahkan
         $filter_slug = implode('-', array_slice($filter_slug, 0, 3)); // menyatukan
         $ukuran = Produk_Varian::where('slug', 'like', $filter_slug . '%')->get();  // Get all variants for the product
         $selectedUkuran = request('ukuran', $ukuran->first()->ukuran ?? null);
@@ -77,13 +77,17 @@ class ShopController extends Controller
                 'gambar' => $item['gambar'],
             ];
         }
-    
+
         return view('shop.detail', compact('produk', 'varian', 'ukuran', 'warna_portal', 'result', 'selectedUkuran'));
 
     }
-    public function cart()
+    public function cart(Request $request)
     {
-
-        return view('shop.cart');
+        $ukuran = $request->selected_ukuran;
+        $slug = $request->selected_slug;
+        if (empty($ukuran) || empty($slug)) {
+            // return redirect()->route('');
+        }
+        return view('shop.cart', compact('slug', 'ukuran'));
     }
-   }
+}

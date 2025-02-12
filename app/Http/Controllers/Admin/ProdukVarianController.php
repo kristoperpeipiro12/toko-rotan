@@ -75,7 +75,7 @@ class ProdukVarianController extends Controller
             'gambar' => $gambarPath,
             'stok' => $request->stok,
             // 'slug' => Str::slug($nama_produk . '-' . $request->warna . '-' . $request->ukuran),
-            'slug' => Str::slug($nama_produk . '-' . $request->warna.'-'. $request->ukuran),
+            'slug' => Str::slug($nama_produk . '-' . $request->warna . '-' . $request->ukuran),
         ]);
 
         // Redirect dengan notifikasi sukses
@@ -123,7 +123,7 @@ class ProdukVarianController extends Controller
             'ukuran' => $request->ukuran,
             'harga' => $request->harga,
             'stok' => $request->stok,
-            'slug' => Str::slug($nama_produk)
+            'slug' => Str::slug($nama_produk . '-' . $request->warna . '-' . $request->ukuran),
         ]);
 
         $produk_varian->save();

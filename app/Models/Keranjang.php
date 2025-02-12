@@ -44,7 +44,7 @@ class Keranjang extends Model
      */
     protected $fillable = [
         'id_keranjang',
-        'id_produk',
+        'id_varian',
         'id_customer',
         'jumlah',
     ];
@@ -53,9 +53,9 @@ class Keranjang extends Model
      * Relationship with Produk.
      * A Keranjang belongs to one Produk.
      */
-    public function produk()
+    public function produk_varian()
     {
-        return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
+        return $this->belongsTo(Produk_Varian::class, 'id_varian', 'id_varian');
     }
 
     /**

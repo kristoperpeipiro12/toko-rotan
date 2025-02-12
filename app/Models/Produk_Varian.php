@@ -29,6 +29,11 @@ class Produk_Varian extends Model
         return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
     }
 
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class, 'id_varian');
+    }
+
     protected static function boot()
     {
         parent::boot();

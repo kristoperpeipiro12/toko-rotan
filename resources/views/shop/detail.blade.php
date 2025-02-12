@@ -1,6 +1,10 @@
 @extends('shop.layouts.app')
 @section('title', 'Detail')
 @section('content')
+    @php
+        session()->put('slug_detail', $varian->slug);
+    @endphp
+    <h1>{{ $varian->slug }}</h1>
     <div class="wrap-detail content-border">
         <div class="container-pdt-dt1">
             <a href="{{ route('shop.shop') }}" class="btn mb-3"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
@@ -31,10 +35,10 @@
                             <label for="size-pdt-dt1">Pilih Ukuran:</label>
                             <div class="wrap-uk-detail">
                                 @foreach ($ukuran as $uk)
-                                    <div class="ukuran-item" data-ukuran="{{ $uk->ukuran }}">
+                                    <div class="ukuran-item" data-ukuran="{{ $uk->ukuran }}"
+                                        data-slug="{{ $uk->slug }}">
                                         {{ $uk->ukuran }}
                                     </div>
-                                    {{-- <p>{{ $uk->slug }}</p> --}}
                                 @endforeach
                             </div>
                         </div>
@@ -62,7 +66,8 @@
                             </div>
                         </div>
                     </div>
-                    <form action="" method="POST">
+                    <form action="{{ route('shop.cart') }}" method="POST">
+                        @csrf
                         {{-- hidden input --}}
                         <input type="hidden" name="selected_ukuran" id="selected_ukuran">
                         <input type="hidden" name="selected_slug" id="selected_slug">
@@ -81,6 +86,24 @@
 
     <script src="{{ asset('assets/js/shop/detail-page.js') }}"></script>
     <script>
+        // Kirim ukuran ke backend
+        document.addEventListener("DOMContentLoaded", function() {
+            let selectedUkuran = document.getElementById("selected_ukuran");
+            let selectedSlug = document.getElementById("selected_slug");
+
+            document.querySelectorAll(".ukuran-item").forEach(function(item) {
+                item.addEventListener("click", function() {
+                    console.log("load!");
+                    let ukuran = item.getAttribute("data-ukuran");
+                    let slug = item.getAttribute("data-slug");
+
+                    selectedUkuran.value = ukuran;
+                    selectedSlug.value = slug;
+
+                });
+            });
+        });
+
         // Ambil semua elemen ukuran
         const ukuranItems = document.querySelectorAll('.ukuran-item');
 
@@ -130,22 +153,6 @@
             if (parseInt(quantityInput.value) > 1) {
                 quantityInput.value = parseInt(quantityInput.value) - 1;
             }
-        });
-
-        // Kirim ukuran ke backend
-        document.addEventListener("DOMContentLoaded", function() {
-            let selectedUkuran = document.getElementById("selected_ukuran");
-            let selectedSlug = document.getElementById("selected_slug");
-
-            document.querySelectorAll(".ukuran-item").forEach(function(item) {
-                item.addEventListener("click", function() {
-                    let ukuran = item.getAttribute("data-ukuran");
-                    let slug = item.getAttribute("data-slug");
-
-                    selectedUkuran.value = ukuran;
-                    selectedSlug.value = slug;
-                });
-            });
         });
     </script>
 
