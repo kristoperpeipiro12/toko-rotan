@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/account', [AccountController::class, 'index'])->name('cs.account');
     Route::post('/account/tanggal-lahir', [AccountController::class, 'updateTanggalLahir'])->name('cs.tgl_lahir');
     Route::post('/account/jenis-kelamin', [AccountController::class, 'updateJenisKelamin'])->name('cs.jk');
+    Route::post('/account/alamat', [AccountController::class, 'UpdateAlamat'])->name('cs.alamat');
 
 });
 

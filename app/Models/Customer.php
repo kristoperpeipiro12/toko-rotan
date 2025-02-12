@@ -27,7 +27,7 @@ class Customer extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'no_hp',
-        'alamat',
+        // 'alamat',
         'role',
     ];
 
@@ -71,5 +71,10 @@ class Customer extends Authenticatable implements MustVerifyEmail
     public function orders()
     {
         return $this->hasMany(Order::class, 'id_customer', 'id_customer');
+    }
+
+    public function penerima()
+    {
+        return $this->hasMany(Penerima::class, 'id_penerima', 'id_penerima');
     }
 }

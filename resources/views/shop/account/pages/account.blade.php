@@ -89,8 +89,10 @@
                         <div class="res-bio-group">
                             <span>Nomor HP:</span>
                             {{ auth()->user()->no_hp }}
-
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -104,7 +106,7 @@
                         <strong>{{ auth()->user()->name }}
                         </strong><br>
                         {{ auth()->user()->no_hp }}<br>
-                        {{ auth()->user()->alamat }}
+
                     </div>
                     <div class="footer-bio-almt">
                         <div class="actions-bio-almt">

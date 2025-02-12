@@ -69,7 +69,7 @@ public function registerproses(Request $request)
         "email" => $request->email,
         "password" => Hash::make($request->password),
         "no_hp"=> $request->no_hp,
-        "alamat"=> $request->alamat,
+        // "alamat"=> $request->alamat,
         "role" => 'customer',
     ]);
 

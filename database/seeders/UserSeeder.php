@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('1234'),
             'role' => 'admin',
             'no_hp' => '081234567890', // Isi default
-            'alamat' => 'Alamat Admin', // Isi default
         ]);
 
         // Regular Customer
@@ -32,7 +31,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('1234'),
             'role' => 'customer',
             'no_hp' => '089876543210', // Isi default
-            'alamat' => 'Alamat Customer', // Isi default
         ]);
     }
 }

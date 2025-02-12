@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('no_hp',16);
-            $table->text('alamat');
             $table->enum('role', ['customer', 'admin'])->default('customer');
             $table->rememberToken();
             $table->timestamps();
