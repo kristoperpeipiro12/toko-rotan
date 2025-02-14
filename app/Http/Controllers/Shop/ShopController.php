@@ -38,10 +38,13 @@ class ShopController extends Controller
     {
         // Assuming 'id_varian' is the key that links to the color data
         $produk = Produk_Varian::where('slug', $slug)->first();
+        $warna_selected = $produk->warna;
 
         $id_produk = Produk_Varian::where('slug', $slug)->pluck('id_produk')->first();
 
         $varian = Produk_Varian::where('id_produk', $id_produk)->first();
+
+
 
         $filter_slug = explode('-', $slug, limit: 4); // memisahkan
         $filter_slug = implode('-', array_slice($filter_slug, 0, 3)); // menyatukan
@@ -77,17 +80,8 @@ class ShopController extends Controller
                 'gambar' => $item['gambar'],
             ];
         }
-
-        return view('shop.detail', compact('produk', 'varian', 'ukuran', 'warna_portal', 'result', 'selectedUkuran'));
+        return view('shop.detail', compact('produk', 'varian', 'ukuran', 'warna_portal', 'result', 'selectedUkuran', 'warna_selected'));
 
     }
-    public function cart(Request $request)
-    {
-        $ukuran = $request->selected_ukuran;
-        $slug = $request->selected_slug;
-        if (empty($ukuran) || empty($slug)) {
-            // return redirect()->route('');
-        }
-        return view('shop.cart', compact('slug', 'ukuran'));
-    }
+    
 }

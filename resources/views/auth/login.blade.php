@@ -34,9 +34,11 @@
                                     <button type="submit"
                                         class="form-control btn btn-primary rounded submit px-3">Masuk</button>
                                 </div>
-                                <div class="form-group d-md-flex">
-                                    <a href="{{ url()->previous() }}" class="btn btn-primary form-control">Kembali</a>
-                                </div>
+                                @if (request()->headers->has('referer'))
+                                    <div class="form-group d-md-flex">
+                                        <a href="{{ url()->previous() }}" class="btn btn-primary form-control">Kembali</a>
+                                    </div>
+                                @endif
                             </form>
                             <p class="text-center">Belum terdaftar? <a href="{{ route('register') }}">Daftar
                                     Sekarang!</a></p>

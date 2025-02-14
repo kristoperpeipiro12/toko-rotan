@@ -11,6 +11,7 @@ use App\Http\Controllers\Customer\HomeController as CustomerHomeController;
 use App\Http\Controllers\Login\LoginController as LoginLoginController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Shop\AccountController;
+use App\Http\Controllers\Shop\CartController;
 use App\Http\Controllers\Shop\ShopController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Response;
@@ -75,7 +76,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 
     //kategori
     Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
-    Route::post('/kateegori/add', [KategoriController::class, 'store'])->name('admin.kategori.store');
+    Route::post('/kategori/add', [KategoriController::class, 'store'])->name('admin.kategori.store');
     Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name('admin.kategori.update');
     Route::delete('/kategori/{id}', [KategoriController::class, 'delete'])->name('admin.kategori.delete');
 
@@ -93,7 +94,11 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
     Route::get('/shop/about', [ShopController::class, 'about'])->name('shop.about');
     Route::get('/shop/detail/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
-    Route::post('/cart', [ShopController::class, 'cart'])->name('shop.cart');
+
+    // bagian keranjang
+    Route::post('/cart/add', [CartController::class, 'store'])->name('shop.cart.store');
+    Route::get('/cart', [CartController::class, 'index'])->name('shop.cart');
+    Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('shop.cart.delete');
 
 
     Route::get('/account', [AccountController::class, 'index'])->name('cs.account');
