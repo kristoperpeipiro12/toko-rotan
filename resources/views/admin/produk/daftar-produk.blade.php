@@ -69,6 +69,34 @@
                                             </button>
                                         </td>
                                     </tr>
+                                    <!-- Modal Delete -->
+                                    <div class="modal fade" id="deleteProductModal{{ $p->id_produk }}" tabindex="-1"
+                                        aria-labelledby="deleteProductModalLabel{{ $p->id_produk }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Hapus Produk</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p><strong>Apakah Anda yakin ingin menghapus produk ini?</strong>
+                                                        {{-- <strong>{{ $p->produk->nama_produk }}</strong>? --}}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{{ route('admin.produk.delete', $p->id_produk) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -192,6 +220,11 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function() {
+                function checkIfEmpty() {
+                    var visibleRows = $('.produk-row:visible').length;
+                    $('#noDataRow').toggle(visibleRows === 0);
+                }
+
                 function updateRowNumbers() {
                     var index = 1;
                     $('.produk-row:visible').each(function() {
@@ -199,8 +232,41 @@
                         index++;
                     });
                 }
-                // Filter berdasarkan kategori dan nama produk
-                $('#filterKategori, #filterNamaProduk').on('input change', function() {
+
+                function updateFilterOptions() {
+                    var filterKategori = $('#filterKategori').val().toLowerCase();
+                    var filterNamaProduk = $('#filterNamaProduk').val().toLowerCase();
+                    var kategoriSet = new Set();
+                    var produkSet = new Set();
+
+                    $('.produk-row').each(function() {
+                        var kategori = $(this).find('.kategori').text().toLowerCase();
+                        var produk = $(this).find('.nama-produk').text().toLowerCase();
+
+                        if (filterKategori === '' || kategori === filterKategori) {
+                            produkSet.add(produk);
+                        }
+                        if (filterNamaProduk === '' || produk === filterNamaProduk) {
+                            kategoriSet.add(kategori);
+                        }
+                    });
+
+                    $('#filterKategori').empty().append('<option value="">Semua Kategori</option>');
+                    kategoriSet.forEach(kategori => {
+                        $('#filterKategori').append(
+                            `<option value="${kategori}" ${kategori === filterKategori ? 'selected' : ''}>${kategori}</option>`
+                            );
+                    });
+
+                    $('#filterNamaProduk').empty().append('<option value="">Semua Produk</option>');
+                    produkSet.forEach(produk => {
+                        $('#filterNamaProduk').append(
+                            `<option value="${produk}" ${produk === filterNamaProduk ? 'selected' : ''}>${produk}</option>`
+                            );
+                    });
+                }
+
+                function applyFilters() {
                     var filterKategori = $('#filterKategori').val().toLowerCase();
                     var filterNamaProduk = $('#filterNamaProduk').val().toLowerCase();
 
@@ -209,20 +275,21 @@
                         var namaProduk = $(this).find('.nama-produk').text().toLowerCase();
 
                         var matchKategori = filterKategori === '' || kategori === filterKategori;
-                        var matchNamaProduk = filterNamaProduk === '' || namaProduk.includes(
-                            filterNamaProduk);
+                        var matchNamaProduk = filterNamaProduk === '' || namaProduk === filterNamaProduk;
 
-                        if (matchKategori && matchNamaProduk) {
-                            $(this).show();
-                        } else {
-                            $(this).hide();
-                        }
+                        $(this).toggle(matchKategori && matchNamaProduk);
                     });
 
                     checkIfEmpty();
                     updateRowNumbers();
+                    updateFilterOptions();
+                }
+
+                $('#filterKategori, #filterNamaProduk').on('input change', function() {
+                    applyFilters();
                 });
 
+                updateFilterOptions();
                 checkIfEmpty();
             });
         </script>

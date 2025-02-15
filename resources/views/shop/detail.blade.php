@@ -1,6 +1,7 @@
 @extends('shop.layouts.app')
 @section('title', 'Detail')
 @section('content')
+    @include('sweetalert::alert')
 
     <div class="custom-alert-detail" id="alert-detail">
         <span>Harap pilih ukuran terlebih dahulu!</span>

@@ -39,7 +39,7 @@ class ProdukSeeder extends Seeder
                         'id_kategori' => $kategoriItem->id_kategori,
                         'nama_produk' => $produk[$produkIndex]['nama_produk'],
                         'deskripsi' => $produk[$produkIndex]['deskripsi'],
-                        'slug' => $produk[$produkIndex]['slug'],
+                     
                     ]);
                 }
             }

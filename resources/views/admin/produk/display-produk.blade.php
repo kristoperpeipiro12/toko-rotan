@@ -237,11 +237,7 @@
             $(document).ready(function() {
                 function checkIfEmpty() {
                     var visibleRows = $('.produk-row:visible').length;
-                    if (visibleRows === 0) {
-                        $('#noDataRow').show();
-                    } else {
-                        $('#noDataRow').hide();
-                    }
+                    $('#noDataRow').toggle(visibleRows === 0);
                 }
 
                 function updateRowNumbers() {
@@ -249,6 +245,33 @@
                     $('.produk-row:visible').each(function() {
                         $(this).find('.no-urut').text(index);
                         index++;
+                    });
+                }
+
+                function updateFilterOptions() {
+                    var selectedProduct = $('#filterNamaProduk').val().toLowerCase();
+                    var warnaSet = new Set();
+                    var ukuranSet = new Set();
+
+                    $('.produk-row').each(function() {
+                        var namaProduk = $(this).data('nama');
+                        var warna = $(this).data('warna');
+                        var ukuran = $(this).data('ukuran');
+
+                        if (selectedProduct === '' || namaProduk === selectedProduct) {
+                            warnaSet.add(warna);
+                            ukuranSet.add(ukuran);
+                        }
+                    });
+
+                    $('#filterWarna').empty().append('<option value="">Semua Warna</option>');
+                    warnaSet.forEach(warna => {
+                        $('#filterWarna').append(`<option value="${warna}">${warna}</option>`);
+                    });
+
+                    $('#filterUkuran').empty().append('<option value="">Semua Ukuran</option>');
+                    ukuranSet.forEach(ukuran => {
+                        $('#filterUkuran').append(`<option value="${ukuran}">${ukuran}</option>`);
                     });
                 }
 
@@ -266,21 +289,23 @@
                         var matchWarna = filterWarna === '' || warna === filterWarna;
                         var matchUkuran = filterUkuran === '' || ukuran === filterUkuran;
 
-                        if (matchNama && matchWarna && matchUkuran) {
-                            $(this).show();
-                        } else {
-                            $(this).hide();
-                        }
+                        $(this).toggle(matchNama && matchWarna && matchUkuran);
                     });
 
                     checkIfEmpty();
                     updateRowNumbers();
                 }
 
-                $('#filterNamaProduk, #filterWarna, #filterUkuran').on('change', function() {
+                $('#filterNamaProduk').on('change', function() {
+                    updateFilterOptions();
                     applyFilters();
                 });
 
+                $('#filterWarna, #filterUkuran').on('change', function() {
+                    applyFilters();
+                });
+
+                updateFilterOptions();
                 checkIfEmpty();
             });
         </script>

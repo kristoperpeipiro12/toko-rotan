@@ -21,11 +21,7 @@ class KategoriSeeder extends Seeder
             'Kategori 3',
             'Kategori 4',
             'Kategori 5',
-            'Kategori 6',
-            'Kategori 7',
-            'Kategori 8',
-            'Kategori 9',
-            'Kategori 10',
+            
         ];
 
         foreach ($kategori as $nama) {

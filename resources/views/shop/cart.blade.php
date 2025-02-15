@@ -1,6 +1,7 @@
 @extends('shop.layouts.app')
 @section('title', 'Cart')
 @section('content')
+    @include('sweetalert::alert')
     <div class="cart-container">
         <div class="header-cart">
             <h2 class="cart-title">Keranjang</h2>
@@ -24,6 +25,12 @@
                                 <h3 class="item-title">{{ $cart->produk_varian->produk->nama_produk }}</h3>
                                 <p class="item-description">
                                     {{ $cart->produk_varian->produk->deskripsi }}
+                                </p>
+                                <p class="item-description">
+                                    {{ $cart->produk_varian->warna }}
+                                </p>
+                                <p class="item-description">
+                                    {{ $cart->produk_varian->ukuran }}
                                 </p>
                                 <span class="item-price">Rp.
                                     {{ number_format($cart->produk_varian->harga, 0, ',', '.') }}</span>
