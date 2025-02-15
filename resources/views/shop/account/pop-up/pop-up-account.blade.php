@@ -122,9 +122,9 @@
                 </div>
             </form>
 
-            <form action="{{ route('cs.tambah.alamat') }}" method="POST">
-                @csrf
-                <div class="popup-ttl-pop" id="content-4">
+            <div class="popup-ttl-pop" id="content-4">
+                <form action="{{ route('cs.tambah.alamat') }}" method="POST">
+                    @csrf
                     <div class="wrap-head-pop">
 
                         <h2 class="title-ttl-pop">Tambah Alamat</h2>
@@ -160,8 +160,8 @@
                     </div>
 
                     <button type="submit" class="button-ttl-pop">Simpan</button>
-                </div>
-            </form>
+                </form>
+            </div>
 
         </div>
     </div>
