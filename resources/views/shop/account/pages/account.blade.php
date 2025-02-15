@@ -99,9 +99,11 @@
 
 
             <div class="card-content-cus-cn1" id="alamat">
-                <button class="btn btn-primary" href="#" id="openAccModal" data-content="content-4">
-                    + Tambah
-                </button>
+                @if (count($penerima) < 2)
+                    <button class="btn btn-primary" href="#" id="openAccModal" data-content="content-4">
+                        + Tambah
+                    </button>
+                @endif
                 @foreach ($penerima as $pn)
                     <div class="container-bio-almt">
                         <div class="header-bio-almt">

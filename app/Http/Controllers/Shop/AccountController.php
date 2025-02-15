@@ -23,7 +23,7 @@ class AccountController extends Controller
 
     public function updateTanggalLahir(Request $request)
     {
-        // Validasi input dari form
+      
         $request->validate([
             'tanggal' => 'required|numeric|min:1|max:31',
             'bulan' => 'required|numeric|min:1|max:12',
@@ -56,36 +56,40 @@ class AccountController extends Controller
         return redirect()->route('cs.account')->with('toast_success', 'Jenis Kelamin berhasil diperbarui!');
     }
     public function TambahAlamat(Request $request)
-    {
-        try {
-            $validatedData = $request->validate([
-                'nama_penerima' => 'required|string|max:255',
-                'nohp_penerima' => 'required|regex:/^[0-9]+$/|max:20',
-                'alamat' => 'required|string|max:500',
-                'lokasi' => 'nullable|string|max:255',
-            ]);
+{
+    try {
 
-            $id_customer = Auth::id();
+        $validatedData = $request->validate([
+            'nama_penerima' => 'required|string|max:255',
+            'nohp_penerima' => 'required|regex:/^[0-9]+$/|max:20',
+            'alamat' => 'required|string|max:500',
+            'lokasi' => 'nullable|string|max:255',
+        ]);
 
-            Penerima::updateOrCreate(
-                ['id_customer' => $id_customer],
-                array_merge($validatedData, [
-                    'id_penerima' => Str::uuid()->toString(),
-                ])
-            );
 
-            return redirect()->route('cs.account')->with('toast_success', 'Alamat berhasil ditambahkan');
-        } catch (\Exception $e) {
-            return redirect()->route('cs.account')->with('toast_error', 'Terjadi kesalahan, coba lagi.');
-        }
+        $id_customer = Auth::id();
+
+
+        Penerima::create([
+            'id_penerima' => Str::uuid()->toString(),
+            'id_customer' => $id_customer,
+            'nama_penerima' => $validatedData['nama_penerima'],
+            'nohp_penerima' => $validatedData['nohp_penerima'],
+            'alamat' => $validatedData['alamat'],
+            'lokasi' => $validatedData['lokasi'] ?? null,
+        ]);
+
+        return redirect()->route('cs.account')->with('toast_success', 'Alamat berhasil ditambahkan!');
+    } catch (\Exception $e) {
+        return redirect()->route('cs.account')->with('toast_error', 'Terjadi kesalahan, coba lagi.');
     }
+}
 
     public function UpdateAlamat(Request $request)
     {
         try {
             $id_customer = Auth::id();
 
-            // Validasi input
             $validatedData = $request->validate([
                 'nama_penerima' => 'required|string|max:255',
                 'nohp_penerima' => 'required|string|max:15',
@@ -93,7 +97,7 @@ class AccountController extends Controller
                 'lokasi' => 'nullable|string|max:255',
             ]);
 
-            // Cari data penerima berdasarkan id_customer
+
             $penerima = Penerima::where('id_customer', $id_customer)->first();
 
 

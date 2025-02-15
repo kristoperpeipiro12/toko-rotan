@@ -83,6 +83,7 @@
             </div>
 
             <form action="{{ route('cs.update.alamat') }}" method="POST">
+                @method('PUT')
                 @csrf
                 <div class="popup-ttl-pop" id="content-3">
                     <div class="wrap-head-pop">
