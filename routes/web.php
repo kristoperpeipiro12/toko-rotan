@@ -111,7 +111,8 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/account', [AccountController::class, 'index'])->name('cs.account');
     Route::post('/account/tanggal-lahir', [AccountController::class, 'updateTanggalLahir'])->name('cs.tgl_lahir');
     Route::post('/account/jenis-kelamin', [AccountController::class, 'updateJenisKelamin'])->name('cs.jk');
-    Route::post('/account/alamat', [AccountController::class, 'UpdateAlamat'])->name('cs.alamat');
+    Route::post('/account/tambah', [AccountController::class, 'TambahAlamat'])->name('cs.tambah.alamat');
+    Route::put('/account/update/alamat', [AccountController::class, 'UpdateAlamat'])->name('cs.update.alamat');
 
 });
 

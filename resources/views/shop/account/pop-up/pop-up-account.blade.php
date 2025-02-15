@@ -82,40 +82,86 @@
                 </form>
             </div>
 
-
-
-            <div class="popup-ttl-pop" id="content-3">
-                <div class="wrap-head-pop">
-                    <h2 class="title-ttl-pop">Ubah Alamat</h2>
-                    <div class="x-rotate" id="closeModal3">
-                        <i class='bx bx-x x-popup'></i>
+            <form action="{{ route('cs.update.alamat') }}" method="POST">
+                @csrf
+                <div class="popup-ttl-pop" id="content-3">
+                    <div class="wrap-head-pop">
+                        <h2 class="title-ttl-pop">Ubah Alamat</h2>
+                        <div class="x-rotate" id="closeModal3">
+                            <i class='bx bx-x x-popup'></i>
+                        </div>
                     </div>
+
+                    <div class="dropdown-container-ttl-pop almt-con">
+                        <label for="lokasi">Tipe Alamat</label>
+                        <select id="lokasi" name="lokasi" class="dropdown-ttl-pop">
+                            <option value="Rumah">Rumah</option>
+                            <option value="Kantor">Kantor</option>
+                        </select>
+
+                        <div class="wrap-input-almt">
+                            <label for="alamatPenerima">Alamat</label>
+                            <input id="alamatPenerima" name="alamat" type="text" class="input-txt-almt"
+                                placeholder="Jl/Komp/No.Rumah" required>
+                        </div>
+
+                        <div class="wrap-input-almt">
+                            <label for="nama">Nama Penerima</label>
+                            <input id="nama" name="nama_penerima" type="text" class="input-txt-almt"
+                                placeholder="Nama" required>
+                        </div>
+
+                        <div class="wrap-input-almt">
+                            <label for="numberOnly">Nomor HP</label>
+                            <input id="numberOnly" name="nohp_penerima" type="text" class="input-txt-almt"
+                                placeholder="+62" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="button-ttl-pop">Simpan</button>
                 </div>
+            </form>
 
-                <div class="dropdown-container-ttl-pop almt-con">
-                    <select class="dropdown-ttl-pop">
-                        <option>Rumah</option>
-                        <option>Kantor</option>
-                    </select>
+            <form action="{{ route('cs.tambah.alamat') }}" method="POST">
+                @csrf
+                <div class="popup-ttl-pop" id="content-4">
+                    <div class="wrap-head-pop">
 
-                    <div class="wrap-input-almt">
-                        <label for="alamatPenerima">Alamat</label>
-                        <input id="alamatPenerima" type="text" class="input-txt-almt" placeholder="Jl/Komp/No.Rumah">
+                        <h2 class="title-ttl-pop">Tambah Alamat</h2>
+                        <div class="x-rotate" id="closeModal3">
+                            <i class='bx bx-x x-popup'></i>
+                        </div>
                     </div>
 
-                    <div class="wrap-input-almt">
-                        <label for="nama">Nama Penerima</label>
-                        <input id="nama" type="text" class="input-txt-almt" placeholder="nama">
+                    <div class="dropdown-container-ttl-pop almt-con">
+                        <label for="lokasi">Tipe Alamat</label>
+                        <select id="lokasi" name="lokasi" class="dropdown-ttl-pop">
+                            <option value="Rumah">Rumah</option>
+                            <option value="Kantor">Kantor</option>
+                        </select>
+
+                        <div class="wrap-input-almt">
+                            <label for="alamatPenerima">Alamat</label>
+                            <input id="alamatPenerima" name="alamat" type="text" class="input-txt-almt"
+                                placeholder="Jl/Komp/No.Rumah" required>
+                        </div>
+
+                        <div class="wrap-input-almt">
+                            <label for="nama">Nama Penerima</label>
+                            <input id="nama" name="nama_penerima" type="text" class="input-txt-almt"
+                                placeholder="Nama" required>
+                        </div>
+
+                        <div class="wrap-input-almt">
+                            <label for="numberOnly">Nomor HP</label>
+                            <input id="numberOnly" name="nohp_penerima" type="text" class="input-txt-almt"
+                                placeholder="+62" required>
+                        </div>
                     </div>
 
-                    <div class="wrap-input-almt">
-                        <label for="numberOnly">Nomor HP</label>
-                        <input id="numberOnly" type="text" class="input-txt-almt" placeholder="+ 62">
-                    </div>
+                    <button type="submit" class="button-ttl-pop">Simpan</button>
                 </div>
-
-                <button class="button-ttl-pop">Simpan</button>
-            </div>
+            </form>
 
         </div>
     </div>

@@ -90,31 +90,42 @@
                             <span>Nomor HP:</span>
                             {{ auth()->user()->no_hp }}
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
+
+
+
+            <button class="btn btn-primary" href="#" id="openAccModal" data-content="content-4">
+                + Tambah
+            </button>
 
             <div class="card-content-cus-cn1" id="alamat">
-                <div class="container-bio-almt">
-                    <div class="header-bio-almt">
-                        <div class="title-bio-almt">Rumah</div>
-                    </div>
-                    <div class="content-bio-almt">
-                        <strong>{{ auth()->user()->name }}
-                        </strong><br>
-                        {{ auth()->user()->no_hp }}<br>
+                @foreach ($penerima as $pn)
+                    <div class="container-bio-almt">
+                        <div class="header-bio-almt">
+                            <div class="title-bio-almt">
+                                {{ $pn->lokasi ?? 'Alamat' }}
 
-                    </div>
-                    <div class="footer-bio-almt">
-                        <div class="actions-bio-almt">
-                            <p class="edit-bio-almt" id="openAccModal" data-content="content-3">Ubah Alamat</p>
+                            </div>
+                        </div>
+                        <div class="content-bio-almt">
+                            <strong>Nama Penerima: {{ $pn->nama_penerima ?? 'Nama Penerima' }}</strong><br>
+                            No Handphone: {{ $pn->nohp_penerima ?? 'No HP' }}<br>
+                            Alamat: {{ $pn->alamat ?? 'Alamat belum diatur' }}<br>
+                        </div>
+                        <div class="footer-bio-almt">
+                            <div class="actions-bio-almt">
+                                <p class="edit-bio-almt" id="openAccModal" data-content="content-3">
+                                    Ubah Alamat
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
+
+
 
             {{-- <div class="card-content-cus-cn1" id="pembayaran">
                 <p>Informasi pembayaran Anda akan ditampilkan di sini.</p>
