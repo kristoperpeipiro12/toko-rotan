@@ -12,6 +12,7 @@ use App\Http\Controllers\Login\LoginController as LoginLoginController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Shop\AccountController;
 use App\Http\Controllers\Shop\CartController;
+use App\Http\Controllers\Shop\CheckoutController;
 use App\Http\Controllers\Shop\ShopController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Response;
@@ -96,9 +97,15 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::get('/shop/detail/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
 
     // bagian keranjang
-    Route::post('/cart/add', [CartController::class, 'store'])->name('shop.cart.store');
     Route::get('/cart', [CartController::class, 'index'])->name('shop.cart');
+    Route::post('/cart/add', [CartController::class, 'store'])->name('shop.cart.store');
     Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('shop.cart.delete');
+
+
+    // bagian checkout
+    Route::get('/co', [CheckoutController::class, 'index'])->name('shop.co');
+    Route::post('/co/add', [CheckoutController::class, 'store'])->name('shop.co.store');
+    // Route::delete('/co/delete/{id}', [CheckoutController::class, 'delete'])->name('shop.co.delete');
 
 
     Route::get('/account', [AccountController::class, 'index'])->name('cs.account');

@@ -22,19 +22,19 @@ class CartController extends Controller
         $id_customer = auth()->user()->id_customer;
 
         $request->validate([
-            'jumlah_pesanan' => 'required|int|max:11',
+            'jumlah_pesanan' => 'required|int',
         ]);
 
         $id_varian = Produk_Varian::where('slug', $request->selected_slug)->value('id_varian');
-        
+
         if (empty($id_varian)) {
             return redirect()->route('shop.home')->with('toast_error', 'Terdapat Kesalahan! Segera Hubungi Admin!');
         }
 
         // Cek apakah produk dengan id_varian yang sama sudah ada di keranjang
         $keranjang = Keranjang::where('id_customer', $id_customer)
-                              ->where('id_varian', $id_varian)
-                              ->first();
+            ->where('id_varian', $id_varian)
+            ->first();
 
         if ($keranjang) {
             // Jika sudah ada, update jumlah pesanan
@@ -61,6 +61,6 @@ class CartController extends Controller
     {
         $keranjang = Keranjang::findOrFail($id);
         $keranjang->delete();
-        return back()->with('toast_success', 'Item berhasil dihapus!');
+        return redirect()->route('shop.cart')->with('toast_success', 'Item berhasil dihapus!');
     }
 }
