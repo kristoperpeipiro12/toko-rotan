@@ -12,8 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('checkout', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id_checkout')->primary();
+            $table->uuid('id_varian');
+            $table->uuid('id_customer');
+            $table->uuid('id_keranjang');
+            $table->integer('jumlah');
             $table->timestamps();
+
+            $table->foreign('id_varian')->references('id_varian')->on('produk_varian')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('id_customer')->references('id_customer')->on('customer')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('id_keranjang')->references('id_keranjang')->on('keranjang')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

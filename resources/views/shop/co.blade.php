@@ -75,7 +75,7 @@
             <span class="header-keluar">Yakin ingin keluar?</span>
             <p class="content-keluar">Jika menutup halaman, proses akan dibatalkan!</p>
             <div class="wrap-btn-keluar">
-                <a class="btn-keluar" href="#">Keluar Halaman</a>
+                <a class="btn-keluar" href="{{ route('shop.cart') }}">Keluar Halaman</a>
                 <button class="btn-batal" id="batal">Batal</button>
             </div>
         </div>

@@ -23,7 +23,7 @@ class AccountController extends Controller
 
     public function updateTanggalLahir(Request $request)
     {
-      
+
         $request->validate([
             'tanggal' => 'required|numeric|min:1|max:31',
             'bulan' => 'required|numeric|min:1|max:12',
@@ -87,19 +87,20 @@ class AccountController extends Controller
 
     public function UpdateAlamat(Request $request)
     {
-        try {
-            $id_customer = Auth::id();
+        $id_customer = Auth::id();
+        $penerima = Penerima::where('id_customer', $id_customer)->get()?? collect([]);
 
+        if ($request->isMethod('get')) {
+            // dd($penerima);
+            return view('shop.account.pop-up.pop-up-account', compact('penerima'));
+        }
+        try {
             $validatedData = $request->validate([
                 'nama_penerima' => 'required|string|max:255',
                 'nohp_penerima' => 'required|string|max:15',
                 'alamat' => 'required|string|max:500',
                 'lokasi' => 'nullable|string|max:255',
             ]);
-
-
-            $penerima = Penerima::where('id_customer', $id_customer)->first();
-
 
             if (!$penerima) {
                 $penerima = new Penerima();
@@ -114,6 +115,7 @@ class AccountController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('cs.account')->with('toast_error', 'Terjadi kesalahan, coba lagi.');
         }
+
     }
 
 

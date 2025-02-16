@@ -103,7 +103,8 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
 
 
     // bagian checkout
-    Route::get('/co', [CheckoutController::class, 'index'])->name('shop.co');
+    // Route::post('/co/{id}', [CheckoutController::class, 'index'])->name('shop.co');
+    Route::post('/co', [CheckoutController::class, 'index'])->name('shop.co');
     Route::post('/co/add', [CheckoutController::class, 'store'])->name('shop.co.store');
     // Route::delete('/co/delete/{id}', [CheckoutController::class, 'delete'])->name('shop.co.delete');
 
@@ -112,7 +113,7 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::post('/account/tanggal-lahir', [AccountController::class, 'updateTanggalLahir'])->name('cs.tgl_lahir');
     Route::post('/account/jenis-kelamin', [AccountController::class, 'updateJenisKelamin'])->name('cs.jk');
     Route::post('/account/tambah', [AccountController::class, 'TambahAlamat'])->name('cs.tambah.alamat');
-    Route::put('/account/update/alamat', [AccountController::class, 'UpdateAlamat'])->name('cs.update.alamat');
+    Route::match(['get', 'post'],'/account/update/alamat', [AccountController::class, 'UpdateAlamat'])->name('cs.update.alamat');
 
 });
 

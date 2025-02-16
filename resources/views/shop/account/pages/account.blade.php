@@ -130,6 +130,7 @@
 
 
 
+
             {{-- <div class="card-content-cus-cn1" id="pembayaran">
                 <p>Informasi pembayaran Anda akan ditampilkan di sini.</p>
             </div>
@@ -150,6 +151,7 @@
                 <p>Pengaturan keamanan Anda akan ditampilkan di sini.</p>
             </div> --}}
         </div>
+
     </section>
 
     <script src="{{ asset('assets/js/shop/sidebar-cus1.js') }}"></script>
