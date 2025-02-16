@@ -1,0 +1,380 @@
+:root {
+    --primary-color: #4caf50;
+    --secondary-color: #f0f3f7;
+    --text-color: #333;
+}
+
+body {
+    position: relative;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: var(--secondary-color);
+}
+
+.navbar-co {
+    display: flex;
+    padding: 1.2rem 0 1rem 1.2rem;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+.navbar-co .navbar-brand {
+    color: #b3946a;
+    font-weight: bold;
+    font-size: 1.6rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.wrap-container-co {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 20px;
+}
+
+.container.co-page {
+    max-width: 600px;
+    padding: 14px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header.co-page {
+    padding: 14px 0 14px 8px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.header.co-page h1 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.address-section.co-page,
+.order-summary.co-page {
+    margin-bottom: 20px;
+}
+
+.order-summary.co-page {
+    background-color: #c0c0c0;
+}
+
+.section-header.co-page {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.address-details.co-page {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.address-details.co-page p {
+    margin: 5px 0;
+}
+
+.address-details.co-page .change-btn {
+    color: var(--primary-color);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.order-item.co-page {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.order-item.co-page img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+}
+
+.order-info.co-page {
+    flex-grow: 1;
+}
+
+.order-info.co-page h4 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.order-info.co-page p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.order-info.co-page .quantity-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* rincian section >> */
+.header-rincian {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.ringkasan-row {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+
+    margin-bottom: 1rem;
+}
+
+.biaya {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.ringkasan-total {
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.net-total {
+    font-size: 1.2rem;
+    font-weight: 750;
+}
+
+/* << rincian section */
+
+/* Button Bayar Sekarang >> */
+
+.btn-co-bayar-sekarang {
+    align-self: center;
+    padding: 10px 2px;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 1.1rem;
+    width: 80%;
+    background-color: #08ac5c;
+    color: white;
+}
+
+.btn-co-bayar-sekarang:hover {
+    background-color: #127545;
+    cursor: pointer;
+}
+
+/* << Button Bayar Sekarang */
+
+/* popup section >> */
+
+.wrap-popup-co,
+.wrap-popup-ubah,
+.wrap-popup-keluar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.wrap-popup-co {
+    z-index: 10;
+    background-color: rgba(51, 51, 51, 0.5);
+}
+
+.wrap-popup-co.active,
+.wrap-popup-ubah.active,
+.wrap-popup-keluar.active {
+    display: flex;
+}
+
+.wrap-popup-ubah {
+    z-index: 20;
+    background-color: rgba(51, 51, 51, 0.7);
+}
+
+.pop-up-co,
+.pop-up-ubah,
+.pop-up-keluar {
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    min-height: 200px;
+}
+
+.pop-up-co {
+    min-width: 60%;
+}
+
+.pop-up-ubah {
+    min-width: 400px;
+}
+
+.wrap-title-popup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrap-title-popup h1 {
+    margin-top: 5px;
+}
+
+.wrap-title-popup h1,
+.container-alamat .header-alamat,
+.container-alamat .content-alamat span {
+    cursor: context-menu;
+}
+
+.wrap-title-popup i:hover {
+    cursor: pointer;
+}
+
+/* alamat container >> */
+
+.container-alamat {
+    display: flex;
+    flex-direction: column;
+    background-color: #eaffea;
+    border: 2px solid #9be89b;
+    border-radius: 10px;
+    padding: 20px;
+    gap: 10px;
+    margin: 0px auto 20px auto;
+}
+
+.container-alamat * {
+    font-size: 1rem;
+}
+
+.header-alamat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 550;
+}
+
+.content-alamat {
+    font-size: 1rem;
+    color: #333;
+}
+
+.content-alamat span {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.footer-alamat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.footer-alamat .actions-alamat {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-ubah-alamat {
+    color: #28a745;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* << alamat container */
+
+/* popup ubah >> */
+.wrap-content-ubah {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.header-content-ubah {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-content-ubah h1 {
+    margin-top: 5px;
+}
+
+.header-content-ubah h1:hover {
+    cursor: context-menu;
+}
+
+.x-button-co {
+    padding-top: 5px;
+}
+
+.x-button-co i {
+    font-size: 1.2rem;
+}
+
+.x-button-co i:hover {
+    cursor: pointer;
+}
+
+.wrap-popup-ubah label {
+    margin-bottom: 4px;
+}
+
+.wrap-content-ubah select {
+    padding: 8px 3px;
+    border-radius: 8px;
+    max-width: 182px;
+}
+
+.wrap-content-ubah select:hover {
+    cursor: pointer;
+}
+
+.wrap-popup-ubah input {
+    padding: 10px 5px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.btn-content-ubah {
+    border-radius: 8px;
+    width: 100%;
+    border: none;
+    font-size: 1.1rem;
+    padding: 10px 0;
+    color: #fff;
+    background-color: #108ce4;
+}
+
+.btn-content-ubah:hover {
+    background-color: #0e63a0;
+    cursor: pointer;
+}
+
+/* << popup ubah */
+
+/* << popup section */
+
+.container section {
+    padding: 12px 8px;
+    border-radius: 8px;
+}
+
+/* popup keluar >> */
+
+/* << popup keluar */

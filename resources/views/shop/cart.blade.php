@@ -89,7 +89,7 @@
         <div class="cart-summary">
             <h3 class="summary-title">Ringkasan belanja</h3>
             <p class="summary-text">Pilih barang dulu sebelum pakai promo</p>
-            <button class="checkout-btn">Beli</button>
+            <a href="{{ route('shop.co') }}" class="checkout-btn">Beli</a>
         </div>
     </div>
 
