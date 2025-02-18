@@ -78,10 +78,11 @@ class ShopController extends Controller
                 'slug' => $slug,
                 'warna' => $item['warna'],
                 'gambar' => $item['gambar'],
+
             ];
         }
         return view('shop.detail', compact('produk', 'varian', 'ukuran', 'warna_portal', 'result', 'selectedUkuran', 'warna_selected'));
 
     }
-    
+
 }

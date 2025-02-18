@@ -13,6 +13,7 @@
         <div class="item-header mb-2 ps-2">
             <span>Pilih item yang ingin di checkout!</span>
         </div>
+
         <form action="{{ route('shop.co') }}" method="POST">
             @csrf
             @foreach ($all_cart as $cart)
@@ -32,6 +33,7 @@
                                 </p>
                             </div>
                             <div class="modal-footer">
+                                <!-- Form penghapusan produk -->
                                 <form action="{{ route('shop.cart.delete', $cart->id_keranjang) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -42,7 +44,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div class="cart-item">
                     <div class="item">
@@ -71,7 +72,6 @@
                                 <button class="delete-btn" data-bs-toggle="modal"
                                     data-bs-target="#deleteProductModal{{ $cart->id_keranjang }}"><i
                                         class="fa-solid fa-trash text-secondary align-self-center"></i></button>
-                                {{-- <label for="quantity">Jumlah:</label> --}}
                                 <div class="quantity-container">
                                     <button type="button" id="decrease">-</button>
                                     <input type="text" id="quantity"
@@ -83,7 +83,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- hidden input --}}
             @endforeach
         </form>
 
@@ -94,6 +93,7 @@
             <p class="summary-text">Pilih barang dulu sebelum pakai promo</p>
             <a href="{{ route('shop.co') }}/" class="checkout-btn">Beli</a>
         </div>
+
     </div>
 
 

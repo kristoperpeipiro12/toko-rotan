@@ -59,8 +59,15 @@ class CartController extends Controller
 
     public function delete($id)
     {
-        $keranjang = Keranjang::findOrFail($id);
-        $keranjang->delete();
+        $keranjang = Keranjang::find($id);
+
+        if ($keranjang) {
+            $keranjang->delete();
         return redirect()->route('shop.cart')->with('toast_success', 'Item berhasil dihapus!');
+        }
+
+        return redirect()->route('shop.cart')->with('toast_error', 'item tidak ditemukan');
+
+
     }
 }

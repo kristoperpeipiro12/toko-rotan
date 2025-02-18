@@ -62,12 +62,17 @@
                             <label for="size-pdt-dt1">Pilih Ukuran:</label>
                             <div class="wrap-uk-detail">
                                 @foreach ($ukuran as $uk)
-                                    <div class="ukuran-item" data-slug="{{ $uk->slug }}">
-                                        {{ $uk->ukuran }}
-                                    </div>
+                                    <a href="javascript:void(0)">
+                                        <div class="ukuran-item {{ $uk['ukuran'] == $selectedUkuran ? 'active' : '' }}"
+                                            data-slug="{{ $uk->slug }}" data-harga="{{ $uk->harga }}"
+                                            data-stok="{{ $uk->stok }}">
+                                            {{ $uk->ukuran }}
+                                        </div>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>
+
 
                         <div class="option-group-pdt-dt1">
                             <label for="color-pdt-dt1">Pilih Warna:</label>
@@ -117,16 +122,35 @@
     <script>
         // atur card warna
         document.addEventListener("DOMContentLoaded", function() {
-            let warnaCards = document.querySelectorAll(".card-protal-warna");
+            let ukuranItems = document.querySelectorAll(".ukuran-item");
+            let selectedPriceElement = document.getElementById("product-price");
+            let selectedStockElement = document.getElementById("stock-amount");
 
-            warnaCards.forEach(card => {
-                card.addEventListener("click", function() {
-                    warnaCards.forEach(c => c.classList.remove("active"));
+            ukuranItems.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            // Menambahkan event listener pada setiap ukuran
+            ukuranItems.forEach(item => {
+                item.addEventListener("click", function() {
+
+                    ukuranItems.forEach(c => c.classList.remove("active"));
                     this.classList.add("active");
+
+                    // Ambil slug, harga, dan stok dari data atribut
+                    let selectedSlug = this.getAttribute("data-slug");
+                    let selectedPrice = this.getAttribute("data-harga");
+                    let selectedStock = this.getAttribute("data-stok");
+
+                    // Update harga dan stok
+                    selectedPriceElement.innerText = 'Rp. ' + new Intl.NumberFormat('id-ID').format(
+                        selectedPrice);
+                    selectedStockElement.innerText = selectedStock;
+
+                    document.getElementById("selected_slug").value = selectedSlug;
                 });
             });
         });
-
 
 
         // Kirim slug ke backend
