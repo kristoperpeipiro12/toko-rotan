@@ -140,7 +140,8 @@
 
                     {{-- <li><a href="{{ route('admin.produk') }}" aria-expanded="false"><i
                                 class="icon fas fa-gem"></i><span class="nav-text">Produk</span></a></li> --}}
-
+                    <li><a href="{{ route('admin.pesanan') }}" aria-expanded="false"><i
+                                class="icon icon-globe-2"></i><span class="nav-text">Pesanan</span></a></li>
 
                     {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-shopping-cart"></i><span class="nav-text">Pesanan</span>

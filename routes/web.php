@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PesananController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\ProdukVarianController;
 use App\Http\Controllers\Customer\HomeController as CustomerHomeController;
+use App\Http\Controllers\KirimEmailController;
 use App\Http\Controllers\Login\LoginController as LoginLoginController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Shop\AccountController;
@@ -73,6 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     // display produk
     Route::get('/display-produk', [DisplayProdukController::class, 'index'])->name('admin.produk_display');
 
+    Route::get('/pesanan', [KirimEmailController::class, 'index'])->name('admin.pesanan');
 
 
     //kategori

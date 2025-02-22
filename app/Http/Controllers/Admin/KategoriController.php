@@ -21,6 +21,11 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|string|max:255',
         ]);
 
+        // Cek apakah nama kategori sudah ada
+        if (Kategori::where('nama_kategori', $request->nama_kategori)->exists()) {
+            return redirect()->back()->with('toast_error', 'Nama kategori sudah ada.');
+        }
+
         $timestamp = date('His-dmY'); // Format: HHMMSS-DDMMYYYY
         $id_kategori = 'KAT-' . rand(1000, 9999) . '-' . $timestamp;
 
@@ -29,6 +34,7 @@ class KategoriController extends Controller
         $kategori->id_kategori = $id_kategori;
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->save();
+
         // Redirect kembali dengan pesan sukses
         return redirect()->route('admin.kategori')->with('toast_success', 'Kategori berhasil ditambahkan.');
     }
@@ -39,8 +45,14 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-
         $kategori = Kategori::findOrFail($id);
+
+        // Cek apakah nama kategori sudah ada, kecuali untuk kategori yang sedang diubah
+        if (Kategori::where('nama_kategori', $request->nama_kategori)->where('id_kategori', '!=', $id)->exists()) {
+            return redirect()->back()->with('toast_error', 'Nama kategori sudah ada. Silakan gunakan nama lain.');
+        }
+
+        // Update kategori
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->save();
 
