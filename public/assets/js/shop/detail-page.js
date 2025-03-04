@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let maxStock = parseInt(selectedStockElement.textContent, 10);
     const minStock = 1;
 
+
     function validateInput() {
         let currentValue = parseInt(quantityInput.value, 10);
         if (isNaN(currentValue) || currentValue === "") {
@@ -48,16 +49,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let ukuranItems = document.querySelectorAll(".ukuran-item");
 
-    ukuranItems.forEach(item => {
+    ukuranItems.forEach((item) => {
         item.addEventListener("click", function () {
-            ukuranItems.forEach(c => c.classList.remove("active"));
+            ukuranItems.forEach((c) => c.classList.remove("active"));
             this.classList.add("active");
 
             let selectedSlug = this.getAttribute("data-slug");
             let selectedPrice = this.getAttribute("data-harga");
             let selectedStock = this.getAttribute("data-stok");
 
-            selectedPriceElement.innerText = 'Rp. ' + new Intl.NumberFormat('id-ID').format(selectedPrice);
+            selectedPriceElement.innerText =
+                "Rp. " + new Intl.NumberFormat("id-ID").format(selectedPrice);
             selectedStockElement.innerText = selectedStock;
 
             document.getElementById("selected_slug").value = selectedSlug;
@@ -66,4 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
             validateInput();
         });
     });
+
+    let cartItemTerpilih = document.getElementById("cart-item-terpilih");
 });

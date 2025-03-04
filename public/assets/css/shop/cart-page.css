@@ -145,10 +145,12 @@
     font-weight: bold;
 }
 
-.summary-text {
-    font-size: 14px;
-    color: #888;
-    margin: 10px 0;
+.cart-summary-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: aqua;
+    margin-bottom: 0.5rem;
 }
 
 .checkout-btn {
