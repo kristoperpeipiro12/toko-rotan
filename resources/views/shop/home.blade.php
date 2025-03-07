@@ -29,7 +29,7 @@
                     </div>
                     <div class="card-content-card-1">
                         <h3 class="card-title-card-1">Wood Carpet</h3>
-                        <a href="#" class="card-button-card-1">Pergi</a>
+                        <a href="{{ route('shop.shop') }}" class="card-button-card-1">Pergi</a>
                     </div>
                 </div>
                 <div class="card-card-1">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="card-content-card-1">
                         <h3 class="card-title-card-1">Webbing Carpet</h3>
-                        <a href="#" class="card-button-card-1">Pergi</a>
+                        <a href="{{ route('shop.shop') }}" class="card-button-card-1">Pergi</a>
                     </div>
                 </div>
                 <div class="card-card-1">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="card-content-card-1">
                         <h3 class="card-title-card-1">Kerai Kayu</h3>
-                        <a href="#" class="card-button-card-1">Pergi</a>
+                        <a href="{{ route('shop.shop') }}" class="card-button-card-1">Pergi</a>
                     </div>
                 </div>
                 <div class="card-card-1">
@@ -56,7 +56,7 @@
                     </div>
                     <div class="card-content-card-1">
                         <h3 class="card-title-card-1">Tikar Rotan Ajiro</h3>
-                        <a href="#" class="card-button-card-1">Pergi</a>
+                        <a href="{{ route('shop.shop') }}" class="card-button-card-1">Pergi</a>
                     </div>
                 </div>
             </div>
@@ -122,8 +122,8 @@
 
             <div class="product-card-2">
                 <div class="image-container-card-2">
-                    <img src="{{ asset('assets/images/product-img/tikar-ajiro-kat.png') }}" alt="Cartoon Astronaut T-Shirts"
-                        class="product-image-card-2" />
+                    <img src="{{ asset('assets/images/product-img/tikar-ajiro-kat.png') }}"
+                        alt="Cartoon Astronaut T-Shirts" class="product-image-card-2" />
                 </div>
                 <div class="details-card-2">
                     <p class="brand-name-card-2">tikar rotan ajiro</p>

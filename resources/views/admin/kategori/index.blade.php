@@ -24,7 +24,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th class="mini-th">No</th>
-                                    <th>Id_Kategori</th>
+                                    {{-- <th>Id_Kategori</th> --}}
                                     <th>Nama Kategori</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -33,7 +33,7 @@
                                 @foreach ($kategori as $k)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $k->id_kategori }}</td>
+                                        {{-- <td>{{ $k->id_kategori }}</td> --}}
                                         <td>{{ $k->nama_kategori }}</td>
                                         <td class="d-flex justify-content-center">
                                             <!-- Tombol Edit -->

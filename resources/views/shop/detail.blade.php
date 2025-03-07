@@ -120,39 +120,6 @@
 
     <script src="{{ asset('assets/js/shop/detail-page.js') }}"></script>
     <script>
-        // atur card warna
-        document.addEventListener("DOMContentLoaded", function() {
-            let ukuranItems = document.querySelectorAll(".ukuran-item");
-            let selectedPriceElement = document.getElementById("product-price");
-            let selectedStockElement = document.getElementById("stock-amount");
-
-            ukuranItems.forEach(item => {
-                item.classList.remove("active");
-            });
-
-            // Menambahkan event listener pada setiap ukuran
-            ukuranItems.forEach(item => {
-                item.addEventListener("click", function() {
-
-                    ukuranItems.forEach(c => c.classList.remove("active"));
-                    this.classList.add("active");
-
-                    // Ambil slug, harga, dan stok dari data atribut
-                    let selectedSlug = this.getAttribute("data-slug");
-                    let selectedPrice = this.getAttribute("data-harga");
-                    let selectedStock = this.getAttribute("data-stok");
-
-                    // Update harga dan stok
-                    selectedPriceElement.innerText = 'Rp. ' + new Intl.NumberFormat('id-ID').format(
-                        selectedPrice);
-                    selectedStockElement.innerText = selectedStock;
-
-                    document.getElementById("selected_slug").value = selectedSlug;
-                });
-            });
-        });
-
-
         // Kirim slug ke backend
         document.addEventListener("DOMContentLoaded", function() {
             let jumlahPesan = document.getElementById("jumlah_pesan");

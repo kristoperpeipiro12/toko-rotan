@@ -57,6 +57,29 @@ class CartController extends Controller
     }
 
 
+    public function update(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'jumlah' => 'required|int',
+        ]);
+
+        $keranjang = Keranjang::findOrFail($id);
+        $id_varian = Keranjang::where('id_keranjang', $id)->value('id_varian');
+
+        $stok = Produk_Varian::where('id_varian', $id_varian)->value('stok');
+        if ($keranjang->jumlah > $stok) {
+            return redirect()->route('shop.cart')->with('toast_error', 'Jumlah Pesanan melebihi stok yang tersedia!');
+        }
+        
+        // Update jumlah
+        $keranjang->jumlah = $request->jumlah;
+        $keranjang->save();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('shop.cart')->with('toast_success', 'Jumlah Pesanan berhasil diubah.');
+    }
+
     public function delete($id)
     {
         $keranjang = Keranjang::find($id);
