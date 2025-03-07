@@ -6,7 +6,7 @@
     </div>
     <ul class="nav-list">
         <li>
-            <a href="#">
+            <a href="{{ route('cs.account') }}">
                 <i class="bx bx-user"></i>
                 <span class="links_name">Akun</span>
             </a>
@@ -20,7 +20,7 @@
             <span class="tooltip">Mail</span>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ route('shop.cart') }}">
                 <i class="bx bx-cart-alt"></i>
                 <span class="links_name">Keranjang</span>
             </a>
@@ -33,6 +33,7 @@
             </a>
             <span class="tooltip">Saved</span>
         </li> --}}
+
         <li class="profile">
             <div class="profile-details">
                 <div class="name_job">
