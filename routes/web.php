@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     // bagian keranjang
     Route::get('/cart', [CartController::class, 'index'])->name('shop.cart');
     Route::post('/cart/add', [CartController::class, 'store'])->name('shop.cart.store');
+    Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('shop.cart.update');
     Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('shop.cart.delete');
 
 
