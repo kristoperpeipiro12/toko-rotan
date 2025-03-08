@@ -14,104 +14,114 @@
         <span>Pilih item yang ingin di checkout!</span>
     </div>
 
-    @foreach ($all_cart as $cart)
-    <div class="cart-item">
-        <div class="item">
-            <form action="{{ route('shop.co') }}" method="post">
-                <button name="selected_item" value="{{ $cart->id_keranjang }}" type="submit">Here</button>
-                <!-- <input type="radio" class="item-checkbox" /> -->
-            </form>
-            <div class="item-details">
-                <img src="{{ asset('storage/' . $cart->produk_varian->gambar) }}" alt="Item 1" class="item-image" />
-                <div class="item-info">
-                    <h3 class="item-title">{{ $cart->produk_varian->produk->nama_produk }}</h3>
-                    <p class="item-description">
-                        {{ $cart->produk_varian->produk->deskripsi }}
-                    </p>
-                    <strong style="color: aqua;">{{ $cart->id_keranjang }}</strong>
-                    <p class="item-description">
-                        {{ $cart->produk_varian->warna }}
-                    </p>
-                    <p class="item-description">
-                        {{ $cart->produk_varian->ukuran }}
-                    </p>
-                    <span class="item-price">Rp.
-                        {{ number_format($cart->produk_varian->harga, 0, ',', '.') }}</span>
+    <div class="w-100 d-flex">
+        <div class="cart-summary">
+            <div class="cart-summary-content">
+                <span>Item yang dipilih:</span>
+                @foreach ($all_cart as $cart)
+                <div data-summary-id="{{ $cart->id_keranjang }}" style="display: none;">
+                    <img class="product-summary-image" src="{{ asset('storage/' . $cart->produk_varian->gambar) }}"
+                        alt="Gambar Produk">
+
+                    <div class="right-content-summary">
+                        <div class="product-summary-name">{{ $cart->produk_varian->produk->nama_produk }}</div>
+                        <div class="product-summary-color">Varian / Warna Produk: {{ $cart->produk_varian->warna }}
+                        </div>
+                        <div class="product-summary-size">Ukuran: {{ $cart->produk_varian->ukuran }}</div>
+                        <div class="product-summary-amount">Jumlah Pesanan: {{ $cart->jumlah }}</div>
+                        <div class="product-summary-price">Total: Rp.
+                            @php
+                            $keseluruhan = $cart->produk_varian->harga * $cart->jumlah;
+                            @endphp
+                            {{ number_format($keseluruhan, 0, ',', '.') }}
+                        </div>
+                    </div>
                 </div>
+                @endforeach
+
+                <a href="{{ route('shop.co') }}/" class="checkout-btn">Beli</a>
             </div>
-            <div class="item-actions">
-                <div class="option-group-pdt-dt1 flex-row" style="gap: 1rem">
-                    <button class="delete-btn" data-bs-toggle="modal"
-                        data-bs-target="#deleteProductModal{{ $cart->id_keranjang }}"><i
-                            class="fa-solid fa-trash text-secondary align-self-center"></i></button>
-                    <div class="quantity-container">
-                        <input type="text" id="quantity" readonly="true"
-                            value="{{ $cart->jumlah > $cart->produk_varian->stok ? $cart->jumlah == $cart->produk_varian->stok : $cart->jumlah }}">
-                        <span>Stok: <strong>{{ $cart->produk_varian->stok }}</strong></span>
-                        <a class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#editJumlahPemesanan{{ $cart->id_keranjang }}">Ubah Jumlah Pesanan
-                            <i class="fas fa-edit"></i>
-                        </a>
+        </div>
+
+        <div class="d-flex flex-column w-100 ms-5"
+            style="background-color:rgb(241, 241, 241); padding: 20px; border-radius: 12px;">
+            @foreach ($all_cart as $cart)
+            <div class="cart-item selectable-cart" data-bs-summary="{{ $cart->id_keranjang }}">
+                <div class="item">
+                    <input type="radio" name="selected_item" value="{{ $cart->id_keranjang }}" class="item-checkbox" />
+                    <div class="item-details">
+                        <img src="{{ asset('storage/' . $cart->produk_varian->gambar) }}" alt="Item 1"
+                            class="item-image" />
+                        <div class="item-info">
+                            <h3 class="item-title">{{ $cart->produk_varian->produk->nama_produk }}</h3>
+                            <p class="item-description">
+                                {{ $cart->produk_varian->produk->deskripsi }}
+                            </p>
+                            <p class="item-description">
+                                {{ $cart->produk_varian->warna }}
+                            </p>
+                            <p class="item-description">
+                                {{ $cart->produk_varian->ukuran }}
+                            </p>
+                            <span class="item-price">Rp.
+                                {{ number_format($cart->produk_varian->harga, 0, ',', '.') }}</span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <div class="option-group-pdt-dt1 flex-row" style="gap: 1rem">
+                            <button class="delete-btn" data-bs-toggle="modal"
+                                data-bs-target="#deleteProductModal{{ $cart->id_keranjang }}"><i
+                                    class="fa-solid fa-trash text-secondary align-self-center"></i></button>
+                            <div class="quantity-container">
+                                <input type="text" id="quantity" readonly="true"
+                                    value="{{ $cart->jumlah > $cart->produk_varian->stok ? $cart->jumlah == $cart->produk_varian->stok : $cart->jumlah }}">
+                                <span>Stok: <strong>{{ $cart->produk_varian->stok }}</strong></span>
+                                <a class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#editJumlahPemesanan{{ $cart->id_keranjang }}">Ubah Jumlah
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Modal Delete -->
-    <div class="modal fade" id="deleteProductModal{{ $cart->id_keranjang }}" tabindex="-1"
-        aria-labelledby="deleteProductModalLabel{{ $cart->id_keranjang }}" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Hapus Produk</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus varian produk
-                        <strong>{{ $cart->produk_varian->produk->nama_produk }}</strong>?
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <!-- Form penghapusan produk -->
-                    <form method="POST" action="{{ route('shop.cart.delete', $cart->id_keranjang) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    </form>
+            <!-- Modal Delete -->
+            <div class="modal fade" id="deleteProductModal{{ $cart->id_keranjang }}" tabindex="-1"
+                aria-labelledby="deleteProductModalLabel{{ $cart->id_keranjang }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Hapus Produk</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Apakah Anda yakin ingin menghapus varian produk
+                                <strong>{{ $cart->produk_varian->produk->nama_produk }}</strong>?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Form penghapusan produk -->
+                            <form method="POST" action="{{ route('shop.cart.delete', $cart->id_keranjang) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    @endforeach
-
-
-
-
-    <!-- Repeat for additional items -->
-
-    <div class="cart-summary">
-        <h3 class="summary-title">Ringkasan belanja</h3>
-        <div class="cart-summary-content">
-            <span>item yg dipilih : <strong id="cart-item-terpilih"></strong></span>
-            @foreach ($all_cart as $cart)
-            <div> ini adalah id keranjang {{ $cart->id_keranjang }} </div>
-            <div> ini adalah nama {{ $cart->produk_varian->produk->nama_produk }} </div>
-            <div> ini adalah warna {{ $cart->produk_varian->warna }} </div>
-            <div> ini adalah ukuran {{ $cart->produk_varian->ukuran }} </div>
-            <div> ini adalah harga satuan {{ number_format($cart->produk_varian->harga, 0, ',', '.') }} </div>
-            <div> ini adalah jumlah pesanan {{ $cart->jumlah }} </div>
-            <div> ini adalah harga keseluruhan
-                @php
-                $keseluruhan = $cart->produk_varian->harga * $cart->jumlah;
-                @endphp
-                {{ number_format($keseluruhan, 0, ',', '.') }} </div>
-            <br><br>
             @endforeach
         </div>
-        <a href="{{ route('shop.co') }}/" class="checkout-btn">Beli</a>
+
     </div>
+
+
+
+
+
+
 
 
 
@@ -154,5 +164,36 @@
 </div>
 @endforeach
 
+<script>
+document.querySelectorAll(".selectable-cart").forEach((cart) => {
+    cart.addEventListener("click", function() {
+        const radioButton = cart.querySelector(".item-checkbox");
+        if (radioButton) {
+            const summaryId = cart.getAttribute("data-bs-summary");
+            radioButton.checked = true;
+            updateCartSummary(summaryId);
+        }
+    });
+});
+
+function updateCartSummary(summaryId) {
+    const summaryContent = document.querySelector(".cart-summary-content");
+    const allSummaries = document.querySelectorAll(".cart-summary-content div[data-summary-id]");
+
+    allSummaries.forEach((summary) => {
+        summary.style.display = "none";
+    });
+
+    const selectedSummary = document.querySelector(`.cart-summary-content div[data-summary-id="${summaryId}"]`);
+    if (selectedSummary) {
+        selectedSummary.style.display = "block";
+    }
+
+    const selectedItemDisplay = document.querySelector("#cart-item-terpilih");
+    if (selectedItemDisplay) {
+        selectedItemDisplay.textContent = summaryId;
+    }
+}
+</script>
 <script src="{{ asset('assets/js/shop/detail-page.js') }}"></script>
 @endsection

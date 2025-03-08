@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let maxStock = parseInt(selectedStockElement.textContent, 10);
     const minStock = 1;
 
-
     function validateInput() {
         let currentValue = parseInt(quantityInput.value, 10);
         if (isNaN(currentValue) || currentValue === "") {
@@ -68,6 +67,4 @@ document.addEventListener("DOMContentLoaded", function () {
             validateInput();
         });
     });
-
-    let cartItemTerpilih = document.getElementById("cart-item-terpilih");
 });

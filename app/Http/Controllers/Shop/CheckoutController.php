@@ -24,7 +24,6 @@ class CheckoutController extends Controller
             $biaya = $jumlah * $pesanan->harga;
             return view('shop.co',compact('id_customer','pesanan','biaya'));
         }
-
     }
 
     public function store($id)
