@@ -68,7 +68,7 @@ class CartController extends Controller
         $id_varian = Keranjang::where('id_keranjang', $id)->value('id_varian');
 
         $stok = Produk_Varian::where('id_varian', $id_varian)->value('stok');
-        if ($keranjang->jumlah > $stok) {
+        if ($request->jumlah > $stok) {
             return redirect()->route('shop.cart')->with('toast_error', 'Jumlah Pesanan melebihi stok yang tersedia!');
         }
         
@@ -82,14 +82,9 @@ class CartController extends Controller
 
     public function delete($id)
     {
-        $keranjang = Keranjang::find($id);
-
-        if ($keranjang) {
-            $keranjang->delete();
+        $keranjang = Keranjang::findOrFail($id);
+        $keranjang->delete();
         return redirect()->route('shop.cart')->with('toast_success', 'Item berhasil dihapus!');
-        }
-
-        return redirect()->route('shop.cart')->with('toast_error', 'item tidak ditemukan');
 
 
     }
