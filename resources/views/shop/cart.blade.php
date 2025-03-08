@@ -39,8 +39,11 @@
                             </div>
                         </div>
                     @endforeach
-
-                    <a href="{{ route('shop.co') }}/" class="checkout-btn">Beli</a>
+                    <form action="{{ route('shop.co') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="checkout-btn">Beli</button>
+                    </form>
+                    {{-- <a href="{{ route('shop.co') }}"class="checkout-btn">Beli</a> --}}
                 </div>
             </div>
 

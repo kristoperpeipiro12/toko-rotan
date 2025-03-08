@@ -14,16 +14,17 @@ class CheckoutController extends Controller
     public function index(Request $request)
     {
         $id_customer = Auth::id();
-        $jumlah = $request->jumlah;
-        if ($request->filled('id_keranjang') && !$request->filled('id_varian')) {
-            $id_keranjang = Keranjang::where('id_keranjang',$request->id_keranjang)->first();
-            $biaya = $jumlah * $id_keranjang->produk_varian->harga;
-            return view('shop.co',compact('id_customer','id_keranjang','biaya'));
-        } elseif (!$request->filled('id_keranjang') && $request->filled('id_varian')){
-            $pesanan = Produk_Varian::where('id_varian',$request->id_varian)->first();
-            $biaya = $jumlah * $pesanan->harga;
-            return view('shop.co',compact('id_customer','pesanan','biaya'));
-        }
+        return view('shop.co',compact('id_customer'));
+        // $jumlah = $request->jumlah;
+        // if ($request->filled('id_keranjang') && !$request->filled('id_varian')) {
+        //     $id_keranjang = Keranjang::where('id_keranjang',$request->id_keranjang)->first();
+        //     $biaya = $jumlah * $id_keranjang->produk_varian->harga;
+        //     return view('shop.co',compact('id_customer','id_keranjang','biaya'));
+        // } elseif (!$request->filled('id_keranjang') && $request->filled('id_varian')){
+        //     $pesanan = Produk_Varian::where('id_varian',$request->id_varian)->first();
+        //     $biaya = $jumlah * $pesanan->harga;
+        //     return view('shop.co',compact('id_customer','pesanan','biaya'));
+        // }
     }
 
     public function store($id)
