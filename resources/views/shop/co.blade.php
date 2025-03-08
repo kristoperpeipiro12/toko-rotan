@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout Page</title>
+    <title>AL-ZAHRA - Checkout</title>
     <link rel="stylesheet" href="{{ asset('assets/css/shop/style-co.css') }}" />
 </head>
 
@@ -18,6 +18,7 @@
                     <h1>Checkout</h1>
                 </header>
 
+
                 <section class="address-section co-page">
                     <div class="section-header co-page">ALAMAT PENGIRIMAN</div>
                     <div class="address-details co-page">
@@ -30,36 +31,56 @@
                     </div>
                 </section>
 
-                <section class="order-summary co-page">
-                    <div class="section-header co-page">Wood Sungkai</div>
-                    <div class="order-item co-page">
-                        <img src="gambar1.jpg" alt="Product Image" />
-                        <div class="order-info co-page">
-                            <h4>Natural - Merupakan perubahan antara</h4>
-                            <p>10 x 10</p>
-                            <p class="quantity-price">1 x Rp63.000</p>
+                <div class="checkout-item">
+                    <span>Daftar Produk: </span>
+                </div>
+                @foreach ($cartItems as $item)
+                    <section class="order-summary co-page">
+                        <div class="section-header co-page" style="font-size: 1.8rem; font-weight: 700;">
+                            {{ $item->produk_varian->produk->nama_produk }}
                         </div>
-                    </div>
-                </section>
+                        <div class="order-item co-page">
+                            <img src="storage/{{ $item->produk_varian->gambar }}" alt="Product Image" />
+                            <div class="order-info co-page">
+                                <h4 style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 15px;">
+                                    <span
+                                        style="font-size: 1.5rem; font-weight: 300;">{{ $item->produk_varian->warna }}</span>
+                                    <span
+                                        style="font-style: italic; font-size: 1rem; font-weight: 300;">{{ $item->produk_varian->produk->deskripsi }}</span>
+                                </h4>
+                                <p>Ukuran: {{ $item->produk_varian->ukuran }}</p>
+                                <p class="quantity-price">{{ $item->jumlah }}pcs x Rp.
+                                    {{ number_format($item->produk_varian->harga, 0, ',', '.') }}
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                @endforeach
+
             </div>
 
-            <div class="container co-page">
+            <div class="container co-page rp-section">
                 <section class="rincian-pemesanan">
-                    <h1 class="header-rincian">Cek ringkasan transaksi!</h1>
-                    <div class="ringkasan-row">
-                        <span>Total Harga</span>
-                        <span class="biaya">Rp. 1.000.000</span>
-                    </div>
+                    <div class="rp-top-section">
+                        <h1 class="header-rincian">Cek ringkasan transaksi!</h1>
+                        <div class="ringkasan-row">
+                            <span>Total Harga</span>
+                            <span class="biaya">Rp. {{ number_format($total_harga, 0, ',', '.') }}</span>
+                        </div>
 
-                    <div class="ringkasan-row">
-                        <span>Ongkos Kirim</span>
-                        <span class="biaya">Rp. 5.000</span>
+                        <div class="ringkasan-row">
+                            <span>Ongkos Kirim</span>
+                            <span class="biaya">Rp. {{ number_format($ongkir, 0, ',', '.') }}</span>
+                        </div>
+
+                        <span style="font-style: italic; margin-bottom: 10px;">sistem pembayaran COD (Cash On
+                            Delivery)</span>
                     </div>
 
                     <div class="ringkasan-total">
                         <div class="ringkasan-row">
                             <span class="net-total">Total Tagihan</span>
-                            <span class="net-total">Rp. 1.000.000</span>
+                            <span class="net-total">Rp. {{ number_format($total_tagihan, 0, ',', '.') }}</span>
                         </div>
 
                         <div class="btn-co-bayar-sekarang">Bayar Sekarang</div>

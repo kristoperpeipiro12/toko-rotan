@@ -61,8 +61,18 @@ body {
     margin-bottom: 20px;
 }
 
+.checkout-item {
+    margin-bottom: 10px;
+}
+
+.checkout-item span {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
 .order-summary.co-page {
-    background-color: #c0c0c0;
+    background-color: #e6e5e5;
+    padding-left: 15px;
 }
 
 .section-header.co-page {
@@ -94,8 +104,8 @@ body {
 }
 
 .order-item.co-page img {
-    width: 60px;
-    height: 60px;
+    width: 120px;
+    height: 120px;
     border-radius: 8px;
 }
 
@@ -120,6 +130,16 @@ body {
 }
 
 /* rincian section >> */
+.rp-section {
+    height: 50%;
+}
+
+.rincian-pemesanan {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
 .header-rincian {
     font-size: 1.4rem;
     font-weight: 600;

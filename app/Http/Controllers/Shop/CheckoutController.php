@@ -13,18 +13,23 @@ class CheckoutController extends Controller
 
     public function index(Request $request)
     {
-        $id_customer = Auth::id();
-        // return view('shop.co',compact('id_customer'));
-        $jumlah = $request->jumlah;
-        if ($request->filled('id_keranjang') && !$request->filled('id_varian')) {
-            $id_keranjang = Keranjang::where('id_keranjang',$request->id_keranjang)->first();
-            $biaya = $jumlah * $id_keranjang->produk_varian->harga;
-            return view('shop.co',compact('id_customer','id_keranjang','biaya'));
-        } elseif (!$request->filled('id_keranjang') && $request->filled('id_varian')){
-            $pesanan = Produk_Varian::where('id_varian',$request->id_varian)->first();
-            $biaya = $jumlah * $pesanan->harga;
-            return view('shop.co',compact('id_customer','pesanan','biaya'));
+        $user = Auth::user();
+        $selectedItems = $request->input('selected_items', ''); // Default ke string kosong
+        $selectedItemsArray = array_filter(explode(',', $selectedItems)); // Hapus nilai kosong
+
+        $cartItems = Keranjang::with('produk_varian.produk') // Panggil relasi yang benar
+            ->whereIn('id_keranjang', $selectedItemsArray)
+            ->get();
+
+        $total_harga = 0;
+        foreach ($cartItems as $item) {
+            $total_harga += $item->jumlah * $item->produk_varian->harga;
         }
+
+        $ongkir = 5000;
+        $total_tagihan = $total_harga + $ongkir;
+
+        return view('shop.co', compact('cartItems', 'total_harga', 'ongkir', 'total_tagihan'));
     }
 
     public function store($id)

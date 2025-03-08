@@ -17,7 +17,7 @@
         <div class="w-100 d-flex">
             <div class="cart-summary">
                 <div class="cart-summary-content">
-                    <span>Item yang dipilih:</span>
+                    <span>Item yang dipilih: </span>
                     @foreach ($all_cart as $cart)
                         <div data-summary-id="{{ $cart->id_keranjang }}" style="display: none;">
                             <br>
@@ -35,15 +35,16 @@
                                         $keseluruhan = $cart->produk_varian->harga * $cart->jumlah;
                                     @endphp
                                     {{ number_format($keseluruhan, 0, ',', '.') }}
+                                    <hr>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                     <form action="{{ route('shop.co') }}" method="POST">
                         @csrf
-                        <button type="submit" class="checkout-btn">Beli</button>
+                        <input type="hidden" name="selected_items" id="selected-items-input">
+                        <button type="submit" class="checkout-btn">Checkout</button>
                     </form>
-                    {{-- <a href="{{ route('shop.co') }}"class="checkout-btn">Beli</a> --}}
                 </div>
             </div>
 
@@ -52,7 +53,7 @@
                 @foreach ($all_cart as $cart)
                     <div class="cart-item selectable-cart" data-bs-summary="{{ $cart->id_keranjang }}">
                         <div class="item">
-                            <input type="radio" name="selected_item" value="{{ $cart->id_keranjang }}"
+                            <input type="checkbox" name="selected_item[]" value="{{ $cart->id_keranjang }}"
                                 class="item-checkbox" />
                             <div class="item-details">
                                 <img src="{{ asset('storage/' . $cart->produk_varian->gambar) }}" alt="Item 1"
@@ -165,34 +166,49 @@
 
     <script>
         document.querySelectorAll(".selectable-cart").forEach((cart) => {
-            cart.addEventListener("click", function() {
-                const radioButton = cart.querySelector(".item-checkbox");
-                if (radioButton) {
-                    const summaryId = cart.getAttribute("data-bs-summary");
-                    radioButton.checked = true;
-                    updateCartSummary(summaryId);
+            cart.addEventListener("click", function(event) {
+                const checkbox = cart.querySelector(".item-checkbox");
+                if (event.target !== checkbox) {
+                    checkbox.checked = !checkbox.checked;
                 }
+                updateCartSummary();
             });
         });
 
-        function updateCartSummary(summaryId) {
-            const summaryContent = document.querySelector(".cart-summary-content");
-            const allSummaries = document.querySelectorAll(".cart-summary-content div[data-summary-id]");
+        document.querySelectorAll(".item-checkbox").forEach((checkbox) => {
+            checkbox.addEventListener("change", updateCartSummary);
+        });
 
-            allSummaries.forEach((summary) => {
-                summary.style.display = "none";
+        function updateCartSummary() {
+            const summaryContainer = document.querySelector(".cart-summary-content");
+            const selectedItems = document.querySelectorAll(".item-checkbox:checked");
+
+            // Bersihkan summary sebelum menambahkan item yang baru dicentang
+            const allSummaries = document.querySelectorAll(".cart-summary-content div[data-summary-id]");
+            allSummaries.forEach(summary => summary.style.display = "none");
+
+            // Jika ada yang dicentang, tampilkan di summary
+            selectedItems.forEach((item) => {
+                const summaryId = item.value;
+                const selectedSummary = document.querySelector(
+                    `.cart-summary-content div[data-summary-id="${summaryId}"]`);
+                if (selectedSummary) {
+                    selectedSummary.style.display = "block";
+                }
             });
 
-            const selectedSummary = document.querySelector(`.cart-summary-content div[data-summary-id="${summaryId}"]`);
-            if (selectedSummary) {
-                selectedSummary.style.display = "block";
-            }
-
+            // Perbarui teks item terpilih
             const selectedItemDisplay = document.querySelector("#cart-item-terpilih");
             if (selectedItemDisplay) {
-                selectedItemDisplay.textContent = summaryId;
+                selectedItemDisplay.textContent = selectedItems.length ? [...selectedItems].map(i => i.value).join(", ") :
+                    "Tidak ada item yang dipilih";
             }
+
+            // Update hidden input agar dikirim ke controller
+            const selectedIds = [...selectedItems].map(item => item.value);
+            document.getElementById("selected-items-input").value = selectedIds.join(",");
         }
     </script>
+
     <script src="{{ asset('assets/js/shop/detail-page.js') }}"></script>
 @endsection
