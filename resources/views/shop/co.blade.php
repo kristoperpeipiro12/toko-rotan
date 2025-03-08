@@ -47,7 +47,7 @@
                 <section class="rincian-pemesanan">
                     <h1 class="header-rincian">Cek ringkasan transaksi!</h1>
                     <div class="ringkasan-row">
-                        <span>Total Harga (3 Barang)</span>
+                        <span>Total Harga</span>
                         <span class="biaya">Rp. 1.000.000</span>
                     </div>
 

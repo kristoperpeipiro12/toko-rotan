@@ -124,14 +124,6 @@
 
         </div>
 
-
-
-
-
-
-
-
-
     </div>
 
 
@@ -154,7 +146,7 @@
 
                             <!-- nama _kategori -->
                             <div class="mb-3">
-                                <label for="edit_nama" class="form-label">Nama Kategori</label>
+                                <label for="edit_nama" class="form-label">Jumlah</label>
                                 <input type="text" class="form-control" id="edit_jumlah" name="jumlah"
                                     value="{{ old('jumlah', $cart->jumlah) }}" required>
                             </div>
