@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->uuid('id_varian');
             $table->uuid('id_customer');
             $table->integer('jumlah');
+            $table->enum('status', ['keranjang', 'checkout'])->default('keranjang');
             $table->timestamps();
 
             $table->foreign('id_varian')->references('id_varian')->on('produk_varian')

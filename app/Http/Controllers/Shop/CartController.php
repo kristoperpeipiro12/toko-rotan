@@ -15,7 +15,18 @@ class CartController extends Controller
     {
         $id_customer = Auth::id();
         $all_cart = Keranjang::where('id_customer', $id_customer)->get();
-        return view('shop.cart', compact('all_cart'));
+
+
+        $checkout = $all_cart->contains(function ($item) {
+            return $item->status === 'checkout';
+        });
+
+        if ($checkout) {
+            return redirect()->route('shop.home');
+        } else {
+            return view('shop.cart', compact('all_cart'));
+        }
+
     }
     public function store(Request $request)
     {
@@ -44,12 +55,14 @@ class CartController extends Controller
             // Jika belum ada, buat entri baru di keranjang
             $timestamp = date('His-dmY'); // Format: HHMMSS-DDMMYYYY
             $id_cart = 'CART-' . rand(1000, 9999) . '-' . $timestamp;
+            $def_status = 'keranjang';
 
             $keranjang = new Keranjang();
             $keranjang->id_keranjang = $id_cart;
             $keranjang->id_varian = $id_varian;
             $keranjang->id_customer = $id_customer;
             $keranjang->jumlah = $request->jumlah_pesanan;
+            $keranjang->status = $def_status;
             $keranjang->save();
         }
 
@@ -71,7 +84,7 @@ class CartController extends Controller
         if ($request->jumlah > $stok) {
             return redirect()->route('shop.cart')->with('toast_error', 'Jumlah Pesanan melebihi stok yang tersedia!');
         }
-        
+
         // Update jumlah
         $keranjang->jumlah = $request->jumlah;
         $keranjang->save();
