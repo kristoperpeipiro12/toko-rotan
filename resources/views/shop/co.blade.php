@@ -18,18 +18,23 @@
                     <h1>Checkout</h1>
                 </header>
 
-
                 <section class="address-section co-page">
                     <div class="section-header co-page">ALAMAT PENGIRIMAN</div>
-                    <div class="address-details co-page">
-                        <p><strong>Rumah &bull; Charisma Yedutun</strong></p>
-                        <p>
-                            Jl. Parit H Muksin II, Komp. Star Borneo Residence, No. D16,
-                            Sungai Raya, Kab. Kubu Raya, Kalimantan Barat, 6285845177710
-                        </p>
-                        <span class="change-btn" id="ganti-alamat">Ganti</span>
+                    <div class="address-details co-page" id="alamat-terpilih">
+                        @if ($penerima)
+                            <p><strong id="alamat-lokasi">{{ $penerima->lokasi }} &bull;
+                                    {{ $penerima->nama_penerima }}</strong></p>
+                            <p id="alamat-detail">
+                                {{ $penerima->alamat }}, {{ $penerima->nohp_penerima }}
+                            </p>
+                            <span class="change-btn" id="ganti-alamat">Ganti</span>
+                        @else
+                            <p id="alamat-kosong">Alamat belum ada</p>
+                            <button id="btn-tambah">Tambah</button>
+                        @endif
                     </div>
                 </section>
+
 
                 <div class="checkout-item">
                     <span>Daftar Produk: </span>
@@ -104,7 +109,7 @@
 
 
 
-    {{-- pop-up alamat --}}
+    {{-- Pop-up Pilih Alamat --}}
     <div class="wrap-popup-co" id="wrap-popup-co">
         <div class="pop-up-co">
             <div class="wrap-title-popup">
@@ -113,59 +118,67 @@
                     <i class="fa-solid fa-xmark" id="close-alamat"></i>
                 </div>
             </div>
-            <div class="container-alamat">
-                <div class="header-alamat">Rumah</div>
-                <div class="content-alamat">
-                    <span>Nama</span>
-                    <span>Alamat</span>
-                    <span>No. Handphone</span>
-                </div>
-                <div class="footer-alamat">
-                    <p class="btn-ubah-alamat" id="ubah-alamat">Ubah Alamat</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    {{-- pop-up ubah alamat --}}
-    <div class="wrap-popup-ubah" id="wrap-popup-ubah">
-        <div class="pop-up-ubah">
-            <div class="wrap-content-ubah">
-                <div class="header-content-ubah">
-                    <h1>Ubah Alamat</h1>
-                    <div class="x-button-co">
-                        <i class="fa-solid fa-xmark" id="close-ubah"></i>
+            <form id="formPilihAlamat">
+                @foreach ($alamat as $pn)
+                    <div class="container-alamat">
+                        <label>
+                            <input type="radio" name="pilih_alamat" value="{{ $pn->id_penerima }}"
+                                data-lokasi="{{ $pn->lokasi }}" data-nama="{{ $pn->nama_penerima }}"
+                                data-alamat="{{ $pn->alamat }}" data-nohp="{{ $pn->nohp_penerima }}" />
+                            <div class="header-alamat">{{ $pn->lokasi }}</div>
+                            <div class="content-alamat">
+                                <span>Nama : {{ $pn->nama_penerima }}</span>
+                                <span>Alamat : {{ $pn->alamat }}</span>
+                                <span>No. Handphone : {{ $pn->nohp_penerima }}</span>
+                            </div>
+                        </label>
                     </div>
-                </div>
-                <label for="lokasi">Tipe Alamat</label>
-                <select id="lokasi" name="lokasi" class="dropdown-ttl-pop">
-                    <option value="Rumah">Rumah</option>
-                    <option value="Kantor">Kantor</option>
-                </select>
-            </div>
-
-            <div class="wrap-content-ubah">
-                <label for="nama">Alamat:</label>
-                <input type="text" name="nama" placeholder="Alamat Lengkap" />
-            </div>
-
-            <div class="wrap-content-ubah">
-                <label for="nama">Nama Penerima:</label>
-                <input type="text" name="nama" placeholder="Masukkan Nama Penerima" />
-            </div>
-
-            <div class="wrap-content-ubah">
-                <label for="nama">No. HP:</label>
-                <input type="text" name="nama" placeholder="+ 62" />
-            </div>
-
-            <button class="btn-content-ubah">Simpan</button>
+                @endforeach
+            </form>
         </div>
     </div>
+
+
+
 
     <script src="{{ asset('assets/js/shop/script-co.js') }}"></script>
     <script src="https://kit.fontawesome.com/b902581f05.js" crossorigin="anonymous"></script>
 
+    <script>
+        document.querySelectorAll('input[name="pilih_alamat"]').forEach((radio) => {
+            radio.addEventListener("change", function() {
+                let lokasi = this.dataset.lokasi;
+                let nama = this.dataset.nama;
+                let alamat = this.dataset.alamat;
+                let nohp = this.dataset.nohp;
+
+                // Update tampilan alamat
+                document.getElementById("alamat-lokasi").innerHTML = `${lokasi} • ${nama}`;
+                document.getElementById("alamat-detail").innerHTML = `${alamat}, ${nohp}`;
+
+                let alamatKosong = document.getElementById("alamat-kosong");
+                if (alamatKosong) {
+                    alamatKosong.style.display = "none";
+                }
+
+                document.getElementById("wrap-popup-co").style.display = "none";
+            });
+        });
+
+        document.getElementById("ganti-alamat").addEventListener("click", function() {
+            document.getElementById("wrap-popup-co").style.display = "flex";
+        });
+        document.getElementById("close-alamat").addEventListener("click", function() {
+            document.getElementById("wrap-popup-co").style.display = "none";
+        });
+    </script>
+
+    <script>
+        document.getElementById("btn-tambah").addEventListener("click", function() {
+            window.location.href = "{{ route('cs.account') }}";
+        });
+    </script>
 </body>
 
 </html>

@@ -47,7 +47,7 @@ class Keranjang extends Model
         'id_varian',
         'id_customer',
         'jumlah',
-        'status',
+      
     ];
 
     /**

@@ -3,3 +3,98 @@ HAPUS FILE INI JIKA SUDAH DALAM TAHAP PRODUCTION!
 Perbedaan folder SHOP dan folder CUSTOMER adalah
 tampilan pelanggan CUSTOMER untuk yang belum login
 tampilan pelanggan SHOP untuk yang sudah login
+
+
+
+
+ALAMAT DI HALAMAN CO TIDAK BISA DIUBAH (KARENA untuk redirect ke halaman co error GET metodh, ->>>> alamat tetap berubah tapi data yang tampil dihalaman co hilang )
+UNTUK UBAH ALAMAT CO HARUS KE HALAMAN AKUN
+
+<----TITIP---->
+
+
+
+
+
+{{-- pop-up ubah alamat --}}
+    <div class="wrap-popup-ubah" id="wrap-popup-ubah">
+        <div class="pop-up-ubah">
+            <div class="wrap-content-ubah">
+                <div class="header-content-ubah">
+                    <h1>Ubah Alamat</h1>
+                    <div class="x-button-co">
+                        <i class="fa-solid fa-xmark" id="close-ubah"></i>
+                    </div>
+                </div>
+
+                <!-- Form Update Alamat -->
+                <form id="updateAlamatForm" method="POST" action="{{ route('cs.update.alamatco') }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="id_penerima" name="id_penerima">
+
+                    <label for="lokasi">Tipe Alamat</label>
+                    <select id="lokasi" name="lokasi" class="dropdown-ttl-pop">
+                        <option value="Rumah">Rumah</option>
+                        <option value="Kantor">Kantor</option>
+                    </select>
+
+                    <div class="wrap-content-ubah">
+                        <label for="alamat">Alamat:</label>
+                        <input type="text" id="alamat" name="alamat" placeholder="Alamat Lengkap" required />
+                    </div>
+
+                    <div class="wrap-content-ubah">
+                        <label for="nama_penerima">Nama Penerima:</label>
+                        <input type="text" id="nama_penerima" name="nama_penerima"
+                            placeholder="Masukkan Nama Penerima" required />
+                    </div>
+
+                    <div class="wrap-content-ubah">
+                        <label for="nohp_penerima">No. HP:</label>
+                        <input type="text" id="nohp_penerima" name="nohp_penerima" placeholder="+62" required />
+                    </div>
+
+                    <button type="submit" class="btn-content-ubah">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+ <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modalUbah = document.getElementById("wrap-popup-ubah");
+            const closeUbah = document.getElementById("close-ubah");
+            const formUpdate = document.getElementById("updateAlamatForm");
+
+            document.querySelectorAll(".btn-ubah-alamat").forEach(button => {
+                button.addEventListener("click", function() {
+                    const idPenerima = this.getAttribute("data-id");
+                    const lokasi = this.getAttribute("data-lokasi");
+                    const alamat = this.getAttribute("data-alamat");
+                    const namaPenerima = this.getAttribute("data-nama");
+                    const noHpPenerima = this.getAttribute("data-nohp");
+
+                    // Isi form dengan data yang dipilih
+                    document.getElementById("id_penerima").value = idPenerima;
+                    document.getElementById("lokasi").value = lokasi;
+                    document.getElementById("alamat").value = alamat;
+                    document.getElementById("nama_penerima").value = namaPenerima;
+                    document.getElementById("nohp_penerima").value = noHpPenerima;
+
+                    // Tampilkan modal
+                    modalUbah.style.display = "block";
+                });
+            });
+
+            closeUbah.addEventListener("click", function() {
+                modalUbah.style.display = "none";
+            });
+        });
+    </script>

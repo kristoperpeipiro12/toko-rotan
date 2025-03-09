@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Models\Keranjang;
+use App\Models\Penerima;
 use App\Models\Produk_Varian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,12 @@ class CheckoutController extends Controller
 
     public function index(Request $request)
     {
-        $user = Auth::user();
+        $user = Auth::id();
+$alamat = Penerima::where('id_customer', $user)
+            ->orderBy('created_at', 'asc') // Urutkan berdasarkan tanggal pembuatan paling awal
+            ->get();
+
+$penerima = $alamat->first();
         $selectedItems = $request->input('selected_items', ''); // Default ke string kosong
         $selectedItemsArray = array_filter(explode(',', $selectedItems)); // Hapus nilai kosong
 
@@ -29,7 +35,7 @@ class CheckoutController extends Controller
         $ongkir = 5000;
         $total_tagihan = $total_harga + $ongkir;
 
-        return view('shop.co', compact('cartItems', 'total_harga', 'ongkir', 'total_tagihan'));
+        return view('shop.co', compact('cartItems', 'total_harga', 'ongkir', 'total_tagihan','penerima','alamat'));
     }
 
     public function store($id)

@@ -71,7 +71,7 @@ class AccountController extends Controller
 
 
         Penerima::create([
-            'id_penerima' => Str::uuid()->toString(),
+            'id_penerima' => uniqid('PNR-'),
             'id_customer' => $id_customer,
             'nama_penerima' => $validatedData['nama_penerima'],
             'nohp_penerima' => $validatedData['nohp_penerima'],
@@ -88,7 +88,8 @@ class AccountController extends Controller
     public function UpdateAlamat(Request $request)
     {
         $id_customer = Auth::id();
-        $penerima = Penerima::where('id_customer', $id_customer)->get()?? collect([]);
+        $penerima = Penerima::where('id_customer', $id_customer)->first();
+        // $penerima = Penerima::where('id_customer', $id_customer)->get()?? collect([]);
 
         if ($request->isMethod('get')) {
             // dd($penerima);
@@ -118,6 +119,34 @@ class AccountController extends Controller
 
     }
 
+    public function UpdateAlamatCO(Request $request)
+{
+    try {
+        $id_customer = Auth::id();
+
+        // Validasi input terlebih dahulu
+        $validatedData = $request->validate([
+            'nama_penerima' => 'required|string|max:255',
+            'nohp_penerima' => 'required|string|max:15',
+            'alamat' => 'required|string|max:500',
+            'lokasi' => 'nullable|string|max:255',
+        ]);
+
+        $penerima = Penerima::firstOrNew(['id_customer' => $id_customer]);
+
+        if (!$penerima->exists) {
+            $penerima->id_penerima = uniqid('PNR-');
+            $penerima->id_customer = $id_customer;
+        }
+
+        // Mengisi data dan menyimpan
+        $penerima->fill($validatedData);
+        $penerima->save();
+        return redirect()->back()->with('toast_success', 'Alamat berhasil diperbarui!');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('toast_error', 'Terjadi kesalahan: ' . $e->getMessage());
+    }
+}
 
 
 }
