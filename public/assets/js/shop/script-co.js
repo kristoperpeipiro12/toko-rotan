@@ -10,6 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeUbah = document.getElementById("close-ubah");
     const closeAlamat = document.getElementById("close-alamat");
     const batal = document.getElementById("batal");
+    keluar.addEventListener("click", function () {
+        wrapPopupKeluar.classList.add("active");
+    });
+
+    batal.addEventListener("click", function () {
+        wrapPopupKeluar.classList.remove("active");
+    });
 
     gantiAlamat.addEventListener("click", function () {
         wrapPopupAlamat.classList.add("active");
@@ -25,13 +32,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     closeAlamat.addEventListener("click", function () {
         wrapPopupAlamat.classList.remove("active");
-    });
-
-    keluar.addEventListener("click", function () {
-        wrapPopupKeluar.classList.add("active");
-    });
-
-    batal.addEventListener("click", function () {
-        wrapPopupKeluar.classList.remove("active");
     });
 });

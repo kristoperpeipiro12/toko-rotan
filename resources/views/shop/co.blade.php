@@ -13,7 +13,7 @@
         <div class="navbar-co"><span class="navbar-brand" id="keluar">AL - ZAHRA</span></div>
 
         <div class="wrap-container-co">
-            <div class="container co-page">
+            <div class="container co-page summary-section">
                 <header class="header co-page">
                     <h1>Checkout</h1>
                 </header>
@@ -99,10 +99,10 @@
     <div class="wrap-popup-keluar" id="wrap-popup-keluar">
         <div class="pop-up-keluar">
             <span class="header-keluar">Yakin ingin keluar?</span>
-            <p class="content-keluar">Jika menutup halaman, proses akan dibatalkan!</p>
+            <p class="content-keluar">Jika menutup halaman, proses<br>akan dibatalkan!</p>
             <div class="wrap-btn-keluar">
-                <a class="btn-keluar" href="{{ route('shop.cart') }}">Keluar Halaman</a>
-                <button class="btn-batal" id="batal">Batal</button>
+                <button class="btn-batal" id="batal">Tetap Di Halaman Ini</button>
+                <a class="btn-keluar" href="{{ route('shop.cart') }}">Keluar & Hapus Perubahan</a>
             </div>
         </div>
     </div>

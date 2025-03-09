@@ -36,12 +36,16 @@ body {
 }
 
 .container.co-page {
-    max-width: 600px;
+    /* max-width: 600px; */
     padding: 14px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+.summary-section {
+    min-width: 800px;
 }
 
 .header.co-page {
@@ -224,6 +228,11 @@ body {
     background-color: rgba(51, 51, 51, 0.7);
 }
 
+.wrap-popup-keluar {
+    z-index: 30;
+    background-color: rgba(51, 51, 51, 0.5);
+}
+
 .pop-up-co,
 .pop-up-ubah,
 .pop-up-keluar {
@@ -396,5 +405,60 @@ body {
 }
 
 /* popup keluar >> */
+
+.pop-up-keluar {
+    display: flex;
+    align-items: center;
+}
+
+.header-keluar {
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.content-keluar {
+    font-size: 1.4rem;
+    text-align: center;
+    color: rgb(105, 104, 104);
+}
+
+.wrap-btn-keluar {
+    display: flex;
+    width: 100%;
+    gap: 18px;
+    flex-direction: column;
+}
+
+.wrap-btn-keluar * {
+    display: inline;
+    width: auto;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.wrap-btn-keluar .btn-batal {
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    background-color: #08ac5c;
+    color: white;
+}
+
+.wrap-btn-keluar .btn-batal:hover {
+    background-color: #127545;
+}
+
+.wrap-btn-keluar .btn-keluar {
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    color: #08ac5c;
+}
+
+.wrap-btn-keluar .btn-keluar:hover {
+    color: #127545;
+}
 
 /* << popup keluar */

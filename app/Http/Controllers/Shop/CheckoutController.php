@@ -15,11 +15,11 @@ class CheckoutController extends Controller
     public function index(Request $request)
     {
         $user = Auth::id();
-$alamat = Penerima::where('id_customer', $user)
+        $alamat = Penerima::where('id_customer', $user)
             ->orderBy('created_at', 'asc') // Urutkan berdasarkan tanggal pembuatan paling awal
             ->get();
 
-$penerima = $alamat->first();
+        $penerima = $alamat->first();
         $selectedItems = $request->input('selected_items', ''); // Default ke string kosong
         $selectedItemsArray = array_filter(explode(',', $selectedItems)); // Hapus nilai kosong
 
@@ -35,7 +35,7 @@ $penerima = $alamat->first();
         $ongkir = 5000;
         $total_tagihan = $total_harga + $ongkir;
 
-        return view('shop.co', compact('cartItems', 'total_harga', 'ongkir', 'total_tagihan','penerima','alamat'));
+        return view('shop.co', compact('cartItems', 'total_harga', 'ongkir', 'total_tagihan', 'penerima', 'alamat'));
     }
 
     public function store($id)
