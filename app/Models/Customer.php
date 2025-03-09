@@ -8,6 +8,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
+
 class Customer extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -77,4 +79,6 @@ class Customer extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Penerima::class, 'id_penerima', 'id_penerima');
     }
+
+
 }

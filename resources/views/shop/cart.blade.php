@@ -40,11 +40,15 @@
                             </div>
                         </div>
                     @endforeach
-                    <form action="{{ route('shop.co') }}" method="POST">
+                    <form action="{{ route('shop.co') }}" method="POST" onsubmit="return validateCheckout()">
                         @csrf
                         <input type="hidden" name="selected_items" id="selected-items-input">
                         <button type="submit" class="checkout-btn">Checkout</button>
                     </form>
+
+                    <p id="error-message" style="color: red; display: none;">Silakan pilih minimal satu item sebelum
+                        checkout.</p>
+
                 </div>
             </div>
 
@@ -126,7 +130,18 @@
         </div>
 
     </div>
-
+    {{-- modal error Button CO --}}
+    <div id="error-modal" class="modalco">
+        <div class="modal-contentco">
+            <div class="modal-headerco">
+                <span class="close-btnco" onclick="closeModal()">&times;</span>
+                <h2>Opsss!</h2>
+            </div>
+            <div class="modal-bodyco">
+                <p>Silakan pilih minimal satu item sebelum checkout.</p>
+            </div>
+        </div>
+    </div>
 
     {{-- modal edit --}}
     @foreach ($all_cart as $cart)
@@ -145,7 +160,7 @@
                             @csrf
                             @method('PUT')
 
-                            <!-- nama _kategori -->
+
                             <div class="mb-3">
                                 <label for="edit_nama" class="form-label">Jumlah</label>
                                 <input type="text" class="form-control" id="edit_jumlah" name="jumlah"
@@ -208,7 +223,28 @@
             const selectedIds = [...selectedItems].map(item => item.value);
             document.getElementById("selected-items-input").value = selectedIds.join(",");
         }
-    </script>
 
+        // js modal co
+        function validateCheckout() {
+            let selectedItems = document.getElementById('selected-items-input').value;
+
+            if (!selectedItems.trim()) {
+                let modal = document.getElementById('error-modal');
+                modal.style.display = "flex";
+
+                setTimeout(() => {
+                    modal.style.display = "none";
+                }, 2000);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        function closeModal() {
+            document.getElementById('error-modal').style.display = "none";
+        }
+    </script>
     <script src="{{ asset('assets/js/shop/detail-page.js') }}"></script>
 @endsection

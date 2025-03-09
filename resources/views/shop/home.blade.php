@@ -10,7 +10,10 @@
                 <span class="wel-text ms-2">Selamat Datang</span>
                 <span class="promo-text ms-2" style="font-style: italic">dapatkan promo menarik setiap tahun!</span>
                 <div class="wrap-btn-wel-shop">
-                    <button class="btn-wow-btn-1">Belanja Sekarang <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="btn-wow-btn-1" onclick="window.location.href='{{ route('shop.shop') }}'">
+                        Belanja Sekarang <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+
                 </div>
             </div>
         </div>

@@ -11,34 +11,43 @@
             <li class="nav-item-cus"><a class="hover-eff-cus hover-eff-mq-cus"
                     href="{{ route('shop.home') . '#contact' }}">Contact</a></li>
 
-            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('cs.account') }}">Account</a>
-            </li>
-            <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('cs.account') }}"
-                    data-bs-toggle="modal" data-bs-target="#logoutModal">Log-Out</a>
-            </li>
-
-            {{-- <li class="nav-item-cus hover-eff-mq-cus">
-                <button type="button" class="btn btn-transparent fw-bold" data-bs-toggle="modal"
-                    data-bs-target="#logoutModal">
-                    Log-out
-                </button>
-            </li> --}}
+            @auth
+                <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus"><a href="{{ route('cs.account') }}">Account</a></li>
+                <li class="nav-item-cus hidden-li-cus hover-eff-mq-cus">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Log-Out</a>
+                </li>
+            @endauth
         </ul>
+
         <div class="user-section-cus" id="user-section-cus">
             <div class="nav-item-cus hidden-tablet">
-                <a href="{{ route('cs.account') }}" class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus"><i
-                        class="fa-color-cus fa-solid fa-user"></i></a>
-                <ul class="dropdown-cus-1" id="dd-cus">
-                    <li><a style="font-size: 1rem; color: black;" href="{{ route('cs.account') }}">Account</a></li>
-                    <li>
-                        <p style="font-size: 1rem; color: black; margin-bottom: 0;" data-bs-toggle="modal"
-                            data-bs-target="#logoutModal">
-                            Log-out</p>
-                    </li>
-                </ul>
+                @auth
+                    <a href="{{ route('cs.account') }}" class="btn-dropdown-cus-1 hover-eff-cus hover-eff-mq-cus">
+                        <i class="fa-color-cus fa-solid fa-user"></i>
+                    </a>
+                    <ul class="dropdown-cus-1" id="dd-cus">
+                        <li><a style="font-size: 1rem; color: black;" href="{{ route('cs.account') }}">Account</a></li>
+                        <li>
+                            <p style="font-size: 1rem; color: black; margin-bottom: 0;" data-bs-toggle="modal"
+                                data-bs-target="#logoutModal">
+                                Log-out
+                            </p>
+                        </li>
+                    </ul>
+                @else
+                    <a href="{{ route('login') }}" class="hover-eff-cus hover-eff-mq-cus">
+                        <i class="fa-color-cus fa-solid fa-user"></i>
+                    </a>
+                @endauth
             </div>
-            <a href="{{ route('shop.cart') }}"><i class="fa-color-cus fa-solid fa-cart-shopping"></i></a>
+
+            @auth
+                <a href="{{ route('shop.cart') }}">
+                    <i class="fa-color-cus fa-solid fa-cart-shopping"></i>
+                </a>
+            @endauth
         </div>
+
         <i class="fa-solid fa-bars" id="hum-menu-cus"></i>
     </nav>
 

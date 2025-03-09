@@ -23,10 +23,14 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route Catalog
-Route::get('/', [CustomerHomeController::class, 'index'])->name('customer.home');
-Route::get('/shop/cus', [CustomerHomeController::class, 'shop'])->name('customer.shop');
-Route::get('/about/cus', [CustomerHomeController::class, 'about'])->name('customer.about');
+// Route::get('/', [CustomerHomeController::class, 'index'])->name('customer.home');
+// Route::get('/shop/cus', [CustomerHomeController::class, 'shop'])->name('customer.shop');
+// Route::get('/about/cus', [CustomerHomeController::class, 'about'])->name('customer.about');
 
+// con
+Route::get('/', [ShopController::class, 'index'])->name('shop.home');
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
+Route::get('/shop/about', [ShopController::class, 'about'])->name('shop.about');
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -93,9 +97,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 
 // Customer Routes
 Route::group(['middleware' => ['auth', 'role:customer']], function () {
-    Route::get('/home', [ShopController::class, 'index'])->name('shop.home');
-    Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
-    Route::get('/shop/about', [ShopController::class, 'about'])->name('shop.about');
+
     Route::get('/shop/detail/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
 
     // bagian keranjang
@@ -107,6 +109,9 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
 
     // bagian checkout
     // Route::post('/co/{id}', [CheckoutController::class, 'index'])->name('shop.co');
+    Route::get('/co', [CheckoutController::class, 'index'])
+    ->name('shop.co')
+    ->middleware('check.selected.items');
     Route::post('/co', [CheckoutController::class, 'index'])->name('shop.co');
     Route::post('/co/add', [CheckoutController::class, 'store'])->name('shop.co.store');
     // Route::delete('/co/delete/{id}', [CheckoutController::class, 'delete'])->name('shop.co.delete');
