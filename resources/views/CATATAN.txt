@@ -16,44 +16,62 @@ UNTUK UBAH ALAMAT CO HARUS KE HALAMAN AKUN
 
 
 
-   {{-- Pop-up Pilih Alamat --}}
-    <div class="wrap-popup-co" id="wrap-popup-co">
-        <div class="pop-up-co">
-            <div class="wrap-title-popup">
-                <h1>Pilih Alamat</h1>
-                <div class="x-button-co">
-                    <i class="fa-solid fa-xmark" id="close-alamat"></i>
-                </div>
-            </div>
-
-            <form id="formPilihAlamat">
-                @foreach ($alamat as $pn)
-                    <div class="container-alamat">
-                        <label>
-                            <input type="radio" name="pilih_alamat" value="{{ $pn->id_penerima }}"
-                                data-lokasi="{{ $pn->lokasi }}" data-nama="{{ $pn->nama_penerima }}"
-                                data-alamat="{{ $pn->alamat }}" data-nohp="{{ $pn->nohp_penerima }}" />
-                            <div class="header-alamat">{{ $pn->lokasi }}</div>
-                            <div class="content-alamat">
-                                <span>Nama : {{ $pn->nama_penerima }}</span>
-                                <span>Alamat : {{ $pn->alamat }}</span>
-                                <span>No. Handphone : {{ $pn->nohp_penerima }}</span>
-                            </div>
-                        </label>
+{{-- pop-up ubah alamat --}}
+    <div class="wrap-popup-ubah" id="wrap-popup-ubah">
+        <div class="pop-up-ubah">
+            <div class="wrap-content-ubah">
+                <div class="header-content-ubah">
+                    <h1>Ubah Alamat</h1>
+                    <div class="x-button-co">
+                        <i class="fa-solid fa-xmark" id="close-ubah"></i>
                     </div>
-                    <p class="btn-ubah-alamat" data-id="{{ $pn->id_penerima }}" data-lokasi="{{ $pn->lokasi }}"
-                        data-alamat="{{ $pn->alamat }}" data-nama="{{ $pn->nama_penerima }}"
-                        data-nohp="{{ $pn->nohp_penerima }}">
-                        Ubah Alamat
-                    </p>
-                @endforeach
-            </form>
+                </div>
+
+                <!-- Form Update Alamat -->
+                <form id="updateAlamatForm" method="POST" action="{{ route('cs.update.alamatco') }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="id_penerima" name="id_penerima">
+
+                    <label for="lokasi">Tipe Alamat</label>
+                    <select id="lokasi" name="lokasi" class="dropdown-ttl-pop">
+                        <option value="Rumah">Rumah</option>
+                        <option value="Kantor">Kantor</option>
+                    </select>
+
+                    <div class="wrap-content-ubah">
+                        <label for="alamat">Alamat:</label>
+                        <input type="text" id="alamat" name="alamat" placeholder="Alamat Lengkap" required />
+                    </div>
+
+                    <div class="wrap-content-ubah">
+                        <label for="nama_penerima">Nama Penerima:</label>
+                        <input type="text" id="nama_penerima" name="nama_penerima"
+                            placeholder="Masukkan Nama Penerima" required />
+                    </div>
+
+                    <div class="wrap-content-ubah">
+                        <label for="nohp_penerima">No. HP:</label>
+                        <input type="text" id="nohp_penerima" name="nohp_penerima" placeholder="+62" required />
+                    </div>
+
+                    <button type="submit" class="btn-content-ubah">Simpan</button>
+                </form>
+            </div>
         </div>
     </div>
 
 
 
 
+<p class="btn-ubah-alamat"
+   data-id="{{ $pn->id_penerima }}"
+   data-lokasi="{{ $pn->lokasi }}"
+   data-alamat="{{ $pn->alamat }}"
+   data-nama="{{ $pn->nama_penerima }}"
+   data-nohp="{{ $pn->nohp_penerima }}">
+   Ubah Alamat
+</p>
 
 
  <script>

@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Penerima;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -120,33 +121,42 @@ class AccountController extends Controller
     }
 
     public function UpdateAlamatCO(Request $request)
-{
-    try {
-        $id_customer = Auth::id();
+    {
+        try {
+            $id_customer = Auth::id();
 
-        // Validasi input terlebih dahulu
-        $validatedData = $request->validate([
-            'nama_penerima' => 'required|string|max:255',
-            'nohp_penerima' => 'required|string|max:15',
-            'alamat' => 'required|string|max:500',
-            'lokasi' => 'nullable|string|max:255',
-        ]);
+            // Validasi input
+            $validator = Validator::make($request->all(), [
+                'id_penerima'    => 'required|string',
+                'nama_penerima'  => 'required|string|max:255',
+                'nohp_penerima'  => 'required|string|max:15',
+                'alamat'         => 'required|string|max:500',
+                'lokasi'         => 'nullable|string|max:255',
+            ]);
 
-        $penerima = Penerima::firstOrNew(['id_customer' => $id_customer]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Validasi gagal',
+                    'errors'  => $validator->errors()
+                ], 422);
+            }
+            // Update atau buat data penerima
+            $penerima = Penerima::updateOrCreate(
+                ['id_penerima' => $request->id_penerima, 'id_customer' => $id_customer],
+                $request->only(['nama_penerima', 'nohp_penerima', 'alamat', 'lokasi'])
+            );
 
-        if (!$penerima->exists) {
-            $penerima->id_penerima = uniqid('PNR-');
-            $penerima->id_customer = $id_customer;
+            return response()->json([
+                'success'  => true,
+                'message'  => 'Alamat berhasil diperbarui!',
+                'penerima' => $penerima
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
         }
-
-        // Mengisi data dan menyimpan
-        $penerima->fill($validatedData);
-        $penerima->save();
-        return redirect()->back()->with('toast_success', 'Alamat berhasil diperbarui!');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('toast_error', 'Terjadi kesalahan: ' . $e->getMessage());
     }
-}
-
-
 }

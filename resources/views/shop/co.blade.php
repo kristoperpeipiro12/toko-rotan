@@ -133,6 +133,13 @@
                                 <span>No. Handphone : {{ $pn->nohp_penerima }}</span>
                             </div>
                         </label>
+                        <p class="btn-ubah-alamat" role="button" tabindex="0" data-id="{{ $pn->id_penerima }}"
+                            data-lokasi="{{ $pn->lokasi }}" data-alamat="{{ $pn->alamat }}"
+                            data-nama="{{ $pn->nama_penerima }}" data-nohp="{{ $pn->nohp_penerima }}">
+                            Ubah Alamat
+                        </p>
+
+
                     </div>
                 @endforeach
             </form>
@@ -140,9 +147,56 @@
     </div>
 
 
+    {{-- pop-up ubah alamat --}}
+    <div class="wrap-popup-ubah" id="wrap-popup-ubah">
+        <div class="pop-up-ubah">
+            <div class="wrap-content-ubah">
+                <div class="header-content-ubah">
+                    <h1>Ubah Alamat</h1>
+                    <div class="x-button-co">
+                        <i class="fa-solid fa-xmark" id="close-ubah"></i>
+                    </div>
+                </div>
+
+                <form id="updateAlamatForm" method="POST" action="{{ route('cs.update.alamatco') }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="id_penerima" name="id_penerima">
+
+                    <label for="lokasi">Tipe Alamat</label>
+                    <select id="lokasi" name="lokasi" class="dropdown-ttl-pop">
+                        <option value="Rumah">Rumah</option>
+                        <option value="Kantor">Kantor</option>
+                    </select>
+
+                    <div class="wrap-content-ubah">
+                        <label for="alamat">Alamat:</label>
+                        <input type="text" id="alamat" name="alamat" placeholder="Alamat Lengkap" required />
+                    </div>
+
+                    <div class="wrap-content-ubah">
+                        <label for="nama_penerima">Nama Penerima:</label>
+                        <input type="text" id="nama_penerima" name="nama_penerima"
+                            placeholder="Masukkan Nama Penerima" required />
+                    </div>
+
+                    <div class="wrap-content-ubah">
+                        <label for="nohp_penerima">No. HP:</label>
+                        <input type="text" id="nohp_penerima" name="nohp_penerima" placeholder="+62" required />
+                    </div>
+
+                    <button type="submit" class="btn-content-ubah">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
     <script src="{{ asset('assets/js/shop/script-co.js') }}"></script>
+    <script src="{{ asset('assets/js/shop/ubah_alamat.js') }}"></script>
     <script src="https://kit.fontawesome.com/b902581f05.js" crossorigin="anonymous"></script>
 
     <script>
@@ -173,7 +227,6 @@
             document.getElementById("wrap-popup-co").style.display = "none";
         });
     </script>
-
     <script>
         document.getElementById("btn-tambah").addEventListener("click", function() {
             window.location.href = "{{ route('cs.account') }}";
