@@ -26,20 +26,9 @@
             </a>
             <span class="tooltip">Keranjang</span>
         </li>
-        {{-- <li>
-            <a href="#">
-                <i class="bx bx-heart"></i>
-                <span class="links_name">Saved</span>
-            </a>
-            <span class="tooltip">Saved</span>
-        </li> --}}
 
-        <li class="profile">
-            <div class="profile-details">
-                <div class="name_job">
-                    <div class="name">Log-Out</div>
-                </div>
-            </div>
+        <li class="profile hover-here" data-bs-toggle="modal" data-bs-target="#logoutModal">
+            <span class="logout-span">Keluar</span>
             <i class="bx bx-log-out" id="log_out"></i>
         </li>
     </ul>

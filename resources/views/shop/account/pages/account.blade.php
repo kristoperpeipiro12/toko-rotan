@@ -30,11 +30,6 @@
             <div class="nav-tabs-cus-cn1">
                 <div class="nav-tab-cus-cn1 active-cus-cn1" data-target="biodata">Biodata Diri</div>
                 <div class="nav-tab-cus-cn1" data-target="alamat">Daftar Alamat</div>
-                {{-- <div class="nav-tab-cus-cn1" data-target="pembayaran">Pembayaran</div>
-                <div class="nav-tab-cus-cn1" data-target="rekening">Rekening Bank</div>
-                <div class="nav-tab-cus-cn1" data-target="notifikasi">Notifikasi</div>
-                <div class="nav-tab-cus-cn1" data-target="tampilan">Mode Tampilan</div>
-                <div class="nav-tab-cus-cn1" data-target="keamanan">Keamanan</div> --}}
             </div>
 
             <div class="card-content-cus-cn1 active-cus-cn1" id="biodata">
@@ -131,26 +126,9 @@
 
 
 
-            {{-- <div class="card-content-cus-cn1" id="pembayaran">
-                <p>Informasi pembayaran Anda akan ditampilkan di sini.</p>
-            </div>
 
-            <div class="card-content-cus-cn1" id="rekening">
-                <p>Informasi rekening bank Anda akan ditampilkan di sini.</p>
-            </div>
-
-            <div class="card-content-cus-cn1" id="notifikasi">
-                <p>Pengaturan notifikasi Anda akan ditampilkan di sini.</p>
-            </div>
-
-            <div class="card-content-cus-cn1" id="tampilan">
-                <p>Pengaturan mode tampilan Anda akan ditampilkan di sini.</p>
-            </div>
-
-            <div class="card-content-cus-cn1" id="keamanan">
-                <p>Pengaturan keamanan Anda akan ditampilkan di sini.</p>
-            </div> --}}
         </div>
+
 
     </section>
 

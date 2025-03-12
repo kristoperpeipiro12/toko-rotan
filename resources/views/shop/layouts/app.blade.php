@@ -4,6 +4,7 @@
 @include('shop.includes.header')
 
 <body>
+    @include('shop.includes.whatsapp-icon')
     @yield('content')
     @include('sweetalert::alert')
 

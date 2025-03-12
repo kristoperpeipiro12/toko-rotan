@@ -246,6 +246,20 @@
     font-weight: 500;
     margin: 18px;
 }
+
+.logout-span {
+    color: white;
+}
+
+.hover-here:hover {
+    cursor: pointer;
+    background-color: white !important;
+}
+
+.hover-here:hover * {
+    color: #201c34 !important;
+}
+
 @media (max-width: 420px) {
     .sidebar li .tooltip {
         display: none;

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/shop/cart-page.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shop/moodalco.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shop/pup-up-login.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop/whatsapp-icon.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/shop/product-card1.css') }}"> --}}
     {{-- posisi main.css harus dibawah bootstrap agar jadi prioritas pertama --}}
     @include('sweetalert::alert')

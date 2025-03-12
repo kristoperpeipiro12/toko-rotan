@@ -1,0 +1,21 @@
+.img-con-wa {
+    position: fixed;
+    z-index: 999;
+    right: 25px;
+    bottom: 25px;
+    cursor: pointer;
+    display: flex;
+    background-color: rgba(248, 228, 204, 0.9);
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+    box-shadow: rgb(56, 56, 56) 3px 3px 2px;
+    border-radius: 12px;
+    transition: 0.3s ease all;
+}
+
+.img-con-wa:hover {
+    right: 30px;
+    bottom: 30px;
+    box-shadow: rgb(56, 56, 56) 4px 4px 4px;
+}

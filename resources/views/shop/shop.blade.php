@@ -42,14 +42,6 @@
 
         </div>
     </div>
-
-
-
-    <div class="d-flex justify-content-center" style="gap: 2rem; margin-bottom: 5rem">
-        <a href="#" class="one-shop">1</a>
-        <a href="#" class="two-shop">2</a>
-        <a href="#" class="next-shop"><i class="fa-solid fa-arrow-right"></i></a>
-    </div>
     </div>
 
     {{-- Footer Section --}}
