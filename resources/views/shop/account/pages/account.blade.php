@@ -22,7 +22,8 @@
 
     <div class="modal-logout" id="logoutModal">
         <div class="modal-logout-content">
-            <span style="font-size: 1rem; margin-bottom: 5px;">Apakah anda yakin ingin Log-Out?</span>
+            <span style="font-size: 1rem;">Apakah anda yakin ingin Log-Out?</span>
+            <hr style="margin-top: 8px; margin-bottom: 12px;">
             <div class="logout-container">
                 <a href="{{ route('logout') }}">Logout</a>
                 <span class="close-modal-btn" id="closeModalBtn">Batal</span>
@@ -31,19 +32,22 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let modal = document.getElementById('logoutModal');
-            let openModalBtn = document.getElementById('openModalBtn');
-            let closeModalBtn = document.getElementById('closeModalBtn');
+    document.addEventListener("DOMContentLoaded", function() {
+        let modal = document.getElementById('logoutModal');
+        let openModalBtn = document.getElementById('openModalBtn');
+        let closeModalBtn = document.getElementById('closeModalBtn');
 
-            openModalBtn.addEventListener('click', function() {
-                modal.classList.add('active')
-            });
+        openModalBtn.addEventListener('click', function() {
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
 
-            closeModalBtn.addEventListener('click', function() {
-                modal.classList.remove('active')
-            })
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
         })
+    })
     </script>
     <section class="home-section">
         <div class="text">Akun Saya</div>
@@ -63,8 +67,7 @@
                     <!-- Foto dan Upload -->
                     <div class="res-bio-photo-section">
                         <div class="card-bio-cus">
-                            <img class="img-bio-cus" src="{{ asset('assets/images/dummy-images/none.jpg') }}"
-                                alt="">
+                            <img class="img-bio-cus" src="{{ asset('assets/images/dummy-images/none.jpg') }}" alt="">
                             <button class="btn-pilih">Pilih Foto</button>
                             <span class="text-justify">Besar file: maksimum 10.000.000 bytes (10 Megabytes).
                                 Ekstensi
@@ -84,9 +87,9 @@
                             <span>Tanggal Lahir:</span>
 
                             @if (auth()->user()->tanggal_lahir)
-                                <p>{{ \Carbon\Carbon::parse(auth()->user()->tanggal_lahir)->format('d/m/Y') }}</p>
+                            <p>{{ \Carbon\Carbon::parse(auth()->user()->tanggal_lahir)->format('d/m/Y') }}</p>
                             @else
-                                <p id="openAccModal" data-content="content-1">Tambahkan Tanggal Lahir</p>
+                            <p id="openAccModal" data-content="content-1">Tambahkan Tanggal Lahir</p>
                             @endif
                         </div>
 
@@ -94,9 +97,9 @@
                             <span>Jenis Kelamin:</span>
 
                             @if (auth()->user()->jenis_kelamin)
-                                <p>{{ auth()->user()->jenis_kelamin }}</p>
+                            <p>{{ auth()->user()->jenis_kelamin }}</p>
                             @else
-                                <p id="openAccModal" data-content="content-2">Tambahkan Jenis Kelamin</p>
+                            <p id="openAccModal" data-content="content-2">Tambahkan Jenis Kelamin</p>
                             @endif
                         </div>
 
@@ -120,12 +123,12 @@
 
 
             <div class="card-content-cus-cn1" id="alamat">
-                @if (count($penerima) < 2)
-                    <button class="btn btn-primary" href="#" id="openAccModal" data-content="content-4">
-                        + Tambah
+                @if (count($penerima) < 2) <button class="btn btn-primary" href="#" id="openAccModal"
+                    data-content="content-4">
+                    + Tambah
                     </button>
-                @endif
-                @foreach ($penerima as $pn)
+                    @endif
+                    @foreach ($penerima as $pn)
                     <div class="container-bio-almt">
                         <div class="header-bio-almt">
                             <div class="title-bio-almt">
@@ -146,7 +149,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                    @endforeach
             </div>
         </div>
 
