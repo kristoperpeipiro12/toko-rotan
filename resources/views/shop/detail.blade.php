@@ -109,6 +109,12 @@
                             Tambahkan ke Keranjang
                         </button>
                     </form>
+                    <form action="{{ route('shop.co') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="produk_varian" value="{{ $produk->id_varian }}"
+                            id="selected-items-input">
+                        <button type="submit" class="checkout-btn">Checkout</button>
+                    </form>
 
 
                 </div>

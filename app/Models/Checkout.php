@@ -21,8 +21,8 @@ class Checkout extends Model
     protected $fillable = [
         'id_varian',
         'id_customer',
-        'id_keranjang',
         'jumlah',
+        'status',
     ];
 
     public function produk_varian()
@@ -35,8 +35,4 @@ class Checkout extends Model
         return $this->belongsTo(Customer::class, 'id_customer', 'id_customer');
     }
 
-    public function keranjang()
-    {
-        return $this->belongsTo(Keranjang::class, 'id_keranjang', 'id_keranjang');
-    }
 }

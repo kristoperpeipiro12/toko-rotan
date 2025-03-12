@@ -88,10 +88,12 @@
                             <span class="net-total">Rp. {{ number_format($total_tagihan, 0, ',', '.') }}</span>
                         </div>
 
-                        <form action="{{ route('send.order.confirmation') }}" method="POST">
+                        <form action="{{ route('pesan.proses') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="selected_items"
+                                value="{{ implode(',', $cartItems->pluck('id_keranjang')->toArray()) }}">
                             <div class="btn-co-bayar-sekarang">
-                                <button type="submit" style="background: none; border: none; cursor: pointer;">Bayar
+                                <button type="submit" style="background: none; border: none; cursor: pointer;">Pesan
                                     Sekarang</button>
                             </div>
                         </form>

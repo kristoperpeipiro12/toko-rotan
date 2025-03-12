@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,8 +14,8 @@ return new class extends Migration
             $table->uuid('id_checkout')->primary();
             $table->uuid('id_varian');
             $table->uuid('id_customer');
-            $table->uuid('id_keranjang');
             $table->integer('jumlah');
+            $table->enum('status', ['diproses', 'dikirim', 'diterima', 'batal'])->default('diproses');
             $table->timestamps();
 
             $table->foreign('id_varian')->references('id_varian')->on('produk_varian')
@@ -27,9 +26,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreign('id_keranjang')->references('id_keranjang')->on('keranjang')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+
         });
     }
 

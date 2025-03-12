@@ -110,10 +110,11 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     // bagian checkout
     // Route::post('/co/{id}', [CheckoutController::class, 'index'])->name('shop.co');
     Route::get('/co', [CheckoutController::class, 'index'])
-    ->name('shop.co')
-    ->middleware('check.selected.items');
+        ->name('shop.co')
+        ->middleware('check.selected.items');
     Route::post('/co', [CheckoutController::class, 'index'])->name('shop.co');
     Route::post('/co/add', [CheckoutController::class, 'store'])->name('shop.co.store');
+    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('pesan.proses');
     // Route::delete('/co/delete/{id}', [CheckoutController::class, 'delete'])->name('shop.co.delete');
 
 
@@ -121,8 +122,8 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::post('/account/tanggal-lahir', [AccountController::class, 'updateTanggalLahir'])->name('cs.tgl_lahir');
     Route::post('/account/jenis-kelamin', [AccountController::class, 'updateJenisKelamin'])->name('cs.jk');
     Route::post('/account/tambah', [AccountController::class, 'TambahAlamat'])->name('cs.tambah.alamat');
-    Route::match(['get', 'post','put'],'/account/update/alamat', [AccountController::class, 'UpdateAlamat'])->name('cs.update.alamat');
-    Route::match(['post','put'],'/account/update/alamat/co', [AccountController::class, 'UpdateAlamatCO'])->name('cs.update.alamatco');
+    Route::match(['get', 'post', 'put'], '/account/update/alamat', [AccountController::class, 'UpdateAlamat'])->name('cs.update.alamat');
+    Route::match(['post', 'put'], '/account/update/alamat/co', [AccountController::class, 'UpdateAlamatCO'])->name('cs.update.alamatco');
 
 
     Route::post('/send-order-confirmation', [KirimEmailController::class, 'sendOrderConfirmation'])->name('send.order.confirmation');
