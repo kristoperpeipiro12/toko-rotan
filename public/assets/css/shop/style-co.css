@@ -275,7 +275,6 @@ body {
 
 .container-alamat {
     display: flex;
-    flex-direction: column;
     background-color: #eaffea;
     border: 2px solid #9be89b;
     border-radius: 10px;
@@ -286,6 +285,10 @@ body {
 
 .container-alamat * {
     font-size: 1rem;
+}
+
+.container-alamat input {
+    align-self: flex-start;
 }
 
 .header-alamat {

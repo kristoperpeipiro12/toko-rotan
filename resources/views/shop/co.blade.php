@@ -122,22 +122,25 @@
             <form id="formPilihAlamat">
                 @foreach ($alamat as $pn)
                     <div class="container-alamat">
-                        <label>
-                            <input type="radio" name="pilih_alamat" value="{{ $pn->id_penerima }}"
-                                data-lokasi="{{ $pn->lokasi }}" data-nama="{{ $pn->nama_penerima }}"
-                                data-alamat="{{ $pn->alamat }}" data-nohp="{{ $pn->nohp_penerima }}" />
-                            <div class="header-alamat">{{ $pn->lokasi }}</div>
-                            <div class="content-alamat">
-                                <span>Nama : {{ $pn->nama_penerima }}</span>
-                                <span>Alamat : {{ $pn->alamat }}</span>
-                                <span>No. Handphone : {{ $pn->nohp_penerima }}</span>
-                            </div>
-                        </label>
-                        <p class="btn-ubah-alamat" role="button" tabindex="0" data-id="{{ $pn->id_penerima }}"
-                            data-lokasi="{{ $pn->lokasi }}" data-alamat="{{ $pn->alamat }}"
-                            data-nama="{{ $pn->nama_penerima }}" data-nohp="{{ $pn->nohp_penerima }}">
-                            Ubah Alamat
-                        </p>
+                        <input type="radio" name="pilih_alamat" value="{{ $pn->id_penerima }}"
+                            data-lokasi="{{ $pn->lokasi }}" data-nama="{{ $pn->nama_penerima }}"
+                            data-alamat="{{ $pn->alamat }}" data-nohp="{{ $pn->nohp_penerima }}"
+                            style="display: inline; background-color: aqua;" />
+                        <div class="bg-primary d-flex flex-column">
+                            <label>
+                                <div class="header-alamat">{{ $pn->lokasi }}</div>
+                                <div class="content-alamat">
+                                    <span>Nama : {{ $pn->nama_penerima }}</span>
+                                    <span>Alamat : {{ $pn->alamat }}</span>
+                                    <span>No. Handphone : {{ $pn->nohp_penerima }}</span>
+                                </div>
+                            </label>
+                            <p class="btn-ubah-alamat" role="button" tabindex="0" data-id="{{ $pn->id_penerima }}"
+                                data-lokasi="{{ $pn->lokasi }}" data-alamat="{{ $pn->alamat }}"
+                                data-nama="{{ $pn->nama_penerima }}" data-nohp="{{ $pn->nohp_penerima }}">
+                                Ubah Alamat
+                            </p>
+                        </div>
 
 
                     </div>
