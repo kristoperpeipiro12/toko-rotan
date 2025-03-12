@@ -27,7 +27,7 @@
             <span class="tooltip">Keranjang</span>
         </li>
 
-        <li class="profile hover-here" data-bs-toggle="modal" data-bs-target="#logoutModal">
+        <li class="profile hover-here" id="openModalBtn">
             <span class="logout-span">Keluar</span>
             <i class="bx bx-log-out" id="log_out"></i>
         </li>

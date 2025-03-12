@@ -124,3 +124,45 @@
     border-radius: 4px;
     padding: 4px 6px;
 }
+
+.modal-logout {
+    position: absolute;
+    z-index: 99999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(34, 34, 34, 0.7);
+}
+
+.modal-logout-content {
+    position: absolute;
+    top: -120px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border-radius: 0 0 15px 15px;
+    padding: 10px 15px 15px 15px;
+    background-color: white;
+}
+
+.modal-logout-content .logout-container {
+    background-color: #0d8ae0;
+}
+
+.modal-logout-content .logout-container a {
+    text-decoration: none;
+    color: white;
+    padding: 6px;
+    background-color: #0476bd;
+    border-radius: 4px;
+}
+
+.modal-logout.active {
+    display: flex;
+}
+
+.modal-logout.active .modal-logout-content {
+    top: 0;
+}

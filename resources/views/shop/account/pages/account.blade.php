@@ -19,6 +19,32 @@
     @include('shop.account.pop-up.pop-up-account')
     @include('shop.includes.sidebar-user')
     @include('sweetalert::alert')
+
+    <div class="modal-logout" id="logoutModal">
+        <div class="modal-logout-content">
+            <span style="font-size: 1rem; margin-bottom: 5px;">Apakah anda yakin ingin Log-Out?</span>
+            <div class="logout-container">
+                <a href="{{ route('logout') }}">Logout</a>
+                <span class="close-modal-btn" id="closeModalBtn">Batal</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let modal = document.getElementById('logoutModal');
+            let openModalBtn = document.getElementById('openModalBtn');
+            let closeModalBtn = document.getElementById('closeModalBtn');
+
+            openModalBtn.addEventListener('click', function() {
+                modal.classList.add('active')
+            });
+
+            closeModalBtn.addEventListener('click', function() {
+                modal.classList.remove('active')
+            })
+        })
+    </script>
     <section class="home-section">
         <div class="text">Akun Saya</div>
         <div class="kembali-account">
@@ -122,15 +148,12 @@
                     </div>
                 @endforeach
             </div>
-
-
-
-
-
         </div>
 
 
     </section>
+
+
 
     <script src="{{ asset('assets/js/shop/sidebar-cus1.js') }}"></script>
     <script src="{{ asset('assets/js/shop/cus-cn1.js') }}"></script>
