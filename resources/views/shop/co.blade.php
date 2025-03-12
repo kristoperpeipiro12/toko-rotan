@@ -88,7 +88,14 @@
                             <span class="net-total">Rp. {{ number_format($total_tagihan, 0, ',', '.') }}</span>
                         </div>
 
-                        <div class="btn-co-bayar-sekarang">Bayar Sekarang</div>
+                        <form action="{{ route('send.order.confirmation') }}" method="POST">
+                            @csrf
+                            <div class="btn-co-bayar-sekarang">
+                                <button type="submit" style="background: none; border: none; cursor: pointer;">Bayar
+                                    Sekarang</button>
+                            </div>
+                        </form>
+
                     </div>
                 </section>
             </div>

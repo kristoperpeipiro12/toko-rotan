@@ -124,6 +124,8 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     Route::match(['get', 'post','put'],'/account/update/alamat', [AccountController::class, 'UpdateAlamat'])->name('cs.update.alamat');
     Route::match(['post','put'],'/account/update/alamat/co', [AccountController::class, 'UpdateAlamatCO'])->name('cs.update.alamatco');
 
+
+    Route::post('/send-order-confirmation', [KirimEmailController::class, 'sendOrderConfirmation'])->name('send.order.confirmation');
 });
 
 // Download Catalog
