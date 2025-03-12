@@ -127,7 +127,7 @@
 
 .modal-logout {
     position: absolute;
-    z-index: 99999;
+    z-index: 9999999;
     display: none;
     justify-content: center;
     align-items: center;
