@@ -104,18 +104,21 @@
                         {{-- hidden input --}}
                         <input type="hidden" name="jumlah_pesanan" id="jumlah_pesan">
                         <input type="hidden" name="selected_slug" id="selected_slug">
+                        <input type="hidden" name="go_to_cart">
                         <button type="submit" id="tambah-keranjang"
                             class="text-decoration-none text-center add-to-cart-btn-pdt-dt1">
                             Tambahkan ke Keranjang
                         </button>
                     </form>
+
                     <form action="{{ route('shop.co') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="go_to_co">
                         <input type="hidden" name="produk_varian" value="{{ $produk->id_varian }}"
                             id="selected-items-input">
+                        <input type="hidden" name="jumlah_pesanan" id="jumlah_pesan">
                         <button type="submit" class="checkout-btn">Checkout</button>
                     </form>
-
 
                 </div>
             </div>

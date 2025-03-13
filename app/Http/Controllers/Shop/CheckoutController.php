@@ -18,8 +18,12 @@ class CheckoutController extends Controller
     public function index(Request $request)
     {
         $user = Auth::id();
+        if ($request->filled('go_to_cart')) {
+            # code...
+        }
+
         $alamat = Penerima::where('id_customer', $user)
-            ->orderBy('created_at', 'asc') // Urutkan berdasarkan tanggal pembuatan paling awal
+            ->orderBy('created_at', 'asc')
             ->get();
 
         $penerima = $alamat->first();
@@ -72,7 +76,7 @@ class CheckoutController extends Controller
             $request->validate([
                 'id_varian' => 'required|exists:produk_varian,id_varian',
                 // 'id_customer' => 'required|exists:customers,id_customer',
-                // 'jumlah' => 'required|integer|min:1',
+                'jumlah' => 'required|integer|min:1',
             ]);
 
             $produk_co = Produk_Varian::where('id_varian', $request->id_varian)->first();

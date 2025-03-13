@@ -109,9 +109,9 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
 
     // bagian checkout
     // Route::post('/co/{id}', [CheckoutController::class, 'index'])->name('shop.co');
-    Route::get('/co', [CheckoutController::class, 'index'])
-        ->name('shop.co')
-        ->middleware('check.selected.items');
+    // Route::get('/co', [CheckoutController::class, 'index'])
+    //     ->name('shop.co')
+    //     ->middleware('check.selected.items');
     Route::post('/co', [CheckoutController::class, 'index'])->name('shop.co');
     Route::post('/co/add', [CheckoutController::class, 'store'])->name('shop.co.store');
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('pesan.proses');
