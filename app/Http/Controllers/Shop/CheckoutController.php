@@ -18,35 +18,38 @@ class CheckoutController extends Controller
     public function index(Request $request)
     {
         $user = Auth::id();
-        
+
         $alamat = Penerima::where('id_customer', $user)
             ->orderBy('created_at', 'asc')
             ->get();
         $penerima = $alamat->first();
+        $ongkir = 5000;
 
         if ($request->filled($request->go_to_co)) {
-            $produk_pesanan = Produk_Varian::where('id_varian',$request->produk_varian);
+            $produk_pesanan = Produk_Varian::where('id_varian', $request->produk_varian)->first();
             $jumlah_pesanan = $request->jumlah_pesanan;
-            return view('shop.co',compact('produk_pesanan','jumlah_pesanan', 'penerima','alamat'));
+            $total_harga = $produk_pesanan->harga * $jumlah_pesanan;
+
+            $total_tagihan = $total_harga + $ongkir;
+            return view('shop.co', compact('produk_pesanan', 'jumlah_pesanan', 'penerima', 'alamat', 'total_harga', 'ongkir', 'total_tagihan'));
         } else {
             $selectedItems = $request->input('selected_items', '');
             $selectedItemsArray = array_filter(explode(',', $selectedItems));
-    
+
             $cartItems = Keranjang::with('produk_varian.produk')
                 ->whereIn('id_keranjang', $selectedItemsArray)
                 ->get();
-    
+
             $total_harga = 0;
             foreach ($cartItems as $item) {
                 $total_harga += $item->jumlah * $item->produk_varian->harga;
             }
-    
-            $ongkir = 5000;
+
             $total_tagihan = $total_harga + $ongkir;
-    
+
             return view('shop.co', compact('cartItems', 'total_harga', 'ongkir', 'total_tagihan', 'penerima', 'alamat'));
         }
-        
+
     }
 
     public function checkout(Request $request)
@@ -56,8 +59,8 @@ class CheckoutController extends Controller
 
         $id_co = $this->generateCheckoutId();
 
-        if ($request->filled('selected_items')) {
-            $selectedItems = $request->input('selected_items', '');
+        if ($request->filled('selected_items_cart')) {
+            $selectedItems = $request->input('selected_items_cart', '');
             $selectedItemsArray = array_filter(explode(',', $selectedItems));
 
             $cartItems = Keranjang::with('produk_varian.produk')
