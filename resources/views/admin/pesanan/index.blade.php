@@ -45,7 +45,7 @@
                                         <td>{{ $pesanan->status }}</td>
                                         <td>
                                             <a class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#editProductModal{{ $pesanan->id_checkout }}">
+                                                data-bs-target="#editStatusModal{{ $pesanan->id_checkout }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
@@ -56,36 +56,54 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    <!-- Modal Delete Kategori -->
-                                    {{-- <div class="modal fade" id="deleteCategoryModal{{ $k->id_kategori }}" tabindex="-1"
-                                        aria-labelledby="deleteCategoryModalLabel{{ $k->id_kategori }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title"
-                                                        id="deleteCategoryModalLabel{{ $k->id_kategori }}">Hapus Kategori
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Apakah Anda yakin ingin menghapus kategori ini?</p>
-                                                    <form method="POST"
-                                                        action="{{ route('admin.kategori.delete', $k->id_kategori) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <div class="text-end">
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Batal</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                 @endforeach
                             </tbody>
+                            @foreach ($checkout as $pesanan)
+                                <!-- Modal Ubah Status -->
+                                <div class="modal fade" id="editStatusModal{{ $pesanan->id_checkout }}" tabindex="-1"
+                                    aria-labelledby="editStatusLabel{{ $pesanan->id_checkout }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editStatusLabel{{ $pesanan->id_checkout }}">
+                                                    Ubah Status Pesanan</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('pesanan.updateStatus', $pesanan->id_checkout) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="status" class="form-label">Pilih Status</label>
+                                                        <select class="form-control" name="status" id="status">
+                                                            <option value="diproses"
+                                                                {{ $pesanan->status == 'diproses' ? 'selected' : '' }}>
+                                                                Diproses</option>
+                                                            <option value="dikirim"
+                                                                {{ $pesanan->status == 'dikirim' ? 'selected' : '' }}>
+                                                                Dikirim</option>
+                                                            <option value="diterima"
+                                                                {{ $pesanan->status == 'diterima' ? 'selected' : '' }}>
+                                                                Diterima</option>
+                                                            <option value="batal"
+                                                                {{ $pesanan->status == 'batal' ? 'selected' : '' }}>
+                                                                Dibatalkan</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
                         </table>
                     </div>
 

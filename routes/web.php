@@ -89,6 +89,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 
     // pesanan
     Route::get('/pesanan/proses', [PesananController::class, 'index'])->name('admin.pesanan.index');
+    Route::put('/admin/pesanan/update-status/{id_checkout}', [PesananController::class, 'updateStatus'])->name('pesanan.updateStatus');
+
 });
 
 // Customer Routes
