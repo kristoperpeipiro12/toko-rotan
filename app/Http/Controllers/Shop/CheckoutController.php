@@ -29,6 +29,9 @@ class CheckoutController extends Controller
             $produk_pesanan = Produk_Varian::where('id_varian', $request->produk_varian)->first();
             $jumlah_pesanan = $request->jumlah_pesanan;
             $total_harga = $produk_pesanan->harga * $jumlah_pesanan;
+            $penerima = Penerima::where('id_customer', $user)
+                ->orderBy('created_at', 'asc')
+                ->first();
 
             $total_tagihan = $total_harga + $ongkir;
             return view('shop.co', compact('produk_pesanan', 'jumlah_pesanan', 'penerima', 'alamat', 'total_harga', 'ongkir', 'total_tagihan'));
@@ -103,9 +106,6 @@ class CheckoutController extends Controller
             $update_stok = Produk_Varian::findOrFail($request->id_varian);
             $update_stok->stok -= $request->jumlah;
             $update_stok->save();
-
-            $keranjang = Keranjang::findOrFail($request->id_keranjang);
-            $keranjang->delete();
         }
 
         Mail::to($user->email)->send(new OrderConfirmation());
