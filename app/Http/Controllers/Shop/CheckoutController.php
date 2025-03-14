@@ -25,7 +25,7 @@ class CheckoutController extends Controller
         $penerima = $alamat->first();
         $ongkir = 5000;
 
-        if ($request->filled($request->go_to_co)) {
+        if ($request->has('go_to_co')) {
             $produk_pesanan = Produk_Varian::where('id_varian', $request->produk_varian)->first();
             $jumlah_pesanan = $request->jumlah_pesanan;
             $total_harga = $produk_pesanan->harga * $jumlah_pesanan;
@@ -46,8 +46,9 @@ class CheckoutController extends Controller
             }
 
             $total_tagihan = $total_harga + $ongkir;
+            return view('shop.co', compact('cartItems', 'total_harga', 'ongkir', 'total_tagihan', 'penerima', 'alamat'))
+                ->with('produk_pesanan', null);
 
-            return view('shop.co', compact('cartItems', 'total_harga', 'ongkir', 'total_tagihan', 'penerima', 'alamat'));
         }
 
     }
@@ -76,15 +77,19 @@ class CheckoutController extends Controller
                 $co->jumlah = $cart->jumlah;
                 $co->save();
 
+                $update_stok = Produk_Varian::findOrFail($cart->id_varian);
+                $update_stok->stok -= $cart->jumlah;
+                $update_stok->save();
+
                 $keranjang = Keranjang::findOrFail($cart->id_keranjang);
                 $keranjang->delete();
             }
         } else {
-            $request->validate([
-                'id_varian' => 'required|exists:produk_varian,id_varian',
-                // 'id_customer' => 'required|exists:customers,id_customer',
-                'jumlah' => 'required|integer|min:1',
-            ]);
+            // $request->validate([
+            //     'id_varian' => 'required|exists:produk_varian,id_varian',
+            //     // 'id_customer' => 'required|exists:customers,id_customer',
+            //     'jumlah' => 'required|integer',
+            // ]);
 
             $produk_co = Produk_Varian::where('id_varian', $request->id_varian)->first();
 
@@ -94,6 +99,10 @@ class CheckoutController extends Controller
             $co->id_customer = $request->id_customer;
             $co->jumlah = $request->jumlah;
             $co->save();
+
+            $update_stok = Produk_Varian::findOrFail($request->id_varian);
+            $update_stok->stok -= $request->jumlah;
+            $update_stok->save();
 
             $keranjang = Keranjang::findOrFail($request->id_keranjang);
             $keranjang->delete();

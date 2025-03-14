@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Checkout;
 
 class PesananController extends Controller
 {
-    public function kemas()
+    public function index()
     {
-        $pageTitle="Pesanan";
-        return view('admin.pesanan.dikemas.index', compact('pageTitle'));
-
+        $pageTitle = "Pesanan";
+        $checkout = Checkout::where('status', 'diproses')->get();
+        return view('admin.pesanan.index', compact('pageTitle', 'checkout'));
     }
+
 
 
 }

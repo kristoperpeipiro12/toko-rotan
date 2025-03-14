@@ -38,7 +38,7 @@
                 <div class="checkout-item">
                     <span>Daftar Produk: </span>
                 </div>
-                @if (!filled($produk_pesanan))
+                @if (empty($produk_pesanan))
                     @foreach ($cartItems as $item)
                         <section class="order-summary co-page">
                             <div class="section-header co-page" style="font-size: 1.8rem; font-weight: 700;">
@@ -112,11 +112,14 @@
 
                         <form action="{{ route('pesan.proses') }}" method="POST">
                             @csrf
-                            @if (!filled($produk_pesanan))
+                            @if (empty($produk_pesanan))
                                 <input type="hidden" name="selected_items_cart"
                                     value="{{ implode(',', $cartItems->pluck('id_keranjang')->toArray()) }}">
                             @else
-                                <input type="hidden" name="selected_items_co" value="">
+                                <input type="hidden" name="selected_items_co">
+                                <input type="hidden" name="id_varian" value="{{ $produk_pesanan->id_varian }}">
+                                <input type="hidden" name="id_customer" value="{{ $produk_pesanan->id_varian }}">
+                                <input type="hidden" name="jumlah" value="{{ $jumlah_pesanan }}">
                             @endif
                             <div class="btn-co-bayar-sekarang">
                                 <button type="submit" style="background: none; border: none; cursor: pointer;">Pesan

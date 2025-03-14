@@ -81,18 +81,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('/pesanan', [KirimEmailController::class, 'index'])->name('admin.pesanan');
 
 
-    //kategori
+    // kategori
     Route::get('/kategori', [KategoriController::class, 'index'])->name('admin.kategori');
     Route::post('/kategori/add', [KategoriController::class, 'store'])->name('admin.kategori.store');
     Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name('admin.kategori.update');
     Route::delete('/kategori/{id}', [KategoriController::class, 'delete'])->name('admin.kategori.delete');
 
-    Route::get('/datawilayah', [DataWilayahController::class, 'index'])->name('admin.datawilayah');
-    Route::get('/tambah/datawilayah', [DataWilayahController::class, 'create'])->name('admin.datawilayah.create');
-    Route::get('/pesanan/dikemas', [PesananController::class, 'kemas'])->name('admin.pesanan.dikemas');
-    Route::get('/pesanan/dikirim', [PesananController::class, 'kirim'])->name('admin.pesanan.dikirim');
-    Route::get('/pesanan/konfirmasi', [PesananController::class, 'konfirmasi'])->name('admin.pesanan.konfirmasi');
-    Route::get('/pesanan/selesai', [PesananController::class, 'selesai'])->name('admin.pesanan.selesai');
+    // pesanan
+    Route::get('/pesanan/proses', [PesananController::class, 'index'])->name('admin.pesanan.index');
 });
 
 // Customer Routes
@@ -113,7 +109,7 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
     //     ->name('shop.co')
     //     ->middleware('check.selected.items');
     Route::post('/co', [CheckoutController::class, 'index'])->name('shop.co');
-    Route::post('/co/add', [CheckoutController::class, 'store'])->name('shop.co.store');
+    // Route::post('/co/add', [CheckoutController::class, 'store'])->name('shop.co.store');
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('pesan.proses');
     // Route::delete('/co/delete/{id}', [CheckoutController::class, 'delete'])->name('shop.co.delete');
 

@@ -138,26 +138,10 @@
                         </ul>
                     </li>
 
-                    {{-- <li><a href="{{ route('admin.produk') }}" aria-expanded="false"><i
-                                class="icon fas fa-gem"></i><span class="nav-text">Produk</span></a></li> --}}
-                    <li><a href="{{ route('admin.pesanan') }}" aria-expanded="false"><i
-                                class="icon icon-globe-2"></i><span class="nav-text">Pesanan</span></a></li>
+                    <li><a href="{{ route('admin.pesanan.index') }}" aria-expanded="false"><i
+                                class="icon fas fa-shopping-cart"></i><span class="nav-text">Pesanan</span></a></li>
 
-                    {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-shopping-cart"></i><span class="nav-text">Pesanan</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('admin.pesanan.dikemas') }}"><i
-                                        class="fa fa-box-open"></i>Dikemas</a></li>
-                            <li><a href="{{ route('admin.pesanan.dikirim') }}"><i class="fa fa-truck"></i>Dikirim</a>
-                            </li>
-                            <li><a href="{{ route('admin.pesanan.konfirmasi') }}"><i
-                                        class="fa fa-clipboard-check"></i>
-                                    Konfirmasi</a></li>
-                            <li><a href="{{ route('admin.pesanan.selesai') }}"><i class="fa fa-check"></i>Selesai</a>
-                            </li>
-                        </ul>
-                    </li> --}}
+
                     <li>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" aria-expanded="false">
                             <i class="fas fa-sign-out-alt"></i>
