@@ -22,11 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Route Catalog
-// Route::get('/', [CustomerHomeController::class, 'index'])->name('customer.home');
-// Route::get('/shop/cus', [CustomerHomeController::class, 'shop'])->name('customer.shop');
-// Route::get('/about/cus', [CustomerHomeController::class, 'about'])->name('customer.about');
-
 // con
 Route::get('/', [ShopController::class, 'index'])->name('shop.home');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
@@ -106,14 +101,8 @@ Route::group(['middleware' => ['auth', 'role:customer']], function () {
 
 
     // bagian checkout
-    // Route::post('/co/{id}', [CheckoutController::class, 'index'])->name('shop.co');
-    // Route::get('/co', [CheckoutController::class, 'index'])
-    //     ->name('shop.co')
-    //     ->middleware('check.selected.items');
     Route::post('/co', [CheckoutController::class, 'index'])->name('shop.co');
-    // Route::post('/co/add', [CheckoutController::class, 'store'])->name('shop.co.store');
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('pesan.proses');
-    // Route::delete('/co/delete/{id}', [CheckoutController::class, 'delete'])->name('shop.co.delete');
 
 
     Route::get('/account', [AccountController::class, 'index'])->name('cs.account');

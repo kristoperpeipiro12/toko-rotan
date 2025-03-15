@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\OrderConfirmation;
 use Illuminate\Support\Facades\Mail;
+use function PHPUnit\Framework\isNull;
 
 class CheckoutController extends Controller
 {
@@ -29,9 +30,15 @@ class CheckoutController extends Controller
             $produk_pesanan = Produk_Varian::where('id_varian', $request->produk_varian)->first();
             $jumlah_pesanan = $request->jumlah_pesanan;
             $total_harga = $produk_pesanan->harga * $jumlah_pesanan;
+            if (isNull($user)) {
+                $penerima = Penerima::where('id_customer', $user)->get();
+                return view('shop.account.pages.account', compact('penerima'))->with('toast_error', 'Mohon tambahkan alamat terlebih dahulu!');
+            }
+            ;
             $penerima = Penerima::where('id_customer', $user)
                 ->orderBy('created_at', 'asc')
                 ->first();
+
 
             $total_tagihan = $total_harga + $ongkir;
             return view('shop.co', compact('produk_pesanan', 'jumlah_pesanan', 'penerima', 'alamat', 'total_harga', 'ongkir', 'total_tagihan'));

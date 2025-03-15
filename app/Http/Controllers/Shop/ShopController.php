@@ -17,14 +17,16 @@ class ShopController extends Controller
 
     public function shop()
     {
-        $produk_varian = Produk_Varian::with('Produk') // Mengambil relasi Produk
+        $produk_varian = Produk_Varian::with('Produk')
+            ->where('stok', '>', 0) // Menambahkan kondisi stok harus lebih dari 0
             ->get()
             ->groupBy('id_produk') // Mengelompokkan berdasarkan ID produk
             ->map(function ($group) {
                 // Mengelompokkan varian produk berdasarkan warna
                 return $group->unique('warna');
             })
-            ->flatten(); // Flatten hasilnya untuk mendapatkan data dalam satu array
+            ->flatten();
+        // Flatten hasilnya untuk mendapatkan data dalam satu array
 
         return view('shop.shop', compact('produk_varian'));
     }

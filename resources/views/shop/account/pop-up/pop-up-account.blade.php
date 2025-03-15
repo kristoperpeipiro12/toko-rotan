@@ -129,9 +129,10 @@
                     <div class="wrap-head-pop">
 
                         <h2 class="title-ttl-pop">Tambah Alamat</h2>
-                        <div class="x-rotate" id="closeModal3">
+                        <button style="background-color: transparent; border: none;" class="x-rotate"
+                            id="closeModal3">
                             <i class='bx bx-x x-popup'></i>
-                        </div>
+                        </button>
                     </div>
 
                     <div class="dropdown-container-ttl-pop almt-con">
