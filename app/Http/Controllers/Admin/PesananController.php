@@ -159,6 +159,12 @@ class PesananController extends Controller
 
         return redirect()->back()->with('toast_success', 'Status pesanan berhasil diperbarui dan email dikirim.');
     }
+    public function delete($id)
+    {
+        $produk = Checkout::findOrFail($id);
+        $produk->delete();
 
+        return redirect()->route('admin.pesanan.index')->with('toast_success', 'Pesanan berhasil dihapus.');
+    }
 
 }

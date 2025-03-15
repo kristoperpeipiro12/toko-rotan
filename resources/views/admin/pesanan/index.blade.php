@@ -56,6 +56,37 @@
                                             </a>
                                         </td>
                                     </tr>
+                                    <!-- Modal Delete Kategori -->
+                                    <div class="modal fade" id="deleteCategoryModal{{ $pesanan->id_checkout }}"
+                                        tabindex="-1"
+                                        aria-labelledby="deleteCategoryModalLabel{{ $pesanan->id_checkout }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        id="deleteCategoryModalLabel{{ $pesanan->id_checkout }}">Hapus
+                                                        Kategori
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Apakah Anda yakin ingin menghapus Pesanan ini?</p>
+                                                    <form method="POST"
+                                                        action="{{ route('admin.pesanan.delete', $pesanan->id_checkout) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <div class="text-end">
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                             @foreach ($checkout as $pesanan)
@@ -96,7 +127,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>

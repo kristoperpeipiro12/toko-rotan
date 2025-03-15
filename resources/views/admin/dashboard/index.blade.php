@@ -21,7 +21,7 @@
                     <div class="stat-widget-two card-body">
                         <div class="stat-content">
                             <div class="stat-text">Terjual</div>
-                            <div class="stat-digit"> <i class="fa fa-usd"></i>7800</div>
+                            <div class="stat-digit"> <i class="fa fa-usd"></i>{{ $terjual }}</div>
                         </div>
                         <div class="progress">
                             <div class="progress-bar progress-bar-primary w-75" role="progressbar" aria-valuenow="78"
@@ -35,7 +35,7 @@
                     <div class="stat-widget-two card-body">
                         <div class="stat-content">
                             <div class="stat-text">Terkirim</div>
-                            <div class="stat-digit"> <i class=" "></i> 500</div>
+                            <div class="stat-digit"> <i class=" "></i> {{ $terkirim }}</div>
                         </div>
                         <div class="progress">
                             <div class="progress-bar progress-bar-warning w-50" role="progressbar" aria-valuenow="50"
@@ -49,7 +49,7 @@
                     <div class="stat-widget-two card-body">
                         <div class="stat-content">
                             <div class="stat-text">Total Pemasukan</div>
-                            <div class="stat-digit"> <i class="fa fa-money"></i>650</div>
+                            <div class="stat-digit"> <i class="fa fa-money"></i>{{ $totalPemasukan }}</div>
                         </div>
                         <div class="progress">
                             <div class="progress-bar progress-bar-danger w-65" role="progressbar" aria-valuenow="65"

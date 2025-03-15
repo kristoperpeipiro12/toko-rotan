@@ -83,8 +83,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::delete('/kategori/{id}', [KategoriController::class, 'delete'])->name('admin.kategori.delete');
 
     // pesanan
-    Route::get('/pesanan/proses', [PesananController::class, 'index'])->name('admin.pesanan.index');
+    Route::get('/pesanan', [PesananController::class, 'index'])->name('admin.pesanan.index');
     Route::put('/admin/pesanan/update-status/{id_checkout}', [PesananController::class, 'updateStatus'])->name('pesanan.updateStatus');
+    Route::delete('/pesanan/delete/{id}', [PesananController::class, 'delete'])->name('admin.pesanan.delete');
+
 
 });
 
