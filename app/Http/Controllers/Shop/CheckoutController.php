@@ -32,7 +32,7 @@ class CheckoutController extends Controller
             $total_harga = $produk_pesanan->harga * $jumlah_pesanan;
             if (isNull($user)) {
                 $penerima = Penerima::where('id_customer', $user)->get();
-                return view('shop.account.pages.account', compact('penerima'))->with('toast_error', 'Mohon tambahkan alamat terlebih dahulu!');
+                return redirect()->route('cs.account', compact('penerima'))->with('toast_error', 'Mohon tambahkan alamat terlebih dahulu!');
             }
             ;
             $penerima = Penerima::where('id_customer', $user)
